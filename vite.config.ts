@@ -3,11 +3,12 @@ import type { ProxyOptions } from 'vite'
 import react from '@vitejs/plugin-react'
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
 
-const API_PROXY_TARGET = process.env.VITE_API_PROXY_TARGET || 'https://fakefull.art/api'
+const API_PROXY_TARGET = process.env.VITE_API_PROXY_TARGET || 'https://acme.pics/api'
 const API_PROXY_ORIGIN = process.env.VITE_API_PROXY_ORIGIN || new URL(API_PROXY_TARGET).origin
 const ADMIN_PROXY_TARGET = process.env.VITE_ADMIN_PROXY_TARGET || API_PROXY_ORIGIN
 const API_PROXY_REWRITE_PREFIX = API_PROXY_TARGET.endsWith('/api') ? '' : '/v2'
 const COMPOSE_PROXY_REWRITE_PREFIX = API_PROXY_TARGET.endsWith('/api') ? '/api' : API_PROXY_REWRITE_PREFIX
+const APP_BASE_PATH = process.env.VITE_APP_BASE_PATH || '/'
 
 const configureLongRequestProxy: NonNullable<ProxyOptions['configure']> = (proxy) => {
   proxy.on('proxyReq', (proxyReq, req) => {
@@ -29,7 +30,7 @@ const configureLongRequestProxy: NonNullable<ProxyOptions['configure']> = (proxy
 }
 
 export default defineConfig({
-  base: '/',
+  base: APP_BASE_PATH,
   plugins: [
     react(),
     nodePolyfills({

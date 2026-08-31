@@ -45,7 +45,7 @@ const DEFAULT_SOCIAL_LIMIT = 5000
 
 const trimTrailingSlash = (value: string) => value.replace(/\/+$/, '')
 
-const normalizeNetwork = (network: string | null | undefined) => network?.trim() || 'testnet'
+const normalizeNetwork = (network: string | null | undefined) => network?.trim() || 'mainnet'
 
 const normalizeAddressKey = (address: string) => address.trim().toLowerCase()
 

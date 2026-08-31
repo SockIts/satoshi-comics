@@ -48,13 +48,13 @@ export type AcmeMintForm = {
   locked: boolean
 }
 
-const ACME_EXPECTED_WALLET_NETWORK = 'testnet'
-const ACME_TESTNET_ADDRESS_PATTERN = /^(tb1|[mn2])/
+const ACME_EXPECTED_WALLET_NETWORK = 'mainnet'
+const ACME_MAINNET_ADDRESS_PATTERN = /^(bc1|[13])/
 
 export const validateAcmeWalletNetwork = (wallet: Pick<AcmeWalletState, 'address' | 'network'>): string | null => {
   if (!wallet.address) return 'Connect UniSat before minting.'
-  if (wallet.network !== ACME_EXPECTED_WALLET_NETWORK || !ACME_TESTNET_ADDRESS_PATTERN.test(wallet.address)) {
-    return 'Switch UniSat to Bitcoin testnet before minting on ACME testnet, then reconnect your wallet.'
+  if (wallet.network !== ACME_EXPECTED_WALLET_NETWORK || !ACME_MAINNET_ADDRESS_PATTERN.test(wallet.address)) {
+    return 'Switch UniSat to Bitcoin mainnet before minting on ACME, then reconnect your wallet.'
   }
   return null
 }
@@ -99,7 +99,7 @@ type ApiResponse<T> = {
 const trimTrailingSlash = (value: string) => value.replace(/\/+$/, '')
 
 const ACME_PUBLIC_ORIGIN =
-  (import.meta.env.VITE_ACME_PUBLIC_ORIGIN as string | undefined)?.trim() || 'https://fakefull.art'
+  (import.meta.env.VITE_ACME_PUBLIC_ORIGIN as string | undefined)?.trim() || 'https://acme.pics'
 
 const ACME_API_BASE_URL =
   (import.meta.env.VITE_ACME_API_BASE_URL as string | undefined)?.trim() ||
@@ -195,7 +195,7 @@ const jsonFetch = async <T>(url: string, init?: RequestInit): Promise<T> => {
   if (!response.ok) {
     const message = typeof data === 'object' && data && 'error' in data ? String(data.error) : ''
     const fallback = response.status === 502
-      ? 'ACME testnet gateway returned 502 Bad Gateway'
+      ? 'ACME gateway returned 502 Bad Gateway'
       : response.statusText
     throw new Error(message || fallback || `Request failed with ${response.status}`)
   }
@@ -405,7 +405,7 @@ const uploadStampToArweave = async ({
 const normalizeNetwork = (network: string) => {
   if (network === 'livenet') return 'mainnet'
   if (network === 'testnet4') return 'testnet'
-  return network || 'testnet'
+  return network || 'mainnet'
 }
 
 const normalizeValue = (utxo: BackendUtxo) => {

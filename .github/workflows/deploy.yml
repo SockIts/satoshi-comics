@@ -35,6 +35,9 @@ jobs:
           VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
           VITE_SUPABASE_SOCIAL_ACTION_FUNCTION: ${{ vars.VITE_SUPABASE_SOCIAL_ACTION_FUNCTION }}
+          VITE_ACME_PUBLIC_ORIGIN: ${{ vars.VITE_ACME_PUBLIC_ORIGIN || 'https://acme.pics' }}
+          VITE_ACME_API_BASE_URL: ${{ vars.VITE_ACME_API_BASE_URL || 'https://acme.pics' }}
+          VITE_APP_BASE_PATH: ${{ vars.VITE_APP_BASE_PATH || '/' }}
         run: npm run build
 
       - name: Setup Pages

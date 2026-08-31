@@ -93,7 +93,7 @@ const DEFAULT_FORM: AcmeMintForm = {
   collectionName: 'SATOSHICOMICS',
   additionalAxons: [],
   tags: 'SatoshiComics, comic, comic-book, ACME',
-  description: 'Submitted to SatoshiComics on ACME testnet.',
+  description: 'Submitted to SatoshiComics on ACME mainnet.',
   feeRate: 5,
   locked: false,
 }
@@ -362,7 +362,7 @@ function App() {
           assetName: normalizeAcmeAssetRef(form.assetName),
           collectionName: 'SATOSHICOMICS',
           tags: mergeComicTags(form.tags),
-          description: form.description || 'Submitted to SatoshiComics on ACME testnet.',
+          description: form.description || 'Submitted to SatoshiComics on ACME mainnet.',
         },
         imageDataUrl: renderedComic,
         wallet,
@@ -428,7 +428,7 @@ function App() {
       const unsignedAction = {
         address: activeWallet.address,
         publicKey: activeWallet.publicKey ?? undefined,
-        network: activeWallet.network ?? 'testnet',
+        network: activeWallet.network ?? 'mainnet',
         targetType: 'asset' as const,
         targetId: asset.asset,
         action: 'like' as const,
@@ -511,7 +511,7 @@ function App() {
     <main className="app-shell">
       <header className="app-header">
         <div>
-          <p className="eyebrow">ACME testnet comic submissions</p>
+          <p className="eyebrow">ACME mainnet comic submissions</p>
           <h1>SatoshiComics</h1>
         </div>
         <button className="wallet-button" type="button" onClick={connectWallet} disabled={wallet.connecting}>
@@ -531,10 +531,10 @@ function App() {
         <section className="page rules-page">
           <a
             className="rules-hero"
-            href="https://fakefull.art/collection/SATOSHICOMICS"
+            href="https://acme.pics/collection/SATOSHICOMICS"
             target="_blank"
             rel="noreferrer"
-            aria-label="Open SatoshiComics collection on Fakefull"
+            aria-label="Open SatoshiComics collection on ACME"
           >
             <div className="rules-hero-strip" aria-hidden="true">
               {RULE_EXAMPLES.map((example) => (
@@ -553,7 +553,7 @@ function App() {
               <li>The rendered upload must look like a comic cover and include the SatoshiComics wrapper.</li>
               <li>Use a unique ACME asset name: 3-16 uppercase letters or numbers, starting with a letter.</li>
               <li>Keep images safe for a public gallery. No hateful, stolen, or deceptive submissions.</li>
-              <li>Mint on ACME testnet with the `SATOSHICOMICS` collection and `SatoshiComics` tag. If you want to add a creator information, you must first create a profile on ACME. Once a profile is created, you can use this profile in the Creator section. Profile only need to be created once.</li>
+              <li>Mint on ACME mainnet with the `SATOSHICOMICS` collection and `SatoshiComics` tag. If you want to add creator information, create a profile on ACME first. Once a profile is created, you can use it in the Creator section. Profiles only need to be created once.</li>
               <li>Once approved, Asset will be shown in the Approved tab in the order that get approved.</li>
               <li>All submissions are Free atm.</li>
               <li>Marketplace, trading, auction, offers are coming soon.</li>
@@ -738,7 +738,7 @@ function App() {
           <div className="section-head">
             <div>
               <h2>Submission</h2>
-              <p>Pending assets referencing the `SATOSHICOMICS` collection on ACME testnet.</p>
+              <p>Pending assets referencing the `SATOSHICOMICS` collection on ACME mainnet.</p>
             </div>
             <div className="submission-actions">
               <label className="submission-search">
@@ -832,7 +832,7 @@ function App() {
           <div className="section-head">
             <div>
               <h2>Approved Comics</h2>
-              <p>Synapsed assets in the `SATOSHICOMICS` collection on ACME testnet.</p>
+              <p>Synapsed assets in the `SATOSHICOMICS` collection on ACME mainnet.</p>
             </div>
             <div className="submission-actions">
               <label className="submission-search">
