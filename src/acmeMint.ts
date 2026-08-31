@@ -14,8 +14,13 @@ export type AcmeGalleryAsset = {
   description: string
   artistAsset: string | null
   collectionAsset: string | null
+  collectionRelationshipStatus: 'pending' | 'synapsed'
+  collectionRelationshipCreatedAt: number | null
+  collectionRelationshipId: number | null
+  collectionSynapseFormedBlock: number | null
   mimeType: string | null
   revealBlock: number | null
+  revealTimestamp: number | null
   thumbnailUrl: string
   contentUrl: string
   artUrl: string
@@ -76,6 +81,7 @@ type UniSatApi = {
       }>
     },
   ) => Promise<string>
+  signMessage: (message: string, type?: 'ecdsa' | 'bip322-simple') => Promise<string>
 }
 
 declare global {
@@ -153,8 +159,26 @@ type AcmeCortexAsset = {
   description?: string | null
   artist_asset?: string | null
   collection_asset?: string | null
+  collection_relationship_status?: 'pending' | 'synapsed' | null
+  collection_relationship_created_at?: number | null
+  collection_relationship_id?: number | null
+  collection_synapse_formed_block?: number | null
   mime_type?: string | null
   reveal_block?: number | null
+  reveal_timestamp?: number | null
+}
+
+type AcmeCortexDendrite = {
+  id?: number | null
+  source_asset?: string | null
+  source_block?: number | null
+  rel_type?: string | null
+  target_ref?: string | null
+  created_at?: number | null
+  synapse?: {
+    status?: string | null
+    formed_block?: number | null
+  } | null
 }
 
 const jsonFetch = async <T>(url: string, init?: RequestInit): Promise<T> => {
@@ -191,6 +215,11 @@ const tryParseJson = <T,>(body: string): T | Record<string, never> => {
   }
 }
 
+const normalizeCollectionRelationshipStatus = (status?: string | null): AcmeGalleryAsset['collectionRelationshipStatus'] => {
+  const normalizedStatus = status?.trim().toLowerCase()
+  return normalizedStatus === 'confirmed' || normalizedStatus === 'synapsed' ? 'synapsed' : 'pending'
+}
+
 const normalizeGalleryAsset = (asset: AcmeCortexAsset): AcmeGalleryAsset | null => {
   const assetName = asset.asset?.trim()
   if (!assetName) return null
@@ -201,8 +230,13 @@ const normalizeGalleryAsset = (asset: AcmeCortexAsset): AcmeGalleryAsset | null 
     description: asset.description?.trim() || '',
     artistAsset: asset.artist_asset ?? null,
     collectionAsset: asset.collection_asset ?? null,
+    collectionRelationshipStatus: normalizeCollectionRelationshipStatus(asset.collection_relationship_status),
+    collectionRelationshipCreatedAt: asset.collection_relationship_created_at ?? null,
+    collectionRelationshipId: asset.collection_relationship_id ?? null,
+    collectionSynapseFormedBlock: asset.collection_synapse_formed_block ?? null,
     mimeType: asset.mime_type ?? null,
     revealBlock: asset.reveal_block ?? null,
+    revealTimestamp: asset.reveal_timestamp ?? null,
     thumbnailUrl: resolveAcmeUrl(`/api/assets/${encodeURIComponent(assetName)}/thumbnail?size=512&format=webp&v=5`),
     contentUrl: resolveAcmeUrl(`/api/assets/${encodeURIComponent(assetName)}/content`),
     artUrl: resolveAcmePublicUrl(`/art/${encodeURIComponent(assetName)}`),
@@ -211,13 +245,72 @@ const normalizeGalleryAsset = (asset: AcmeCortexAsset): AcmeGalleryAsset | null 
 
 export const fetchAcmeCollectionAssets = async (collectionName = 'STAMPS', limit = 60) => {
   const normalizedCollection = normalizeAcmeAssetRef(collectionName)
-  const response = await jsonFetch<AcmeCortexAsset[]>(
-    resolveAcmeUrl(`/api/cortex/collections/${encodeURIComponent(normalizedCollection)}/assets?limit=${limit}`),
+  const [response, dendrites] = await Promise.all([
+    jsonFetch<AcmeCortexAsset[]>(
+      resolveAcmeUrl(`/api/cortex/collections/${encodeURIComponent(normalizedCollection)}/assets?limit=${limit}`),
+    ),
+    jsonFetch<AcmeCortexDendrite[]>(
+      resolveAcmeUrl(`/api/cortex/assets/${encodeURIComponent(normalizedCollection)}/dendrites?limit=${limit}`),
+    ).catch(() => []),
+  ])
+  const relationshipMetadata = new Map(
+    dendrites
+      .filter((dendrite) => dendrite.rel_type === 'collection' && normalizeAcmeAssetRef(dendrite.target_ref ?? '') === normalizedCollection)
+      .map((dendrite) => [
+        normalizeAcmeAssetRef(dendrite.source_asset ?? ''),
+        {
+          status: normalizeCollectionRelationshipStatus(dendrite.synapse?.status),
+          createdAt: dendrite.created_at ?? null,
+          id: dendrite.id ?? null,
+          formedBlock: dendrite.synapse?.formed_block ?? null,
+        },
+      ] as const),
   )
 
   return response
+    .map((asset) => {
+      const metadata = relationshipMetadata.get(normalizeAcmeAssetRef(asset.asset ?? ''))
+      return {
+        ...asset,
+        collection_relationship_status: metadata?.status ?? 'pending',
+        collection_relationship_created_at: metadata?.createdAt ?? null,
+        collection_relationship_id: metadata?.id ?? null,
+        collection_synapse_formed_block: metadata?.formedBlock ?? null,
+      }
+    })
     .map(normalizeGalleryAsset)
     .filter((asset): asset is AcmeGalleryAsset => asset !== null)
+}
+
+export const checkAcmeAssetAvailability = async (assetName: string) => {
+  const normalized = normalizeAcmeAssetRef(assetName)
+  if (!validateAcmeAssetName(normalized)) {
+    return {
+      available: false,
+      message: 'Asset name must be 3-16 uppercase letters and numbers, starting with a letter.',
+    }
+  }
+
+  const response = await fetch(resolveAcmeUrl(`/api/assets/${encodeURIComponent(normalized)}`), {
+    headers: { 'Content-Type': 'application/json' },
+  })
+  const body = await response.text()
+  const data = (body ? tryParseJson<ApiResponse<unknown>>(body) : {}) as ApiResponse<unknown>
+
+  if (response.status === 404) {
+    return { available: true, message: `${normalized} is available.` }
+  }
+
+  if (!response.ok) {
+    const message = data.error?.trim() || response.statusText || `Asset check failed with ${response.status}`
+    throw new Error(message)
+  }
+
+  if (data.result) {
+    return { available: false, message: `${normalized} has already been taken.` }
+  }
+
+  return { available: true, message: `${normalized} is available.` }
 }
 
 const base64ToHex = (base64: string) => {
@@ -394,7 +487,7 @@ export const validateAcmeMintForm = (form: AcmeMintForm): string | null => {
   }
 
   if (artistName && !validateAcmeAssetRef(artistName)) {
-    errors.push('Artist must be a valid ACME asset reference.')
+    errors.push('Creator must be a valid ACME asset reference.')
   }
 
   if (collectionNames.some((collectionName) => !validateAcmeAssetRef(collectionName))) {

@@ -60,7 +60,8 @@ h2 {
 .upload-drop button,
 .editor-actions button,
 .mint-actions button,
-.section-head button {
+.section-head button,
+.like-button {
   border: 1px solid rgba(30, 37, 44, 0.18);
   border-radius: 8px;
   background: #ffffff;
@@ -71,6 +72,55 @@ h2 {
   min-height: 42px;
   padding: 0 14px;
   box-shadow: 0 10px 24px rgba(30, 37, 44, 0.1);
+}
+
+.like-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: min(100%, 86px);
+  min-height: 30px;
+  margin-top: 7px;
+  padding: 0 9px;
+  border-color: rgba(180, 35, 24, 0.22);
+  color: #7a271a;
+  font-family: "Comic Neue", "Comic Sans MS", "Trebuchet MS", cursive, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: none;
+}
+
+.like-button:hover {
+  border-color: rgba(180, 35, 24, 0.42);
+  background: #fff5f3;
+}
+
+.like-button.active {
+  border-color: rgba(180, 35, 24, 0.28);
+  background: #ffffff;
+  color: #7a271a;
+}
+
+.like-button.active:hover {
+  background: #fff5f3;
+}
+
+.like-button.active .like-icon {
+  color: #b42318;
+}
+
+.like-button.active .like-count {
+  color: #1e252c;
+}
+
+.asset-card .like-button span,
+.lightbox-meta .like-button span {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
 }
 
 .wallet-button {
@@ -92,10 +142,6 @@ h2 {
 .tabbar button {
   min-width: 0;
   box-shadow: none;
-  font-size: clamp(0.72rem, 1.4vw, 0.92rem);
-}
-
-.tabbar button:nth-child(-n + 3) {
   font-size: clamp(1.08rem, 1.9vw, 1.4rem);
 }
 
@@ -408,6 +454,25 @@ textarea {
   min-height: 124px;
 }
 
+.asset-check-text {
+  color: #667078;
+  font-family: "Comic Neue", "Comic Sans MS", "Trebuchet MS", cursive, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.25;
+  text-transform: none;
+}
+
+.asset-check-text.available {
+  color: #22543d;
+}
+
+.asset-check-text.taken,
+.asset-check-text.error,
+.asset-check-text.invalid {
+  color: #b42318;
+}
+
 input[type="range"] {
   accent-color: #1e252c;
   padding: 0;
@@ -460,6 +525,26 @@ input[type="range"] {
   justify-content: space-between;
   gap: 18px;
   margin-bottom: 20px;
+}
+
+.submission-actions {
+  display: grid;
+  grid-template-columns: minmax(180px, 260px) minmax(132px, 172px) auto;
+  align-items: end;
+  gap: 10px;
+}
+
+.submission-search,
+.submission-sort {
+  gap: 4px;
+  min-width: 0;
+  font-size: 0.78rem;
+}
+
+.submission-search input,
+.submission-sort select {
+  min-height: 42px;
+  font-size: 0.92rem;
 }
 
 .bookshelf-grid {
@@ -587,6 +672,10 @@ input[type="range"] {
   text-align: center;
 }
 
+.asset-meta-mobile {
+  display: none;
+}
+
 .asset-meta strong {
   overflow-wrap: anywhere;
   font-family: "Lemon Slice", "Bangers", "Comic Neue", "Comic Sans MS", cursive, sans-serif;
@@ -661,6 +750,14 @@ input[type="range"] {
   font-weight: 800;
 }
 
+.lightbox-meta .like-button {
+  width: auto;
+  min-width: 92px;
+  margin-top: 0;
+  border-color: rgba(255, 255, 255, 0.34);
+  box-shadow: none;
+}
+
 @keyframes shelfRise {
   from {
     opacity: 0;
@@ -698,6 +795,291 @@ input[type="range"] {
   gap: 14px;
 }
 
+.graded-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 360px));
+  gap: 28px;
+  align-items: start;
+  padding: 10px 0 34px;
+}
+
+.graded-slab {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 12px;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid rgba(139, 147, 156, 0.44);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(244, 249, 252, 0.36) 42%, rgba(255, 255, 255, 0.66)),
+    rgba(236, 243, 246, 0.72);
+  box-shadow:
+    0 28px 54px rgba(30, 37, 44, 0.2),
+    0 0 0 5px rgba(255, 255, 255, 0.42) inset,
+    0 0 0 9px rgba(156, 174, 184, 0.12) inset;
+  cursor: zoom-in;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+  animation: shelfRise 560ms cubic-bezier(0.2, 0.72, 0.2, 1) both;
+}
+
+.graded-slab:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 34px 62px rgba(30, 37, 44, 0.25),
+    0 0 0 5px rgba(255, 255, 255, 0.42) inset,
+    0 0 0 9px rgba(156, 174, 184, 0.12) inset;
+}
+
+.graded-slab:focus-visible {
+  outline: 3px solid rgba(45, 108, 223, 0.38);
+  outline-offset: 6px;
+}
+
+.graded-slab::before,
+.graded-slab::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  pointer-events: none;
+  border-radius: 6px;
+}
+
+.graded-slab::before {
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow: 0 0 0 1px rgba(72, 84, 96, 0.08);
+}
+
+.graded-slab::after {
+  background: linear-gradient(108deg, rgba(255, 255, 255, 0.28), transparent 22%, transparent 68%, rgba(255, 255, 255, 0.34));
+}
+
+.graded-label {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr) 62px;
+  gap: 8px;
+  align-items: stretch;
+  min-height: 76px;
+  padding: 7px;
+  border: 1px solid rgba(30, 37, 44, 0.16);
+  border-left: 5px solid #d63d2e;
+  border-radius: 4px;
+  background:
+    linear-gradient(90deg, rgba(214, 61, 46, 0.08), transparent 32%),
+    #f8fbfc;
+  color: #1e252c;
+  box-shadow: 0 2px 9px rgba(30, 37, 44, 0.08);
+}
+
+.graded-brand,
+.graded-score {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 2px;
+  min-width: 0;
+  border-radius: 3px;
+  background: #ffffff;
+}
+
+.graded-brand span {
+  color: #d63d2e;
+  font-size: 0.88rem;
+  font-weight: 1000;
+  line-height: 1;
+}
+
+.graded-brand strong,
+.graded-score strong,
+.graded-title span,
+.graded-details dt,
+.graded-details dd,
+.graded-footer span {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-family: "Comic Neue", "Comic Sans MS", "Trebuchet MS", cursive, sans-serif;
+  letter-spacing: 0;
+  line-height: 1.05;
+}
+
+.graded-brand strong {
+  color: #2d6cdf;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+}
+
+.graded-title {
+  display: grid;
+  align-content: center;
+  gap: 5px;
+  min-width: 0;
+}
+
+.graded-title strong {
+  overflow-wrap: anywhere;
+  font-family: "Lemon Slice", "Bangers", "Comic Neue", "Comic Sans MS", cursive, sans-serif;
+  font-size: 1.18rem;
+  font-weight: 400;
+  line-height: 0.95;
+  color: #1e252c;
+}
+
+.graded-title span {
+  color: #5c6670;
+  font-size: 0.68rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.graded-details {
+  grid-column: 1 / 3;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+  margin: 0;
+}
+
+.graded-details div {
+  min-width: 0;
+}
+
+.graded-details dt {
+  color: #7a8188;
+  font-size: 0.52rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.graded-details dd {
+  color: #1e252c;
+  font-size: 0.64rem;
+  font-weight: 900;
+}
+
+.graded-score {
+  grid-column: 3;
+  grid-row: 1 / 3;
+  border: 1px solid rgba(30, 37, 44, 0.12);
+}
+
+.graded-score span {
+  font-family: "Arial Black", Impact, sans-serif;
+  font-size: 1.45rem;
+  font-weight: 900;
+  line-height: 0.95;
+}
+
+.graded-score strong {
+  color: #13795b;
+  font-size: 0.58rem;
+  font-weight: 1000;
+  text-transform: uppercase;
+}
+
+.graded-case-body {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  padding: 18px 18px 22px;
+  border-radius: 6px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(188, 204, 214, 0.16)),
+    rgba(255, 255, 255, 0.24);
+  box-shadow:
+    0 0 0 1px rgba(30, 37, 44, 0.08) inset,
+    0 0 0 7px rgba(255, 255, 255, 0.2) inset;
+}
+
+.graded-comic-frame {
+  display: grid;
+  width: min(100%, 244px);
+  aspect-ratio: 1048 / 1564;
+  padding: 0;
+  border: 5px solid rgba(248, 251, 252, 0.9);
+  border-radius: 3px;
+  background: #1e252c;
+  box-shadow:
+    0 18px 30px rgba(30, 37, 44, 0.24),
+    0 0 0 1px rgba(30, 37, 44, 0.3);
+  overflow: hidden;
+}
+
+.graded-comic-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.graded-footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+}
+
+.graded-footer span {
+  color: #4f5963;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.graded-footer .like-button {
+  flex: 0 0 auto;
+  margin-top: 0;
+}
+
+.graded-lightbox-panel {
+  width: min(94vw, 680px);
+}
+
+.graded-slab-modal {
+  width: min(100%, 620px);
+  max-height: min(86vh, 940px);
+  padding: 22px;
+  gap: 16px;
+  overflow: auto;
+  cursor: default;
+  animation: comicReveal 460ms cubic-bezier(0.18, 0.9, 0.28, 1.12) both;
+}
+
+.graded-slab-modal .graded-label {
+  grid-template-columns: 76px minmax(0, 1fr) 82px;
+  min-height: 104px;
+  gap: 10px;
+  padding: 10px;
+}
+
+.graded-slab-modal .graded-score span {
+  font-size: 1.85rem;
+}
+
+.graded-slab-modal .graded-comic-frame {
+  width: min(100%, 410px);
+}
+
+.graded-slab-modal:hover {
+  transform: none;
+}
+
+.graded-lightbox-panel .graded-comic-frame img {
+  width: 100%;
+  max-width: none;
+  max-height: none;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: none;
+}
+
 .error-text {
   margin: 0;
   color: #b42318;
@@ -723,6 +1105,10 @@ button:disabled {
   .section-head {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .submission-actions {
+    grid-template-columns: 1fr;
   }
 
   .tabbar {
@@ -757,6 +1143,10 @@ button:disabled {
     gap: 4px;
   }
 
+  .graded-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
   .upload-drop,
   .editor-actions,
   .mint-actions,
@@ -781,7 +1171,88 @@ button:disabled {
     gap: 4px;
   }
 
+  .shelf-row {
+    padding-bottom: 0;
+  }
+
+  .book-grid {
+    align-items: start;
+    gap: 16px 8px;
+  }
+
+  .shelf-shadow,
+  .shelf-board,
+  .asset-meta-row {
+    display: none;
+  }
+
+  .asset-card {
+    display: grid;
+    justify-items: center;
+    align-content: start;
+    gap: 8px;
+    width: 100%;
+  }
+
   .book-frame {
     width: min(100%, 168px);
+  }
+
+  .asset-meta-mobile {
+    display: grid;
+    width: min(100%, 168px);
+    padding-top: 0;
+  }
+
+  .asset-meta strong {
+    font-size: 0.92rem;
+  }
+
+  .asset-meta span {
+    font-size: 0.72rem;
+  }
+
+  .tabbar button {
+    font-size: clamp(0.95rem, 4.2vw, 1.18rem);
+  }
+
+  .graded-grid {
+    justify-items: center;
+  }
+
+  .graded-slab {
+    width: min(92%, 372px);
+    padding: 10px;
+  }
+
+  .graded-label {
+    grid-template-columns: 50px minmax(0, 1fr) 58px;
+    gap: 6px;
+  }
+
+  .graded-details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .graded-score span {
+    max-width: 100%;
+    font-size: 1.08rem;
+    white-space: nowrap;
+  }
+
+  .graded-case-body {
+    padding: 14px;
+  }
+
+  .graded-slab-modal {
+    width: min(96vw, 620px);
+  }
+
+  .graded-slab-modal .graded-label {
+    grid-template-columns: 58px minmax(0, 1fr) 66px;
+  }
+
+  .graded-slab-modal .graded-score span {
+    font-size: 1.32rem;
   }
 }

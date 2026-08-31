@@ -7,10 +7,12 @@ import hodlManCover from '../Assets/HodlMan.jpg'
 import pepeNoirCover from '../Assets/PepeNoir.jpg'
 import toTheMoonCover from '../Assets/ToTheMoon.jpg'
 import {
+  checkAcmeAssetAvailability,
   connectUniSat,
   fetchAcmeCollectionAssets,
   mintStampOnAcme,
   normalizeAcmeAssetRef,
+  validateAcmeAssetName,
   validateAcmeMintForm,
   validateAcmeWalletNetwork,
   type AcmeArweaveProgress,
@@ -21,8 +23,17 @@ import {
   type AcmeStorageType,
   type AcmeWalletState,
 } from './acmeMint'
+import {
+  applySocialLikeToIndex,
+  createSocialActionMessage,
+  readSocialIndex,
+  setSocialPreference,
+  type SocialIndex,
+} from './social'
 
 type Tab = 'rules' | 'upload' | 'submit' | 'pending' | 'approved'
+type SubmissionSort = 'newest' | 'oldest' | 'name' | 'creator' | 'likes'
+type AssetCheckStatus = 'idle' | 'invalid' | 'checking' | 'available' | 'taken' | 'error'
 
 const TABS: Array<{ id: Tab; label: string }> = [
   { id: 'rules', label: 'Rules' },
@@ -46,6 +57,14 @@ const STORAGE_OPTIONS: Array<{ key: AcmeStorageType; label: string }> = [
   { key: 'witness', label: 'Witness' },
   { key: 'opreturn', label: 'OP_RETURN' },
   { key: 'utxo', label: 'UTXO' },
+]
+
+const SUBMISSION_SORT_OPTIONS: Array<{ key: SubmissionSort; label: string }> = [
+  { key: 'newest', label: 'Newest' },
+  { key: 'oldest', label: 'Oldest' },
+  { key: 'name', label: 'Name' },
+  { key: 'creator', label: 'Creator' },
+  { key: 'likes', label: 'Most liked' },
 ]
 
 const PROGRESS_LABELS: Record<AcmeMintProgressStep, string> = {
@@ -99,6 +118,19 @@ const formatBytes = (bytes: number) => {
   return `${(bytes / (1024 * 1024)).toFixed(2)} MB`
 }
 
+const groupAssetRows = (assets: AcmeGalleryAsset[]) => {
+  const rows: AcmeGalleryAsset[][] = []
+  for (let index = 0; index < assets.length; index += 6) {
+    rows.push(assets.slice(index, index + 6))
+  }
+  return rows
+}
+
+const getApprovalOrderValue = (asset: AcmeGalleryAsset) =>
+  asset.collectionSynapseFormedBlock ?? asset.collectionRelationshipCreatedAt ?? asset.collectionRelationshipId ?? asset.revealTimestamp ?? asset.revealBlock ?? 0
+
+const formatGradingNumber = (index: number) => `#${String(index + 1).padStart(3, '0')}`
+
 function App() {
   const [activeTab, setActiveTab] = useState<Tab>('rules')
   const [sourceImage, setSourceImage] = useState<string | null>(null)
@@ -126,19 +158,105 @@ function App() {
   const [pendingStatus, setPendingStatus] = useState<'idle' | 'loading' | 'loaded' | 'error'>('idle')
   const [pendingError, setPendingError] = useState('')
   const [selectedComic, setSelectedComic] = useState<AcmeGalleryAsset | null>(null)
+  const [selectedGradedComic, setSelectedGradedComic] = useState<{ asset: AcmeGalleryAsset; gradingNumber: string } | null>(null)
+  const [socialIndex, setSocialIndex] = useState<SocialIndex | null>(null)
+  const [socialStatus, setSocialStatus] = useState<'idle' | 'loading' | 'loaded' | 'error'>('idle')
+  const [socialError, setSocialError] = useState('')
+  const [likePendingAsset, setLikePendingAsset] = useState<string | null>(null)
+  const [submissionSearch, setSubmissionSearch] = useState('')
+  const [submissionSort, setSubmissionSort] = useState<SubmissionSort>('newest')
+  const [approvedSearch, setApprovedSearch] = useState('')
+  const [approvedSort, setApprovedSort] = useState<SubmissionSort>('oldest')
+  const [assetCheckStatus, setAssetCheckStatus] = useState<AssetCheckStatus>('idle')
+  const [assetCheckMessage, setAssetCheckMessage] = useState('')
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const fileInputRef = useRef<HTMLInputElement | null>(null)
 
+  const normalizedAssetName = normalizeAcmeAssetRef(form.assetName)
   const validationError = validateAcmeMintForm(form)
+  const assetNameIsValid = validateAcmeAssetName(normalizedAssetName)
+  const assetAvailabilityError = assetCheckStatus === 'taken'
+    ? assetCheckMessage
+    : assetCheckStatus === 'checking'
+      ? 'Checking whether this ACME asset name is available.'
+      : assetCheckStatus === 'error'
+        ? assetCheckMessage
+        : assetNameIsValid && assetCheckStatus !== 'available'
+          ? 'Check ACME asset name availability before minting.'
+          : null
   const walletError = wallet.connected ? validateAcmeWalletNetwork(wallet) : 'Connect UniSat before minting.'
   const renderedBytes = useMemo(() => (renderedComic ? getDataUrlBytes(renderedComic) : 0), [renderedComic])
-  const pendingAssetRows = useMemo(() => {
-    const rows: AcmeGalleryAsset[][] = []
-    for (let index = 0; index < pendingAssets.length; index += 6) {
-      rows.push(pendingAssets.slice(index, index + 6))
-    }
-    return rows
-  }, [pendingAssets])
+  const likedAssets = useMemo(() => new Set(socialIndex?.likedAssets ?? []), [socialIndex])
+  const getAssetLikeCount = useCallback((asset: string) => socialIndex?.assetLikes?.[asset] ?? 0, [socialIndex])
+  const getAssetCreator = useCallback((asset: AcmeGalleryAsset) => asset.artistAsset?.trim() || 'anonymous', [])
+  const submittedAssets = useMemo(
+    () => pendingAssets.filter((asset) => asset.collectionRelationshipStatus === 'pending'),
+    [pendingAssets],
+  )
+  const approvedAssets = useMemo(
+    () =>
+      pendingAssets
+        .filter((asset) => asset.collectionRelationshipStatus === 'synapsed')
+        .sort((a, b) => {
+          const approvalDelta = getApprovalOrderValue(a) - getApprovalOrderValue(b)
+          if (approvalDelta !== 0) return approvalDelta
+          return a.asset.localeCompare(b.asset)
+        }),
+    [pendingAssets],
+  )
+  const approvedGradingNumbers = useMemo(
+    () => new Map(approvedAssets.map((asset, index) => [asset.asset, formatGradingNumber(index)])),
+    [approvedAssets],
+  )
+  const visiblePendingAssets = useMemo(() => {
+    const query = submissionSearch.trim().toLowerCase()
+    const filtered = submittedAssets.filter((asset) => {
+      if (!query) return true
+      return (
+        asset.asset.toLowerCase().includes(query) ||
+        asset.displayName.toLowerCase().includes(query) ||
+        asset.description.toLowerCase().includes(query) ||
+        getAssetCreator(asset).toLowerCase().includes(query)
+      )
+    })
+
+    return filtered.sort((a, b) => {
+      if (submissionSort === 'name') return a.displayName.localeCompare(b.displayName)
+      if (submissionSort === 'creator') return getAssetCreator(a).localeCompare(getAssetCreator(b)) || a.displayName.localeCompare(b.displayName)
+      if (submissionSort === 'likes') return getAssetLikeCount(b.asset) - getAssetLikeCount(a.asset) || a.displayName.localeCompare(b.displayName)
+
+      const aTime = a.revealTimestamp ?? a.revealBlock ?? 0
+      const bTime = b.revealTimestamp ?? b.revealBlock ?? 0
+      return submissionSort === 'oldest'
+        ? aTime - bTime || a.displayName.localeCompare(b.displayName)
+        : bTime - aTime || a.displayName.localeCompare(b.displayName)
+    })
+  }, [getAssetCreator, getAssetLikeCount, submittedAssets, submissionSearch, submissionSort])
+  const pendingAssetRows = useMemo(() => groupAssetRows(visiblePendingAssets), [visiblePendingAssets])
+  const visibleApprovedAssets = useMemo(() => {
+    const query = approvedSearch.trim().toLowerCase()
+    const filtered = approvedAssets.filter((asset) => {
+      if (!query) return true
+      return (
+        asset.asset.toLowerCase().includes(query) ||
+        asset.displayName.toLowerCase().includes(query) ||
+        asset.description.toLowerCase().includes(query) ||
+        getAssetCreator(asset).toLowerCase().includes(query)
+      )
+    })
+
+    return filtered.sort((a, b) => {
+      if (approvedSort === 'name') return a.displayName.localeCompare(b.displayName)
+      if (approvedSort === 'creator') return getAssetCreator(a).localeCompare(getAssetCreator(b)) || a.displayName.localeCompare(b.displayName)
+      if (approvedSort === 'likes') return getAssetLikeCount(b.asset) - getAssetLikeCount(a.asset) || a.displayName.localeCompare(b.displayName)
+
+      const aOrder = getApprovalOrderValue(a)
+      const bOrder = getApprovalOrderValue(b)
+      return approvedSort === 'newest'
+        ? bOrder - aOrder || a.displayName.localeCompare(b.displayName)
+        : aOrder - bOrder || a.displayName.localeCompare(b.displayName)
+    })
+  }, [approvedAssets, approvedSearch, approvedSort, getAssetCreator, getAssetLikeCount])
 
   const renderComic = useCallback(() => {
     const canvas = canvasRef.current
@@ -217,6 +335,7 @@ function App() {
     setWallet((prev) => ({ ...prev, connecting: true, error: null }))
     try {
       setWallet(await connectUniSat())
+      setSocialStatus('idle')
     } catch (error) {
       setWallet({ ...DEFAULT_WALLET, error: error instanceof Error ? error.message : 'Could not connect wallet.' })
     }
@@ -224,7 +343,7 @@ function App() {
 
   const submitMint = async () => {
     if (!renderedComic) return
-    const nextError = validateAcmeMintForm(form) || validateAcmeWalletNetwork(wallet)
+    const nextError = validateAcmeMintForm(form) || assetAvailabilityError || validateAcmeWalletNetwork(wallet)
     if (nextError) {
       setMintError(nextError)
       return
@@ -277,8 +396,61 @@ function App() {
     }
   }, [])
 
+  const loadSocial = useCallback(async () => {
+    setSocialStatus('loading')
+    setSocialError('')
+    try {
+      const index = await readSocialIndex(wallet.address, wallet.network)
+      setSocialIndex(index)
+      setSocialStatus('loaded')
+    } catch (error) {
+      setSocialError(error instanceof Error ? error.message : 'Could not load likes.')
+      setSocialStatus('error')
+    }
+  }, [wallet.address, wallet.network])
+
+  const isAssetLiked = useCallback((asset: string) => likedAssets.has(asset), [likedAssets])
+
+  const toggleAssetLike = async (asset: AcmeGalleryAsset) => {
+    setSocialError('')
+    setLikePendingAsset(asset.asset)
+    try {
+      let activeWallet = wallet
+      if (!activeWallet.connected || !activeWallet.address || !activeWallet.publicKey) {
+        activeWallet = await connectUniSat()
+        setWallet(activeWallet)
+      }
+      if (!window.unisat) throw new Error('UniSat wallet is not available.')
+      if (!activeWallet.address) throw new Error('Connect UniSat before liking comics.')
+
+      const active = !isAssetLiked(asset.asset)
+      const signedAt = new Date().toISOString()
+      const unsignedAction = {
+        address: activeWallet.address,
+        publicKey: activeWallet.publicKey ?? undefined,
+        network: activeWallet.network ?? 'testnet',
+        targetType: 'asset' as const,
+        targetId: asset.asset,
+        action: 'like' as const,
+        active,
+        signedAt,
+      }
+      const message = createSocialActionMessage(unsignedAction)
+      const signature = await window.unisat.signMessage(message, 'ecdsa')
+      await setSocialPreference({ ...unsignedAction, message, signature })
+      const refreshedIndex = await readSocialIndex(activeWallet.address, activeWallet.network)
+      setSocialIndex(refreshedIndex ?? applySocialLikeToIndex(socialIndex, asset.asset, active))
+      setSocialStatus('loaded')
+    } catch (error) {
+      setSocialError(error instanceof Error ? error.message : 'Could not save like.')
+      setSocialStatus('error')
+    } finally {
+      setLikePendingAsset(null)
+    }
+  }
+
   useEffect(() => {
-    if (activeTab !== 'pending' || pendingStatus !== 'idle') return
+    if ((activeTab !== 'pending' && activeTab !== 'approved') || pendingStatus !== 'idle') return
     const timeoutId = window.setTimeout(() => {
       void loadPending()
     }, 0)
@@ -286,13 +458,54 @@ function App() {
   }, [activeTab, loadPending, pendingStatus])
 
   useEffect(() => {
-    if (!selectedComic) return
+    if ((activeTab !== 'pending' && activeTab !== 'approved') || socialStatus !== 'idle') return
+    const timeoutId = window.setTimeout(() => {
+      void loadSocial()
+    }, 0)
+    return () => window.clearTimeout(timeoutId)
+  }, [activeTab, loadSocial, socialStatus])
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      if (!normalizedAssetName) {
+        setAssetCheckStatus('idle')
+        setAssetCheckMessage('')
+        return
+      }
+
+      if (!assetNameIsValid) {
+        setAssetCheckStatus('invalid')
+        setAssetCheckMessage('Asset name must be 3-16 uppercase letters and numbers, starting with a letter.')
+        return
+      }
+
+      setAssetCheckStatus('checking')
+      setAssetCheckMessage('Checking ACME asset name...')
+      void checkAcmeAssetAvailability(normalizedAssetName)
+        .then((result) => {
+          setAssetCheckStatus(result.available ? 'available' : 'taken')
+          setAssetCheckMessage(result.message)
+        })
+        .catch((error) => {
+          setAssetCheckStatus('error')
+          setAssetCheckMessage(error instanceof Error ? error.message : 'Could not check ACME asset name.')
+        })
+    }, 420)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [assetNameIsValid, normalizedAssetName])
+
+  useEffect(() => {
+    if (!selectedComic && !selectedGradedComic) return
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setSelectedComic(null)
+      if (event.key === 'Escape') {
+        setSelectedComic(null)
+        setSelectedGradedComic(null)
+      }
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [selectedComic])
+  }, [selectedComic, selectedGradedComic])
 
   return (
     <main className="app-shell">
@@ -336,11 +549,14 @@ function App() {
           <div className="rules-copy">
             <h2>Submission Rules</h2>
             <ol>
-              <li>Submit original comic-book artwork or work you have permission to mint.</li>
+              <li>Only submitted artwork or work you have permission to mint.</li>
               <li>The rendered upload must look like a comic cover and include the SatoshiComics wrapper.</li>
               <li>Use a unique ACME asset name: 3-16 uppercase letters or numbers, starting with a letter.</li>
               <li>Keep images safe for a public gallery. No hateful, stolen, or deceptive submissions.</li>
-              <li>Mint on ACME testnet with the `SATOSHICOMICS` collection and `SatoshiComics` tag.</li>
+              <li>Mint on ACME testnet with the `SATOSHICOMICS` collection and `SatoshiComics` tag. If you want to add a creator information, you must first create a profile on ACME. Once a profile is created, you can use this profile in the Creator section. Profile only need to be created once.</li>
+              <li>Once approved, Asset will be shown in the Approved tab in the order that get approved.</li>
+              <li>All submissions are Free atm.</li>
+              <li>Marketplace, trading, auction, offers are coming soon.</li>
             </ol>
             <div className="rules-notes" aria-label="Submission tips">
               <section>
@@ -459,10 +675,21 @@ function App() {
             <h2>Submit Comic</h2>
             <label>
               ACME asset name
-              <input value={form.assetName} placeholder="SATCOMIC001" onChange={(event) => setForm((prev) => ({ ...prev, assetName: event.target.value.toUpperCase() }))} />
+              <input
+                value={form.assetName}
+                placeholder="SATCOMIC001"
+                onChange={(event) => {
+                  setForm((prev) => ({ ...prev, assetName: event.target.value.toUpperCase() }))
+                  setAssetCheckStatus('idle')
+                  setAssetCheckMessage('')
+                }}
+              />
+              {assetCheckMessage && (
+                <span className={`asset-check-text ${assetCheckStatus}`}>{assetCheckMessage}</span>
+              )}
             </label>
             <label>
-              Artist
+              Creator
               <input value={form.artistName} placeholder="OPTIONAL" onChange={(event) => setForm((prev) => ({ ...prev, artistName: event.target.value.toUpperCase() }))} />
             </label>
             <label>
@@ -491,11 +718,11 @@ function App() {
             </label>
             <div className="mint-actions">
               <button type="button" onClick={connectWallet} disabled={wallet.connecting}>{wallet.connected ? 'Reconnect Wallet' : 'Connect Wallet'}</button>
-              <button type="button" className="primary" onClick={submitMint} disabled={!renderedComic || Boolean(validationError || walletError) || mintStatus === 'composing' || mintStatus === 'signing' || mintStatus === 'broadcasting'}>
+              <button type="button" className="primary" onClick={submitMint} disabled={!renderedComic || Boolean(validationError || assetAvailabilityError || walletError) || mintStatus === 'composing' || mintStatus === 'signing' || mintStatus === 'broadcasting'}>
                 {mintStatus === 'idle' || mintStatus === 'error' ? 'Mint on ACME' : mintStatus === 'success' ? 'Minted' : 'Minting...'}
               </button>
             </div>
-            {(validationError || walletError || mintError) && <p className="error-text">{mintError || validationError || walletError}</p>}
+            {(validationError || assetAvailabilityError || walletError || mintError) && <p className="error-text">{mintError || validationError || assetAvailabilityError || walletError}</p>}
             {mintStep && <p className="status-text">{PROGRESS_LABELS[mintStep]}{arweaveProgress ? `: ${arweaveProgress.percent}%` : ''}</p>}
             {txid && <p className="status-text">Broadcast transaction: {txid}</p>}
           </div>
@@ -511,11 +738,40 @@ function App() {
           <div className="section-head">
             <div>
               <h2>Submission</h2>
-              <p>Assets minted with the `SATOSHICOMICS` collection on ACME testnet.</p>
+              <p>Pending assets referencing the `SATOSHICOMICS` collection on ACME testnet.</p>
             </div>
-            <button type="button" onClick={loadPending} disabled={pendingStatus === 'loading'}>{pendingStatus === 'loading' ? 'Refreshing...' : 'Refresh'}</button>
+            <div className="submission-actions">
+              <label className="submission-search">
+                <span>Search</span>
+                <input
+                  value={submissionSearch}
+                  placeholder="Name or creator"
+                  onChange={(event) => setSubmissionSearch(event.target.value)}
+                />
+              </label>
+              <label className="submission-sort">
+                <span>Sort</span>
+                <select value={submissionSort} onChange={(event) => setSubmissionSort(event.target.value as SubmissionSort)}>
+                  {SUBMISSION_SORT_OPTIONS.map((option) => (
+                    <option key={option.key} value={option.key}>{option.label}</option>
+                  ))}
+                </select>
+              </label>
+              <button
+                type="button"
+                onClick={() => {
+                  void loadPending()
+                  void loadSocial()
+                }}
+                disabled={pendingStatus === 'loading' || socialStatus === 'loading'}
+              >
+                {pendingStatus === 'loading' || socialStatus === 'loading' ? 'Refreshing...' : 'Refresh'}
+              </button>
+            </div>
           </div>
           {pendingError && <p className="error-text">{pendingError}</p>}
+          {socialError && <p className="error-text">{socialError}</p>}
+          {socialStatus === 'loading' && <p className="status-text">Loading likes...</p>}
           <div className="bookshelf-grid">
             {pendingAssetRows.map((row, rowIndex) => (
               <div className="shelf-row" key={`shelf-row-${rowIndex}`}>
@@ -534,6 +790,16 @@ function App() {
                           }}
                         />
                       </button>
+                      <div className="asset-meta asset-meta-mobile">
+                        <strong>{asset.displayName}</strong>
+                        <span>Creator: {getAssetCreator(asset)}</span>
+                        <LikeButton
+                          active={isAssetLiked(asset.asset)}
+                          count={getAssetLikeCount(asset.asset)}
+                          pending={likePendingAsset === asset.asset}
+                          onClick={() => void toggleAssetLike(asset)}
+                        />
+                      </div>
                     </article>
                   ))}
                 </div>
@@ -543,22 +809,213 @@ function App() {
                   {row.map((asset) => (
                     <div className="asset-meta" key={`${asset.asset}-meta`}>
                       <strong>{asset.displayName}</strong>
-                      <span>{asset.revealBlock ? `Reveal block ${asset.revealBlock}` : 'Pending reveal'}</span>
+                      <span>Creator: {getAssetCreator(asset)}</span>
+                      <LikeButton
+                        active={isAssetLiked(asset.asset)}
+                        count={getAssetLikeCount(asset.asset)}
+                        pending={likePendingAsset === asset.asset}
+                        onClick={() => void toggleAssetLike(asset)}
+                      />
                     </div>
                   ))}
                 </div>
               </div>
             ))}
           </div>
-          {pendingStatus === 'loaded' && pendingAssets.length === 0 && <p className="empty-state">No SatoshiComics submissions found yet.</p>}
+          {pendingStatus === 'loaded' && submittedAssets.length === 0 && <p className="empty-state">No pending SatoshiComics submissions found yet.</p>}
+          {pendingStatus === 'loaded' && submittedAssets.length > 0 && visiblePendingAssets.length === 0 && <p className="empty-state">No submissions match that search.</p>}
         </section>
       )}
 
       {activeTab === 'approved' && (
         <section className="page approved-page">
-          <h2>Approved Comics</h2>
-          <p className="empty-state">No comics have been approved yet. This space is ready for curated SatoshiComics approvals.</p>
+          <div className="section-head">
+            <div>
+              <h2>Approved Comics</h2>
+              <p>Synapsed assets in the `SATOSHICOMICS` collection on ACME testnet.</p>
+            </div>
+            <div className="submission-actions">
+              <label className="submission-search">
+                <span>Search</span>
+                <input
+                  value={approvedSearch}
+                  placeholder="Name or creator"
+                  onChange={(event) => setApprovedSearch(event.target.value)}
+                />
+              </label>
+              <label className="submission-sort">
+                <span>Sort</span>
+                <select value={approvedSort} onChange={(event) => setApprovedSort(event.target.value as SubmissionSort)}>
+                  {SUBMISSION_SORT_OPTIONS.map((option) => (
+                    <option key={option.key} value={option.key}>{option.label}</option>
+                  ))}
+                </select>
+              </label>
+              <button
+                type="button"
+                onClick={() => {
+                  void loadPending()
+                  void loadSocial()
+                }}
+                disabled={pendingStatus === 'loading' || socialStatus === 'loading'}
+              >
+                {pendingStatus === 'loading' || socialStatus === 'loading' ? 'Refreshing...' : 'Refresh'}
+              </button>
+            </div>
+          </div>
+          {pendingError && <p className="error-text">{pendingError}</p>}
+          {socialError && <p className="error-text">{socialError}</p>}
+          {socialStatus === 'loading' && <p className="status-text">Loading likes...</p>}
+          <div className="graded-grid">
+            {visibleApprovedAssets.map((asset) => {
+              const gradingNumber = approvedGradingNumbers.get(asset.asset) ?? '#000'
+              return (
+              <article
+                className="graded-slab"
+                key={`${asset.asset}-graded`}
+                role="button"
+                tabIndex={0}
+                onClick={() => setSelectedGradedComic({ asset, gradingNumber })}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault()
+                    setSelectedGradedComic({ asset, gradingNumber })
+                  }
+                }}
+                aria-label={`View graded card for ${asset.displayName}`}
+              >
+                <div className="graded-label">
+                  <div className="graded-brand">
+                    <span>ACME</span>
+                    <strong>Approved</strong>
+                  </div>
+                  <div className="graded-title">
+                    <strong>{asset.displayName}</strong>
+                    <span>{asset.asset}</span>
+                  </div>
+                  <dl className="graded-details">
+                    <div>
+                      <dt>Creator</dt>
+                      <dd>{getAssetCreator(asset)}</dd>
+                    </div>
+                    <div>
+                      <dt>Collection</dt>
+                      <dd>{asset.collectionAsset ?? 'SATOSHICOMICS'}</dd>
+                    </div>
+                    <div>
+                      <dt>Block</dt>
+                      <dd>{asset.revealBlock ?? 'Pending'}</dd>
+                    </div>
+                    <div>
+                      <dt>Date</dt>
+                      <dd>{formatAssetDate(asset.revealTimestamp)}</dd>
+                    </div>
+                  </dl>
+                  <div className="graded-score" aria-label="ACME grade">
+                    <span>{gradingNumber}</span>
+                    <strong>Synapsed</strong>
+                  </div>
+                </div>
+                <div className="graded-case-body">
+                  <div className="graded-comic-frame" aria-hidden="true">
+                    <img
+                      src={asset.contentUrl || asset.thumbnailUrl}
+                      alt={asset.displayName}
+                      onError={(event) => {
+                        if (event.currentTarget.dataset.fallback !== 'true') {
+                          event.currentTarget.dataset.fallback = 'true'
+                          event.currentTarget.src = asset.thumbnailUrl
+                        }
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="graded-footer">
+                  <span>{asset.mimeType ?? 'ACME asset'}</span>
+                  <div onClick={(event) => event.stopPropagation()} onKeyDown={(event) => event.stopPropagation()}>
+                    <LikeButton
+                      active={isAssetLiked(asset.asset)}
+                      count={getAssetLikeCount(asset.asset)}
+                      pending={likePendingAsset === asset.asset}
+                      onClick={() => void toggleAssetLike(asset)}
+                    />
+                  </div>
+                </div>
+              </article>
+              )
+            })}
+          </div>
+          {pendingStatus === 'loaded' && approvedAssets.length === 0 && <p className="empty-state">No approved SatoshiComics assets found yet.</p>}
+          {pendingStatus === 'loaded' && approvedAssets.length > 0 && visibleApprovedAssets.length === 0 && <p className="empty-state">No approved comics match that search.</p>}
         </section>
+      )}
+
+      {selectedGradedComic && (
+        <div className="comic-lightbox" role="dialog" aria-modal="true" aria-label={`Graded card for ${selectedGradedComic.asset.displayName}`} onClick={() => setSelectedGradedComic(null)}>
+          <div className="comic-lightbox-panel graded-lightbox-panel" onClick={(event) => event.stopPropagation()}>
+            <button className="lightbox-close" type="button" onClick={() => setSelectedGradedComic(null)} aria-label="Close preview">Close</button>
+            <article className="graded-slab graded-slab-modal">
+              <div className="graded-label">
+                <div className="graded-brand">
+                  <span>ACME</span>
+                  <strong>Approved</strong>
+                </div>
+                <div className="graded-title">
+                  <strong>{selectedGradedComic.asset.displayName}</strong>
+                  <span>{selectedGradedComic.asset.asset}</span>
+                </div>
+                <dl className="graded-details">
+                  <div>
+                    <dt>Creator</dt>
+                    <dd>{getAssetCreator(selectedGradedComic.asset)}</dd>
+                  </div>
+                  <div>
+                    <dt>Collection</dt>
+                    <dd>{selectedGradedComic.asset.collectionAsset ?? 'SATOSHICOMICS'}</dd>
+                  </div>
+                  <div>
+                    <dt>Block</dt>
+                    <dd>{selectedGradedComic.asset.revealBlock ?? 'Pending'}</dd>
+                  </div>
+                  <div>
+                    <dt>Date</dt>
+                    <dd>{formatAssetDate(selectedGradedComic.asset.revealTimestamp)}</dd>
+                  </div>
+                </dl>
+                <div className="graded-score" aria-label="ACME grade">
+                  <span>{selectedGradedComic.gradingNumber}</span>
+                  <strong>Synapsed</strong>
+                </div>
+              </div>
+              <div className="graded-case-body">
+                <div className="graded-comic-frame">
+                  <img
+                    src={selectedGradedComic.asset.contentUrl || selectedGradedComic.asset.thumbnailUrl}
+                    alt={selectedGradedComic.asset.displayName}
+                    onError={(event) => {
+                      if (event.currentTarget.dataset.fallback !== 'true') {
+                        event.currentTarget.dataset.fallback = 'true'
+                        event.currentTarget.src = selectedGradedComic.asset.thumbnailUrl
+                      }
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="graded-footer">
+                <span>{selectedGradedComic.asset.mimeType ?? 'ACME asset'}</span>
+                <LikeButton
+                  active={isAssetLiked(selectedGradedComic.asset.asset)}
+                  count={getAssetLikeCount(selectedGradedComic.asset.asset)}
+                  pending={likePendingAsset === selectedGradedComic.asset.asset}
+                  onClick={() => void toggleAssetLike(selectedGradedComic.asset)}
+                />
+              </div>
+            </article>
+            <div className="lightbox-meta">
+              <a href={selectedGradedComic.asset.artUrl} target="_blank" rel="noreferrer">Open original</a>
+            </div>
+          </div>
+        </div>
       )}
 
       {selectedComic && (
@@ -577,6 +1034,12 @@ function App() {
             />
             <div className="lightbox-meta">
               <strong>{selectedComic.displayName}</strong>
+              <LikeButton
+                active={isAssetLiked(selectedComic.asset)}
+                count={getAssetLikeCount(selectedComic.asset)}
+                pending={likePendingAsset === selectedComic.asset}
+                onClick={() => void toggleAssetLike(selectedComic)}
+              />
               <a href={selectedComic.artUrl} target="_blank" rel="noreferrer">Open original</a>
             </div>
           </div>
@@ -592,6 +1055,40 @@ const mergeComicTags = (tags: string) => {
     if (!values.some((value) => value.toLowerCase() === tag.toLowerCase())) values.push(tag)
   }
   return values.join(', ')
+}
+
+const formatSocialCount = (count: number) =>
+  Intl.NumberFormat(undefined, { notation: 'compact', maximumFractionDigits: 1 }).format(count)
+
+const formatAssetDate = (timestamp: number | null) => {
+  if (!timestamp) return 'Pending'
+  return new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(timestamp * 1000))
+}
+
+function LikeButton({
+  active,
+  count,
+  pending,
+  onClick,
+}: {
+  active: boolean
+  count: number
+  pending: boolean
+  onClick: () => void
+}) {
+  return (
+    <button
+      className={`like-button${active ? ' active' : ''}`}
+      type="button"
+      onClick={onClick}
+      disabled={pending}
+      title={active ? 'Unlike' : 'Like'}
+      aria-pressed={active}
+    >
+      <span className="like-icon" aria-hidden="true">{pending ? '...' : active ? '♥' : '♡'}</span>
+      <span className="like-count">{formatSocialCount(count)}</span>
+    </button>
+  )
 }
 
 const roundedRect = (
