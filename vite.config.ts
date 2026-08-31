@@ -29,7 +29,7 @@ const configureLongRequestProxy: NonNullable<ProxyOptions['configure']> = (proxy
 }
 
 export default defineConfig({
-  base: '/satoshi-comics/',
+  base: '/',
   plugins: [
     react(),
     nodePolyfills({
