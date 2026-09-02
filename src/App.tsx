@@ -4,7 +4,7 @@ import bitcoinPizzaCover from '../Assets/BitcoinPizza.jpg'
 import diamondHandsCover from '../Assets/DiamondHands.jpg'
 import dogeKnightCover from '../Assets/DogeKnight.jpg'
 import hodlManCover from '../Assets/HodlMan.jpg'
-import pepeNoirCover from '../Assets/PepeNoir.jpg'
+import pepeNoirCover from '../Assets/PepeNoir.png'
 import toTheMoonCover from '../Assets/ToTheMoon.jpg'
 import {
   checkAcmeAssetAvailability,
@@ -59,6 +59,8 @@ const STORAGE_OPTIONS: Array<{ key: AcmeStorageType; label: string }> = [
   { key: 'utxo', label: 'UTXO' },
 ]
 
+const ORIGINAL_ARTWORK_TAG = 'Original-Artwork'
+
 const SUBMISSION_SORT_OPTIONS: Array<{ key: SubmissionSort; label: string }> = [
   { key: 'newest', label: 'Newest' },
   { key: 'oldest', label: 'Oldest' },
@@ -75,6 +77,8 @@ const PROGRESS_LABELS: Record<AcmeMintProgressStep, string> = {
   sign: 'Waiting for wallet signature',
   broadcast: 'Broadcasting transaction',
 }
+
+const COLLECTION_ASSET_LIMIT = 1000
 
 const DEFAULT_WALLET: AcmeWalletState = {
   connected: false,
@@ -186,6 +190,7 @@ function App() {
           : null
   const walletError = wallet.connected ? validateAcmeWalletNetwork(wallet) : 'Connect UniSat before minting.'
   const renderedBytes = useMemo(() => (renderedComic ? getDataUrlBytes(renderedComic) : 0), [renderedComic])
+  const originalArtworkSelected = useMemo(() => hasTag(form.tags, ORIGINAL_ARTWORK_TAG), [form.tags])
   const likedAssets = useMemo(() => new Set(socialIndex?.likedAssets ?? []), [socialIndex])
   const getAssetLikeCount = useCallback((asset: string) => socialIndex?.assetLikes?.[asset] ?? 0, [socialIndex])
   const getAssetCreator = useCallback((asset: AcmeGalleryAsset) => asset.artistAsset?.trim() || 'anonymous', [])
@@ -387,7 +392,7 @@ function App() {
     setPendingStatus('loading')
     setPendingError('')
     try {
-      const assets = await fetchAcmeCollectionAssets('SATOSHICOMICS', 200)
+      const assets = await fetchAcmeCollectionAssets('SATOSHICOMICS', COLLECTION_ASSET_LIMIT)
       setPendingAssets(assets)
       setPendingStatus('loaded')
     } catch (error) {
@@ -716,6 +721,19 @@ function App() {
               Tags
               <input value={form.tags} onChange={(event) => setForm((prev) => ({ ...prev, tags: event.target.value }))} />
             </label>
+            <label className="checkbox-field">
+              <input
+                type="checkbox"
+                checked={originalArtworkSelected}
+                onChange={(event) => {
+                  setForm((prev) => ({
+                    ...prev,
+                    tags: setTagEnabled(prev.tags, ORIGINAL_ARTWORK_TAG, event.target.checked),
+                  }))
+                }}
+              />
+              <span>Original Artwork</span>
+            </label>
             <div className="mint-actions">
               <button type="button" onClick={connectWallet} disabled={wallet.connecting}>{wallet.connected ? 'Reconnect Wallet' : 'Connect Wallet'}</button>
               <button type="button" className="primary" onClick={submitMint} disabled={!renderedComic || Boolean(validationError || assetAvailabilityError || walletError) || mintStatus === 'composing' || mintStatus === 'signing' || mintStatus === 'broadcasting'}>
@@ -911,9 +929,9 @@ function App() {
                       <dd>{formatAssetDate(asset.revealTimestamp)}</dd>
                     </div>
                   </dl>
-                  <div className="graded-score" aria-label="ACME grade">
-                    <span>{gradingNumber}</span>
-                    <strong>Synapsed</strong>
+                  <div className="graded-sticker" aria-label="Satoshi Comics sticker">
+                    <span>Satoshi</span>
+                    <strong>Comics</strong>
                   </div>
                 </div>
                 <div className="graded-case-body">
@@ -931,7 +949,7 @@ function App() {
                   </div>
                 </div>
                 <div className="graded-footer">
-                  <span>{asset.mimeType ?? 'ACME asset'}</span>
+                  <span className="graded-issue-number">{gradingNumber}</span>
                   <div onClick={(event) => event.stopPropagation()} onKeyDown={(event) => event.stopPropagation()}>
                     <LikeButton
                       active={isAssetLiked(asset.asset)}
@@ -982,9 +1000,9 @@ function App() {
                     <dd>{formatAssetDate(selectedGradedComic.asset.revealTimestamp)}</dd>
                   </div>
                 </dl>
-                <div className="graded-score" aria-label="ACME grade">
-                  <span>{selectedGradedComic.gradingNumber}</span>
-                  <strong>Synapsed</strong>
+                <div className="graded-sticker" aria-label="Satoshi Comics sticker">
+                  <span>Satoshi</span>
+                  <strong>Comics</strong>
                 </div>
               </div>
               <div className="graded-case-body">
@@ -1002,7 +1020,7 @@ function App() {
                 </div>
               </div>
               <div className="graded-footer">
-                <span>{selectedGradedComic.asset.mimeType ?? 'ACME asset'}</span>
+                <span className="graded-issue-number">{selectedGradedComic.gradingNumber}</span>
                 <LikeButton
                   active={isAssetLiked(selectedGradedComic.asset.asset)}
                   count={getAssetLikeCount(selectedGradedComic.asset.asset)}
@@ -1050,11 +1068,23 @@ function App() {
 }
 
 const mergeComicTags = (tags: string) => {
-  const values = tags.split(',').map((tag) => tag.trim()).filter(Boolean)
+  const values = parseTags(tags)
   for (const tag of ['SatoshiComics', 'comic', 'comic-book']) {
     if (!values.some((value) => value.toLowerCase() === tag.toLowerCase())) values.push(tag)
   }
   return values.join(', ')
+}
+
+const parseTags = (tags: string) => tags.split(',').map((tag) => tag.trim()).filter(Boolean)
+
+const hasTag = (tags: string, targetTag: string) =>
+  parseTags(tags).some((tag) => tag.toLowerCase() === targetTag.toLowerCase())
+
+const setTagEnabled = (tags: string, targetTag: string, enabled: boolean) => {
+  const values = parseTags(tags)
+  const filteredValues = values.filter((tag) => tag.toLowerCase() !== targetTag.toLowerCase())
+  if (enabled) filteredValues.push(targetTag)
+  return filteredValues.join(', ')
 }
 
 const formatSocialCount = (count: number) =>
