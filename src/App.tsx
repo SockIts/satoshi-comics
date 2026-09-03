@@ -70,7 +70,7 @@ const SUBMISSION_SORT_OPTIONS: Array<{ key: SubmissionSort; label: string }> = [
 ]
 
 const PROGRESS_LABELS: Record<AcmeMintProgressStep, string> = {
-  utxos: 'Finding wallet UTXOs',
+  utxos: 'Checking wallet funds and UTXOs',
   arweave: 'Uploading comic to Arweave',
   compose: 'Composing ACME mint',
   finalize: 'Preparing reveal data',
@@ -124,8 +124,8 @@ const formatBytes = (bytes: number) => {
 
 const groupAssetRows = (assets: AcmeGalleryAsset[]) => {
   const rows: AcmeGalleryAsset[][] = []
-  for (let index = 0; index < assets.length; index += 6) {
-    rows.push(assets.slice(index, index + 6))
+  for (let index = 0; index < assets.length; index += 5) {
+    rows.push(assets.slice(index, index + 5))
   }
   return rows
 }
@@ -139,7 +139,6 @@ function App() {
   const [activeTab, setActiveTab] = useState<Tab>('rules')
   const [sourceImage, setSourceImage] = useState<string | null>(null)
   const [renderedComic, setRenderedComic] = useState<string | null>(null)
-  const [fileName, setFileName] = useState('')
   const [uploadError, setUploadError] = useState('')
   const [zoom, setZoom] = useState(1)
   const [panX, setPanX] = useState(0)
@@ -277,6 +276,7 @@ function App() {
     const coverX = 0
     const coverY = 0
     const radius = 4
+    ctx.clearRect(0, 0, coverW, coverH)
 
     if (sourceImage) {
       const image = new Image()
@@ -328,7 +328,6 @@ function App() {
         return
       }
       setSourceImage(result)
-      setFileName(file.name)
       setUploadError('')
       setActiveTab('upload')
     }
@@ -381,7 +380,6 @@ function App() {
       setTxid(result)
       setMintStatus('success')
       setPendingStatus('idle')
-      setActiveTab('pending')
     } catch (error) {
       setMintStatus('error')
       setMintError(error instanceof Error ? error.message : 'Mint failed.')
@@ -607,7 +605,6 @@ function App() {
                     event.currentTarget.value = ''
                   }} />
                   <button type="button" onClick={() => fileInputRef.current?.click()}>Choose Image</button>
-                  <p>{fileName || 'Drop a cover image here.'}</p>
                   {uploadError && <span className="error-text">{uploadError}</span>}
                 </div>
               )}
@@ -1213,14 +1210,14 @@ const drawBookCoverOverlay = (
   roundedRect(ctx, coverX, coverY, coverW, coverH, radius)
   ctx.clip()
 
-  const spineX = coverX + 42
-  const spineGradient = ctx.createLinearGradient(coverX, 0, coverX + 108, 0)
+  const spineX = coverX + 32
+  const spineGradient = ctx.createLinearGradient(coverX, 0, coverX + 88, 0)
   spineGradient.addColorStop(0, 'rgba(0, 0, 0, 0.34)')
   spineGradient.addColorStop(0.38, 'rgba(255, 255, 255, 0.16)')
   spineGradient.addColorStop(0.52, 'rgba(0, 0, 0, 0.18)')
   spineGradient.addColorStop(1, 'rgba(255, 255, 255, 0)')
   ctx.fillStyle = spineGradient
-  ctx.fillRect(coverX, coverY, 112, coverH)
+  ctx.fillRect(coverX, coverY, 92, coverH)
 
   ctx.strokeStyle = 'rgba(255, 255, 255, 0.44)'
   ctx.lineWidth = 4
@@ -1236,11 +1233,6 @@ const drawBookCoverOverlay = (
   ctx.lineTo(spineX + 12, coverY + coverH - 22)
   ctx.stroke()
 
-  const pageShadow = ctx.createLinearGradient(coverX + coverW - 54, 0, coverX + coverW, 0)
-  pageShadow.addColorStop(0, 'rgba(0, 0, 0, 0)')
-  pageShadow.addColorStop(1, 'rgba(0, 0, 0, 0.3)')
-  ctx.fillStyle = pageShadow
-  ctx.fillRect(coverX + coverW - 54, coverY, 54, coverH)
   ctx.restore()
 
   ctx.save()

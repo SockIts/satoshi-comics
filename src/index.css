@@ -1,13 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=Inter:wght@500;650;750;850&display=swap");
 
 * {
   box-sizing: border-box;
 }
 
 :root {
-  font-family: "Comic Neue", "Comic Sans MS", "Trebuchet MS", cursive, sans-serif;
-  color: #1e252c;
-  background: #f7f6f2;
+  font-family: "Inter", "Comic Neue", "Comic Sans MS", "Trebuchet MS", sans-serif;
+  color: #171615;
+  background: #f4ead3;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -19,7 +19,19 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background:
-    linear-gradient(180deg, #ffffff 0%, #f8f7f3 48%, #f1eee7 100%);
+    radial-gradient(circle at 20% 12%, rgba(232, 55, 45, 0.18) 0 3px, transparent 4px 100%),
+    radial-gradient(circle at 80% 20%, rgba(35, 98, 185, 0.14) 0 3px, transparent 4px 100%),
+    radial-gradient(circle at 72% 82%, rgba(244, 190, 44, 0.2) 0 2px, transparent 3px 100%),
+    linear-gradient(90deg, rgba(23, 22, 21, 0.055) 0 1px, transparent 1px 54px),
+    linear-gradient(180deg, rgba(23, 22, 21, 0.035) 0 1px, transparent 1px 54px),
+    linear-gradient(180deg, #fff8e8 0%, #f4ead3 48%, #ead7ae 100%);
+  background-size:
+    16px 16px,
+    18px 18px,
+    14px 14px,
+    auto,
+    auto,
+    auto;
 }
 
 button,

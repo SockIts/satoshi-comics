@@ -50,6 +50,8 @@ export type AcmeMintForm = {
 
 const ACME_EXPECTED_WALLET_NETWORK = 'mainnet'
 const ACME_MAINNET_ADDRESS_PATTERN = /^(bc1|[13])/
+const ACME_MINT_BASE_RESERVE_SATS = 25_000
+const ACME_MINT_ESTIMATED_VBYTES = 750
 
 export const validateAcmeWalletNetwork = (wallet: Pick<AcmeWalletState, 'address' | 'network'>): string | null => {
   if (!wallet.address) return 'Connect UniSat before minting.'
@@ -131,6 +133,13 @@ type Utxo = {
   vout: number
   value: number
   scriptPubKey: string
+}
+
+type MintFundingPreflight = {
+  balance: number
+  requiredSats: number
+  spendableSats: number
+  utxos: Utxo[]
 }
 
 type UnifiedArtResult = {
@@ -427,6 +436,58 @@ const normalizeUtxo = (utxo: BackendUtxo): Utxo | null => {
   return { txid, vout, value, scriptPubKey }
 }
 
+const formatSats = (sats: number) => `${Math.ceil(sats).toLocaleString()} sats`
+
+const estimateAcmeMintRequiredSats = (feeRate: number) => {
+  const normalizedFeeRate = Number.isFinite(feeRate) && feeRate > 0 ? feeRate : 1
+  return Math.ceil(ACME_MINT_BASE_RESERVE_SATS + normalizedFeeRate * ACME_MINT_ESTIMATED_VBYTES)
+}
+
+const fetchSpendableUtxos = async (address: string) => {
+  const utxos = await jsonFetch<BackendUtxo[]>(
+    resolveAcmeUrl(`/admin/bitcoin/addresses/${encodeURIComponent(address)}/utxos`),
+  )
+  return utxos.map(normalizeUtxo).filter((utxo): utxo is Utxo => utxo !== null)
+}
+
+const preflightMintFunding = async ({
+  wallet,
+  feeRate,
+}: {
+  wallet: AcmeWalletState
+  feeRate: number
+}): Promise<MintFundingPreflight> => {
+  if (!wallet.address) throw new Error('Connect UniSat before minting.')
+  if (!window.unisat) throw new Error('UniSat wallet is not available.')
+
+  const [balanceResult, utxos] = await Promise.all([
+    window.unisat.getBalance().catch(() => ({ total: wallet.balance ?? 0 })),
+    fetchSpendableUtxos(wallet.address),
+  ])
+  const balance = Number(balanceResult.total ?? wallet.balance ?? 0)
+  const spendableSats = utxos.reduce((total, utxo) => total + utxo.value, 0)
+  const requiredSats = estimateAcmeMintRequiredSats(feeRate)
+
+  if (!utxos.length) {
+    throw new Error('No spendable UTXOs found for this wallet. Add confirmed BTC to the connected wallet before uploading to Arweave.')
+  }
+
+  if (!Number.isFinite(balance) || balance < requiredSats) {
+    throw new Error(`Insufficient wallet balance before Arweave upload. Estimated minimum: ${formatSats(requiredSats)}. Connected wallet balance: ${formatSats(balance || 0)}.`)
+  }
+
+  if (spendableSats < requiredSats) {
+    throw new Error(`Insufficient spendable UTXOs before Arweave upload. Estimated minimum: ${formatSats(requiredSats)}. Available spendable UTXOs: ${formatSats(spendableSats)}.`)
+  }
+
+  return {
+    balance,
+    requiredSats,
+    spendableSats,
+    utxos,
+  }
+}
+
 export const connectUniSat = async (): Promise<AcmeWalletState> => {
   if (!window.unisat) {
     throw new Error('UniSat wallet is not installed.')
@@ -568,11 +629,7 @@ export const mintStampOnAcme = async ({
   if (walletNetworkError) throw new Error(walletNetworkError)
 
   onProgress?.('utxos')
-  const utxos = await jsonFetch<BackendUtxo[]>(
-    resolveAcmeUrl(`/admin/bitcoin/addresses/${encodeURIComponent(wallet.address)}/utxos`),
-  )
-  const normalizedUtxos = utxos.map(normalizeUtxo).filter((utxo): utxo is Utxo => utxo !== null)
-  if (!normalizedUtxos.length) throw new Error('No spendable UTXOs found for this wallet.')
+  const fundingPreflight = await preflightMintFunding({ wallet, feeRate: form.feeRate })
 
   const arweaveTxid =
     form.storageType === 'arweave'
@@ -597,7 +654,7 @@ export const mintStampOnAcme = async ({
       fee_rate_sat_vb: form.feeRate,
       destination: wallet.address,
       build_transaction: true,
-      utxos: normalizedUtxos.map((utxo) => ({
+      utxos: fundingPreflight.utxos.map((utxo) => ({
         txid: utxo.txid,
         vout: utxo.vout,
         value: utxo.value,
