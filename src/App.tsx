@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import './App.css'
+import acmeLogo from '../ACME-colorlogo.svg'
+import satoshiComicsLogo from '../SatoshiConmics Transparent.png'
 import bitcoinPizzaCover from '../Assets/BitcoinPizza.jpg'
 import diamondHandsCover from '../Assets/DiamondHands.jpg'
 import dogeKnightCover from '../Assets/DogeKnight.jpg'
 import hodlManCover from '../Assets/HodlMan.jpg'
-import pepeNoirCover from '../Assets/PepeNoir.png'
+import pepeNoirCover from '../Assets/PepeNoirS01.png'
 import toTheMoonCover from '../Assets/ToTheMoon.jpg'
 import {
   checkAcmeAssetAvailability,
@@ -31,7 +33,7 @@ import {
   type SocialIndex,
 } from './social'
 
-type Tab = 'rules' | 'upload' | 'submit' | 'pending' | 'approved'
+type Tab = 'rules' | 'upload' | 'submit' | 'pending' | 'approved' | 'portfolio'
 type SubmissionSort = 'newest' | 'oldest' | 'name' | 'creator' | 'likes'
 type AssetCheckStatus = 'idle' | 'invalid' | 'checking' | 'available' | 'taken' | 'error'
 
@@ -122,10 +124,16 @@ const formatBytes = (bytes: number) => {
   return `${(bytes / (1024 * 1024)).toFixed(2)} MB`
 }
 
+const RACK_ROW_COUNT = 5
+const RACK_COMICS_PER_ROW = 5
+const RACK_PAGE_SIZE = RACK_ROW_COUNT * RACK_COMICS_PER_ROW
+
 const groupAssetRows = (assets: AcmeGalleryAsset[]) => {
   const rows: AcmeGalleryAsset[][] = []
-  for (let index = 0; index < assets.length; index += 5) {
-    rows.push(assets.slice(index, index + 5))
+  const rackAssets = assets.slice(0, RACK_PAGE_SIZE)
+  for (let rowIndex = 0; rowIndex < RACK_ROW_COUNT; rowIndex += 1) {
+    const startIndex = rowIndex * RACK_COMICS_PER_ROW
+    rows.push(rackAssets.slice(startIndex, startIndex + RACK_COMICS_PER_ROW))
   }
   return rows
 }
@@ -134,6 +142,20 @@ const getApprovalOrderValue = (asset: AcmeGalleryAsset) =>
   asset.collectionSynapseFormedBlock ?? asset.collectionRelationshipCreatedAt ?? asset.collectionRelationshipId ?? asset.revealTimestamp ?? asset.revealBlock ?? 0
 
 const formatGradingNumber = (index: number) => `#${String(index + 1).padStart(3, '0')}`
+
+const formatStatusLabel = (asset: AcmeGalleryAsset) =>
+  asset.collectionRelationshipStatus === 'synapsed' ? 'Approved' : 'Pending'
+
+const matchesPortfolioOwner = (asset: AcmeGalleryAsset, walletAddress: string | null) => {
+  const address = walletAddress?.trim().toLowerCase()
+  if (!address) return false
+  return [
+    asset.ownerAddress,
+    asset.sourceAddress,
+    asset.destinationAddress,
+    asset.artistAsset,
+  ].some((value) => value?.trim().toLowerCase() === address)
+}
 
 function App() {
   const [activeTab, setActiveTab] = useState<Tab>('rules')
@@ -168,6 +190,7 @@ function App() {
   const [likePendingAsset, setLikePendingAsset] = useState<string | null>(null)
   const [submissionSearch, setSubmissionSearch] = useState('')
   const [submissionSort, setSubmissionSort] = useState<SubmissionSort>('newest')
+  const [submissionPage, setSubmissionPage] = useState(0)
   const [approvedSearch, setApprovedSearch] = useState('')
   const [approvedSort, setApprovedSort] = useState<SubmissionSort>('oldest')
   const [assetCheckStatus, setAssetCheckStatus] = useState<AssetCheckStatus>('idle')
@@ -236,7 +259,12 @@ function App() {
         : bTime - aTime || a.displayName.localeCompare(b.displayName)
     })
   }, [getAssetCreator, getAssetLikeCount, submittedAssets, submissionSearch, submissionSort])
-  const pendingAssetRows = useMemo(() => groupAssetRows(visiblePendingAssets), [visiblePendingAssets])
+  const submissionPageCount = Math.max(1, Math.ceil(visiblePendingAssets.length / RACK_PAGE_SIZE))
+  const pagedPendingAssets = useMemo(() => {
+    const startIndex = submissionPage * RACK_PAGE_SIZE
+    return visiblePendingAssets.slice(startIndex, startIndex + RACK_PAGE_SIZE)
+  }, [submissionPage, visiblePendingAssets])
+  const pendingAssetRows = useMemo(() => groupAssetRows(pagedPendingAssets), [pagedPendingAssets])
   const visibleApprovedAssets = useMemo(() => {
     const query = approvedSearch.trim().toLowerCase()
     const filtered = approvedAssets.filter((asset) => {
@@ -261,6 +289,23 @@ function App() {
         : aOrder - bOrder || a.displayName.localeCompare(b.displayName)
     })
   }, [approvedAssets, approvedSearch, approvedSort, getAssetCreator, getAssetLikeCount])
+  const portfolioAssets = useMemo(
+    () =>
+      pendingAssets
+        .filter((asset) => matchesPortfolioOwner(asset, wallet.address))
+        .sort((a, b) => {
+          const aTime = a.revealTimestamp ?? a.revealBlock ?? a.collectionRelationshipCreatedAt ?? 0
+          const bTime = b.revealTimestamp ?? b.revealBlock ?? b.collectionRelationshipCreatedAt ?? 0
+          return bTime - aTime || a.displayName.localeCompare(b.displayName)
+        }),
+    [pendingAssets, wallet.address],
+  )
+  const portfolioStats = useMemo(() => {
+    const approved = portfolioAssets.filter((asset) => asset.collectionRelationshipStatus === 'synapsed').length
+    const pending = portfolioAssets.length - approved
+    const likes = portfolioAssets.reduce((total, asset) => total + getAssetLikeCount(asset.asset), 0)
+    return { approved, pending, likes }
+  }, [getAssetLikeCount, portfolioAssets])
 
   const renderComic = useCallback(() => {
     const canvas = canvasRef.current
@@ -315,6 +360,15 @@ function App() {
     renderComic()
   }, [activeTab, renderComic])
 
+  useEffect(() => {
+    setSubmissionPage(0)
+  }, [submissionSearch, submissionSort])
+
+  useEffect(() => {
+    if (submissionPage < submissionPageCount) return
+    setSubmissionPage(submissionPageCount - 1)
+  }, [submissionPage, submissionPageCount])
+
   const loadFile = (file: File) => {
     if (!file.type.startsWith('image/')) {
       setUploadError('Choose an image file for the comic cover.')
@@ -340,8 +394,10 @@ function App() {
     try {
       setWallet(await connectUniSat())
       setSocialStatus('idle')
+      return true
     } catch (error) {
       setWallet({ ...DEFAULT_WALLET, error: error instanceof Error ? error.message : 'Could not connect wallet.' })
+      return false
     }
   }
 
@@ -453,20 +509,22 @@ function App() {
   }
 
   useEffect(() => {
-    if ((activeTab !== 'pending' && activeTab !== 'approved') || pendingStatus !== 'idle') return
+    if ((activeTab !== 'pending' && activeTab !== 'approved' && activeTab !== 'portfolio') || pendingStatus !== 'idle') return
+    if (activeTab === 'portfolio' && !wallet.connected) return
     const timeoutId = window.setTimeout(() => {
       void loadPending()
     }, 0)
     return () => window.clearTimeout(timeoutId)
-  }, [activeTab, loadPending, pendingStatus])
+  }, [activeTab, loadPending, pendingStatus, wallet.connected])
 
   useEffect(() => {
-    if ((activeTab !== 'pending' && activeTab !== 'approved') || socialStatus !== 'idle') return
+    if ((activeTab !== 'pending' && activeTab !== 'approved' && activeTab !== 'portfolio') || socialStatus !== 'idle') return
+    if (activeTab === 'portfolio' && !wallet.connected) return
     const timeoutId = window.setTimeout(() => {
       void loadSocial()
     }, 0)
     return () => window.clearTimeout(timeoutId)
-  }, [activeTab, loadSocial, socialStatus])
+  }, [activeTab, loadSocial, socialStatus, wallet.connected])
 
   useEffect(() => {
     const timeoutId = window.setTimeout(() => {
@@ -513,13 +571,35 @@ function App() {
   return (
     <main className="app-shell">
       <header className="app-header">
-        <div>
-          <p className="eyebrow">ACME mainnet comic submissions</p>
-          <h1>SatoshiComics</h1>
+        <div className="header-cover-strip" aria-hidden="true">
+          {RULE_EXAMPLES.map((cover) => (
+            <img key={cover.alt} src={cover.src} alt="" />
+          ))}
         </div>
-        <button className="wallet-button" type="button" onClick={connectWallet} disabled={wallet.connecting}>
-          {wallet.connected ? formatAddress(wallet.address) : wallet.connecting ? 'Connecting...' : 'Connect Wallet'}
-        </button>
+        <div className="header-brand">
+          <img className="site-logo" src={satoshiComicsLogo} alt="SatoshiComics" />
+        </div>
+        <div className="wallet-actions">
+          <button
+            className={activeTab === 'portfolio' ? 'portfolio-button active' : 'portfolio-button'}
+            type="button"
+            onClick={() => {
+              if (!wallet.connected) {
+                void connectWallet().then((connected) => {
+                  if (connected) setActiveTab('portfolio')
+                })
+                return
+              }
+              setActiveTab('portfolio')
+            }}
+            disabled={wallet.connecting}
+          >
+            My Portfolio
+          </button>
+          <button className="wallet-button" type="button" onClick={connectWallet} disabled={wallet.connecting}>
+            {wallet.connected ? formatAddress(wallet.address) : wallet.connecting ? 'Connecting...' : 'Connect Wallet'}
+          </button>
+        </div>
       </header>
 
       <nav className="tabbar" aria-label="SatoshiComics workflow">
@@ -791,52 +871,73 @@ function App() {
             {pendingAssetRows.map((row, rowIndex) => (
               <div className="shelf-row" key={`shelf-row-${rowIndex}`}>
                 <div className="book-grid">
-                  {row.map((asset) => (
-                    <article className="asset-card" key={asset.asset}>
-                      <button className="book-frame" type="button" onClick={() => setSelectedComic(asset)} aria-label={`View ${asset.displayName}`}>
-                        <img
-                          src={asset.contentUrl || asset.thumbnailUrl}
-                          alt={asset.displayName}
-                          onError={(event) => {
-                            if (event.currentTarget.dataset.fallback !== 'true') {
-                              event.currentTarget.dataset.fallback = 'true'
-                              event.currentTarget.src = asset.thumbnailUrl
-                            }
-                          }}
-                        />
-                      </button>
-                      <div className="asset-meta asset-meta-mobile">
-                        <strong>{asset.displayName}</strong>
-                        <span>Creator: {getAssetCreator(asset)}</span>
-                        <LikeButton
-                          active={isAssetLiked(asset.asset)}
-                          count={getAssetLikeCount(asset.asset)}
-                          pending={likePendingAsset === asset.asset}
-                          onClick={() => void toggleAssetLike(asset)}
-                        />
-                      </div>
-                    </article>
-                  ))}
+                  {Array.from({ length: RACK_COMICS_PER_ROW }, (_, slotIndex) => {
+                    const asset = row[slotIndex]
+                    if (!asset) return <article className="asset-card empty-slot" key={`empty-${rowIndex}-${slotIndex}`} aria-hidden="true" />
+
+                    return (
+                      <article className="asset-card" key={asset.asset}>
+                        <div className="display-slot">
+                          <button className="book-frame" type="button" onClick={() => setSelectedComic(asset)} aria-label={`View ${asset.displayName}`}>
+                            <img
+                              src={asset.contentUrl || asset.thumbnailUrl}
+                              alt={asset.displayName}
+                              onError={(event) => {
+                                if (event.currentTarget.dataset.fallback !== 'true') {
+                                  event.currentTarget.dataset.fallback = 'true'
+                                  event.currentTarget.src = asset.thumbnailUrl
+                                }
+                              }}
+                            />
+                          </button>
+                        </div>
+                      </article>
+                    )
+                  })}
                 </div>
-                <span className="shelf-shadow" aria-hidden="true" />
-                <span className="shelf-board" aria-hidden="true" />
-                <div className="asset-meta-row">
-                  {row.map((asset) => (
-                    <div className="asset-meta" key={`${asset.asset}-meta`}>
-                      <strong>{asset.displayName}</strong>
-                      <span>Creator: {getAssetCreator(asset)}</span>
-                      <LikeButton
-                        active={isAssetLiked(asset.asset)}
-                        count={getAssetLikeCount(asset.asset)}
-                        pending={likePendingAsset === asset.asset}
-                        onClick={() => void toggleAssetLike(asset)}
-                      />
-                    </div>
-                  ))}
+                <div className="rack-panel-row">
+                  {Array.from({ length: RACK_COMICS_PER_ROW }, (_, slotIndex) => {
+                    const asset = row[slotIndex]
+                    if (!asset) return <div className="asset-meta rack-panel empty-slot" key={`empty-panel-${rowIndex}-${slotIndex}`} aria-hidden="true" />
+
+                    return (
+                      <div className="asset-meta rack-panel" key={`${asset.asset}-rack-panel`}>
+                        <div className="rack-title-row">
+                          <strong>{asset.displayName}</strong>
+                          <LikeButton
+                            active={isAssetLiked(asset.asset)}
+                            count={getAssetLikeCount(asset.asset)}
+                            pending={likePendingAsset === asset.asset}
+                            onClick={() => void toggleAssetLike(asset)}
+                          />
+                        </div>
+                        <span>Creator: {getAssetCreator(asset)}</span>
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
             ))}
           </div>
+          {visiblePendingAssets.length > RACK_PAGE_SIZE && (
+            <div className="submission-pagination" aria-label="Submission pages">
+              <button
+                type="button"
+                onClick={() => setSubmissionPage((page) => Math.max(0, page - 1))}
+                disabled={submissionPage === 0}
+              >
+                Prev
+              </button>
+              <span>Page {submissionPage + 1} of {submissionPageCount}</span>
+              <button
+                type="button"
+                onClick={() => setSubmissionPage((page) => Math.min(submissionPageCount - 1, page + 1))}
+                disabled={submissionPage >= submissionPageCount - 1}
+              >
+                Next
+              </button>
+            </div>
+          )}
           {pendingStatus === 'loaded' && submittedAssets.length === 0 && <p className="empty-state">No pending SatoshiComics submissions found yet.</p>}
           {pendingStatus === 'loaded' && submittedAssets.length > 0 && visiblePendingAssets.length === 0 && <p className="empty-state">No submissions match that search.</p>}
         </section>
@@ -964,6 +1065,122 @@ function App() {
           {pendingStatus === 'loaded' && approvedAssets.length > 0 && visibleApprovedAssets.length === 0 && <p className="empty-state">No approved comics match that search.</p>}
         </section>
       )}
+
+      {activeTab === 'portfolio' && (
+        <section className="page portfolio-page">
+          <div className="section-head">
+            <div>
+              <h2>My Portfolio</h2>
+              <p>{wallet.connected ? `Connected wallet ${formatAddress(wallet.address)}.` : 'Connect your wallet to view your SatoshiComics submissions.'}</p>
+            </div>
+            <div className="submission-actions">
+              <button type="button" onClick={connectWallet} disabled={wallet.connecting}>
+                {wallet.connected ? 'Reconnect Wallet' : wallet.connecting ? 'Connecting...' : 'Connect Wallet'}
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  void loadPending()
+                  void loadSocial()
+                }}
+                disabled={!wallet.connected || pendingStatus === 'loading' || socialStatus === 'loading'}
+              >
+                {pendingStatus === 'loading' || socialStatus === 'loading' ? 'Refreshing...' : 'Refresh'}
+              </button>
+            </div>
+          </div>
+          {wallet.error && <p className="error-text">{wallet.error}</p>}
+          {pendingError && <p className="error-text">{pendingError}</p>}
+          {socialError && <p className="error-text">{socialError}</p>}
+          {wallet.connected && (
+            <div className="portfolio-stats" aria-label="Portfolio summary">
+              <div>
+                <span>Total comics</span>
+                <strong>{portfolioAssets.length}</strong>
+              </div>
+              <div>
+                <span>Pending</span>
+                <strong>{portfolioStats.pending}</strong>
+              </div>
+              <div>
+                <span>Approved</span>
+                <strong>{portfolioStats.approved}</strong>
+              </div>
+              <div>
+                <span>Total likes</span>
+                <strong>{portfolioStats.likes}</strong>
+              </div>
+            </div>
+          )}
+          {!wallet.connected && <p className="empty-state">Connect UniSat to load comics linked to your wallet.</p>}
+          {wallet.connected && pendingStatus === 'loading' && <p className="status-text">Loading portfolio...</p>}
+          {wallet.connected && pendingStatus === 'loaded' && portfolioAssets.length === 0 && (
+            <p className="empty-state">No wallet-matched submissions found yet. Portfolio matching uses owner/source/destination metadata from ACME when available.</p>
+          )}
+          {wallet.connected && portfolioAssets.length > 0 && (
+            <div className="portfolio-grid">
+              {portfolioAssets.map((asset) => (
+                <article className="portfolio-card" key={`${asset.asset}-portfolio`}>
+                  <button className="portfolio-cover" type="button" onClick={() => setSelectedComic(asset)} aria-label={`View ${asset.displayName}`}>
+                    <img
+                      src={asset.contentUrl || asset.thumbnailUrl}
+                      alt={asset.displayName}
+                      onError={(event) => {
+                        if (event.currentTarget.dataset.fallback !== 'true') {
+                          event.currentTarget.dataset.fallback = 'true'
+                          event.currentTarget.src = asset.thumbnailUrl
+                        }
+                      }}
+                    />
+                  </button>
+                  <div className="portfolio-card-body">
+                    <div className="portfolio-card-title">
+                      <strong>{asset.displayName}</strong>
+                      <span className={asset.collectionRelationshipStatus === 'synapsed' ? 'status-pill approved' : 'status-pill pending'}>{formatStatusLabel(asset)}</span>
+                    </div>
+                    <dl>
+                      <div>
+                        <dt>Asset</dt>
+                        <dd>{asset.asset}</dd>
+                      </div>
+                      <div>
+                        <dt>Creator</dt>
+                        <dd>{getAssetCreator(asset)}</dd>
+                      </div>
+                      <div>
+                        <dt>Submitted</dt>
+                        <dd>{formatAssetDate(asset.revealTimestamp)}</dd>
+                      </div>
+                      <div>
+                        <dt>Block</dt>
+                        <dd>{asset.revealBlock ?? 'Pending'}</dd>
+                      </div>
+                      <div>
+                        <dt>Likes</dt>
+                        <dd>{getAssetLikeCount(asset.asset)}</dd>
+                      </div>
+                    </dl>
+                    <a href={asset.artUrl} target="_blank" rel="noreferrer">Open original</a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+        </section>
+      )}
+
+      <footer className="app-footer">
+        <a
+          className="acme-footer-link"
+          href="https://acme.pics/mainnets"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Open ACME mainnets"
+        >
+          <img src={acmeLogo} alt="" />
+          <span>Power by the ACME Protocol</span>
+        </a>
+      </footer>
 
       {selectedGradedComic && (
         <div className="comic-lightbox" role="dialog" aria-modal="true" aria-label={`Graded card for ${selectedGradedComic.asset.displayName}`} onClick={() => setSelectedGradedComic(null)}>

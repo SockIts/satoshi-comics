@@ -13,6 +13,9 @@ export type AcmeGalleryAsset = {
   displayName: string
   description: string
   artistAsset: string | null
+  ownerAddress: string | null
+  sourceAddress: string | null
+  destinationAddress: string | null
   collectionAsset: string | null
   collectionRelationshipStatus: 'pending' | 'synapsed'
   collectionRelationshipCreatedAt: number | null
@@ -167,6 +170,10 @@ type AcmeCortexAsset = {
   display_name?: string | null
   description?: string | null
   artist_asset?: string | null
+  owner_address?: string | null
+  source_address?: string | null
+  destination_address?: string | null
+  reveal_destination_address?: string | null
   collection_asset?: string | null
   collection_relationship_status?: 'pending' | 'synapsed' | null
   collection_relationship_created_at?: number | null
@@ -238,6 +245,9 @@ const normalizeGalleryAsset = (asset: AcmeCortexAsset): AcmeGalleryAsset | null 
     displayName: asset.display_name?.trim() || assetName,
     description: asset.description?.trim() || '',
     artistAsset: asset.artist_asset ?? null,
+    ownerAddress: asset.owner_address ?? null,
+    sourceAddress: asset.source_address ?? null,
+    destinationAddress: asset.destination_address ?? asset.reveal_destination_address ?? null,
     collectionAsset: asset.collection_asset ?? null,
     collectionRelationshipStatus: normalizeCollectionRelationshipStatus(asset.collection_relationship_status),
     collectionRelationshipCreatedAt: asset.collection_relationship_created_at ?? null,
