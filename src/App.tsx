@@ -33,14 +33,13 @@ import {
   type SocialIndex,
 } from './social'
 
-type Tab = 'rules' | 'upload' | 'submit' | 'pending' | 'approved' | 'portfolio'
+type Tab = 'rules' | 'submit' | 'pending' | 'approved' | 'portfolio'
 type SubmissionSort = 'newest' | 'oldest' | 'name' | 'creator' | 'likes'
 type AssetCheckStatus = 'idle' | 'invalid' | 'checking' | 'available' | 'taken' | 'error'
 
 const TABS: Array<{ id: Tab; label: string }> = [
   { id: 'rules', label: 'Rules' },
-  { id: 'upload', label: 'Upload' },
-  { id: 'submit', label: 'Submit' },
+  { id: 'submit', label: 'Create' },
   { id: 'pending', label: 'Submission' },
   { id: 'approved', label: 'Approved' },
 ]
@@ -124,14 +123,14 @@ const formatBytes = (bytes: number) => {
   return `${(bytes / (1024 * 1024)).toFixed(2)} MB`
 }
 
-const RACK_ROW_COUNT = 5
 const RACK_COMICS_PER_ROW = 5
-const RACK_PAGE_SIZE = RACK_ROW_COUNT * RACK_COMICS_PER_ROW
+const SUBMISSION_PAGE_SIZE = 25
+const RACK_PAGE_SIZE = SUBMISSION_PAGE_SIZE
 
 const groupAssetRows = (assets: AcmeGalleryAsset[]) => {
   const rows: AcmeGalleryAsset[][] = []
   const rackAssets = assets.slice(0, RACK_PAGE_SIZE)
-  for (let rowIndex = 0; rowIndex < RACK_ROW_COUNT; rowIndex += 1) {
+  for (let rowIndex = 0; rowIndex < Math.ceil(RACK_PAGE_SIZE / RACK_COMICS_PER_ROW); rowIndex += 1) {
     const startIndex = rowIndex * RACK_COMICS_PER_ROW
     rows.push(rackAssets.slice(startIndex, startIndex + RACK_COMICS_PER_ROW))
   }
@@ -183,6 +182,7 @@ function App() {
   const [pendingStatus, setPendingStatus] = useState<'idle' | 'loading' | 'loaded' | 'error'>('idle')
   const [pendingError, setPendingError] = useState('')
   const [selectedComic, setSelectedComic] = useState<AcmeGalleryAsset | null>(null)
+  const [selectedEditedComic, setSelectedEditedComic] = useState<string | null>(null)
   const [selectedGradedComic, setSelectedGradedComic] = useState<{ asset: AcmeGalleryAsset; gradingNumber: string } | null>(null)
   const [socialIndex, setSocialIndex] = useState<SocialIndex | null>(null)
   const [socialStatus, setSocialStatus] = useState<'idle' | 'loading' | 'loaded' | 'error'>('idle')
@@ -313,15 +313,17 @@ function App() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    const coverW = 1048
-    const coverH = 1564
-    canvas.width = coverW
-    canvas.height = coverH
+    const mintedCoverWidth = 1048
+    const mintedCoverHeight = 1564
+    canvas.width = mintedCoverWidth
+    canvas.height = mintedCoverHeight
 
     const coverX = 0
     const coverY = 0
+    const coverW = mintedCoverWidth
+    const coverH = mintedCoverHeight
     const radius = 4
-    ctx.clearRect(0, 0, coverW, coverH)
+    ctx.clearRect(0, 0, mintedCoverWidth, mintedCoverHeight)
 
     if (sourceImage) {
       const image = new Image()
@@ -356,7 +358,7 @@ function App() {
   }, [brightness, clarity, contrast, grain, hue, panX, panY, saturation, sourceImage, texture, zoom])
 
   useEffect(() => {
-    if (activeTab !== 'upload') return
+    if (activeTab !== 'submit') return
     renderComic()
   }, [activeTab, renderComic])
 
@@ -383,7 +385,7 @@ function App() {
       }
       setSourceImage(result)
       setUploadError('')
-      setActiveTab('upload')
+      setActiveTab('submit')
     }
     reader.onerror = () => setUploadError('Could not read that image.')
     reader.readAsDataURL(file)
@@ -399,6 +401,14 @@ function App() {
       setWallet({ ...DEFAULT_WALLET, error: error instanceof Error ? error.message : 'Could not connect wallet.' })
       return false
     }
+  }
+
+  const disconnectWallet = () => {
+    setWallet(DEFAULT_WALLET)
+    setSocialIndex(null)
+    setSocialStatus('idle')
+    setSocialError('')
+    setMintError('')
   }
 
   const submitMint = async () => {
@@ -557,78 +567,142 @@ function App() {
   }, [assetNameIsValid, normalizedAssetName])
 
   useEffect(() => {
-    if (!selectedComic && !selectedGradedComic) return
+    if (!selectedComic && !selectedGradedComic && !selectedEditedComic) return
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setSelectedComic(null)
+        setSelectedEditedComic(null)
         setSelectedGradedComic(null)
       }
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [selectedComic, selectedGradedComic])
+  }, [selectedComic, selectedEditedComic, selectedGradedComic])
+
+  const editorControls = (
+    <div className="editor-panel">
+      <label>
+        Zoom
+        <input type="range" min="0.7" max="2.2" step="0.01" value={zoom} onChange={(event) => setZoom(Number(event.target.value))} />
+      </label>
+      <label>
+        Pan X
+        <input type="range" min="-260" max="260" value={panX} onChange={(event) => setPanX(Number(event.target.value))} />
+      </label>
+      <label>
+        Pan Y
+        <input type="range" min="-320" max="320" value={panY} onChange={(event) => setPanY(Number(event.target.value))} />
+      </label>
+      <label>
+        Contrast
+        <input type="range" min="80" max="150" value={contrast} onChange={(event) => setContrast(Number(event.target.value))} />
+      </label>
+      <label>
+        Brightness
+        <input type="range" min="72" max="132" value={brightness} onChange={(event) => setBrightness(Number(event.target.value))} />
+      </label>
+      <label>
+        Saturation
+        <input type="range" min="0" max="180" value={saturation} onChange={(event) => setSaturation(Number(event.target.value))} />
+      </label>
+      <label>
+        Clarity
+        <input type="range" min="0" max="44" value={clarity} onChange={(event) => setClarity(Number(event.target.value))} />
+      </label>
+      <label>
+        Hue
+        <input type="range" min="-45" max="45" value={hue} onChange={(event) => setHue(Number(event.target.value))} />
+      </label>
+      <label>
+        Grain
+        <input type="range" min="0" max="32" value={grain} onChange={(event) => setGrain(Number(event.target.value))} />
+      </label>
+      <label>
+        Texture
+        <input type="range" min="0" max="34" value={texture} onChange={(event) => setTexture(Number(event.target.value))} />
+      </label>
+      <div className="editor-actions">
+        <button type="button" onClick={() => {
+          setZoom(1)
+          setPanX(0)
+          setPanY(0)
+          setContrast(108)
+          setBrightness(102)
+          setSaturation(116)
+          setClarity(14)
+          setHue(0)
+          setGrain(8)
+          setTexture(10)
+        }}>Reset</button>
+      </div>
+    </div>
+  )
 
   return (
     <main className="app-shell">
-      <header className="app-header">
-        <div className="header-cover-strip" aria-hidden="true">
-          {RULE_EXAMPLES.map((cover) => (
-            <img key={cover.alt} src={cover.src} alt="" />
-          ))}
-        </div>
-        <div className="header-brand">
-          <img className="site-logo" src={satoshiComicsLogo} alt="SatoshiComics" />
-        </div>
-        <div className="wallet-actions">
-          <button
-            className={activeTab === 'portfolio' ? 'portfolio-button active' : 'portfolio-button'}
-            type="button"
-            onClick={() => {
-              if (!wallet.connected) {
-                void connectWallet().then((connected) => {
-                  if (connected) setActiveTab('portfolio')
-                })
-                return
-              }
-              setActiveTab('portfolio')
-            }}
-            disabled={wallet.connecting}
-          >
-            My Portfolio
+      <div className="comic-page-shell">
+        <header className="site-topbar">
+          <button className="topbar-brand" type="button" onClick={() => setActiveTab('rules')} aria-label="Go to Rules">
+            <img src={satoshiComicsLogo} alt="" />
           </button>
-          <button className="wallet-button" type="button" onClick={connectWallet} disabled={wallet.connecting}>
-            {wallet.connected ? formatAddress(wallet.address) : wallet.connecting ? 'Connecting...' : 'Connect Wallet'}
-          </button>
-        </div>
-      </header>
+          <nav className="tabbar" aria-label="SatoshiComics workflow">
+            {TABS.map((tab) => (
+              <button key={tab.id} className={activeTab === tab.id ? 'active' : ''} type="button" onClick={() => setActiveTab(tab.id)}>
+                {tab.label}
+              </button>
+            ))}
+          </nav>
+          <div className="wallet-actions">
+            <button
+              className={activeTab === 'portfolio' ? 'portfolio-button active' : 'portfolio-button'}
+              type="button"
+              onClick={() => {
+                if (!wallet.connected) {
+                  void connectWallet().then((connected) => {
+                    if (connected) setActiveTab('portfolio')
+                  })
+                  return
+                }
+                setActiveTab('portfolio')
+              }}
+              disabled={wallet.connecting}
+            >
+              My Portfolio
+            </button>
+            <button className={wallet.connected ? 'wallet-button connected' : 'wallet-button'} type="button" onClick={wallet.connected ? disconnectWallet : connectWallet} disabled={wallet.connecting}>
+              {wallet.connected ? (
+                <>
+                  <span className="wallet-address-label">{formatAddress(wallet.address)}</span>
+                  <span className="wallet-disconnect-label">Disconnect</span>
+                </>
+              ) : wallet.connecting ? 'Connecting...' : 'Connect Wallet'}
+            </button>
+          </div>
+        </header>
 
-      <nav className="tabbar" aria-label="SatoshiComics workflow">
-        {TABS.map((tab) => (
-          <button key={tab.id} className={activeTab === tab.id ? 'active' : ''} type="button" onClick={() => setActiveTab(tab.id)}>
-            {tab.label}
-          </button>
-        ))}
-      </nav>
+        <div className="content-panel">
+          {activeTab === 'rules' && (
+          <section className="app-header hero-banner" aria-label="SatoshiComics hero">
+            <div className="header-cover-strip" aria-hidden="true">
+              {RULE_EXAMPLES.map((cover) => (
+                <img key={cover.alt} src={cover.src} alt="" />
+              ))}
+            </div>
+            <div className="header-brand">
+              <div className="hero-copy">
+                <span>SatoshiComics</span>
+                <h1>Mint comic covers on ACME.</h1>
+                <p>Upload artwork, wrap it as a SatoshiComics cover, submit it to the gallery, and track approvals from your wallet.</p>
+              </div>
+              <div className="hero-mark" aria-hidden="true">
+                <span>SC</span>
+              </div>
+            </div>
+          </section>
+          )}
 
       {activeTab === 'rules' && (
         <section className="page rules-page">
-          <a
-            className="rules-hero"
-            href="https://acme.pics/collection/SATOSHICOMICS"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Open SatoshiComics collection on ACME"
-          >
-            <div className="rules-hero-strip" aria-hidden="true">
-              {RULE_EXAMPLES.map((example) => (
-                <img key={`hero-${example.src}`} src={example.src} alt="" />
-              ))}
-            </div>
-            <div className="rules-hero-copy">
-              <span>SatoshiComics</span>
-              <strong>Cover submission guide</strong>
-            </div>
-          </a>
           <div className="rules-copy">
             <h2>Submission Rules</h2>
             <ol>
@@ -656,97 +730,14 @@ function App() {
               </section>
             </div>
           </div>
-          <div className="rules-examples" aria-label="SatoshiComics cover examples">
-            {RULE_EXAMPLES.map((example) => (
-              <img key={example.src} src={example.src} alt={example.alt} />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {activeTab === 'upload' && (
-        <section className="page upload-page">
-          <div className="studio-layout">
-            <div
-              className="comic-preview-card large"
-              onDragOver={(event) => event.preventDefault()}
-              onDrop={(event) => {
-                event.preventDefault()
-                const file = event.dataTransfer.files[0]
-                if (file) loadFile(file)
-              }}
-            >
-              <canvas ref={activeTab === 'upload' ? canvasRef : null} className="comic-canvas" aria-label="Comic editor preview" />
-              {!sourceImage && (
-                <div className="upload-drop">
-                  <input ref={fileInputRef} type="file" accept="image/*" onChange={(event) => {
-                    const file = event.target.files?.[0]
-                    if (file) loadFile(file)
-                    event.currentTarget.value = ''
-                  }} />
-                  <button type="button" onClick={() => fileInputRef.current?.click()}>Choose Image</button>
-                  {uploadError && <span className="error-text">{uploadError}</span>}
-                </div>
-              )}
-              {sourceImage && uploadError && <span className="preview-error error-text">{uploadError}</span>}
-            </div>
-            <div className="editor-panel">
-              <label>
-                Zoom
-                <input type="range" min="0.7" max="2.2" step="0.01" value={zoom} onChange={(event) => setZoom(Number(event.target.value))} />
-              </label>
-              <label>
-                Pan X
-                <input type="range" min="-260" max="260" value={panX} onChange={(event) => setPanX(Number(event.target.value))} />
-              </label>
-              <label>
-                Pan Y
-                <input type="range" min="-320" max="320" value={panY} onChange={(event) => setPanY(Number(event.target.value))} />
-              </label>
-              <label>
-                Contrast
-                <input type="range" min="80" max="150" value={contrast} onChange={(event) => setContrast(Number(event.target.value))} />
-              </label>
-              <label>
-                Brightness
-                <input type="range" min="72" max="132" value={brightness} onChange={(event) => setBrightness(Number(event.target.value))} />
-              </label>
-              <label>
-                Saturation
-                <input type="range" min="0" max="180" value={saturation} onChange={(event) => setSaturation(Number(event.target.value))} />
-              </label>
-              <label>
-                Clarity
-                <input type="range" min="0" max="44" value={clarity} onChange={(event) => setClarity(Number(event.target.value))} />
-              </label>
-              <label>
-                Hue
-                <input type="range" min="-45" max="45" value={hue} onChange={(event) => setHue(Number(event.target.value))} />
-              </label>
-              <label>
-                Grain
-                <input type="range" min="0" max="32" value={grain} onChange={(event) => setGrain(Number(event.target.value))} />
-              </label>
-              <label>
-                Texture
-                <input type="range" min="0" max="34" value={texture} onChange={(event) => setTexture(Number(event.target.value))} />
-              </label>
-              <div className="editor-actions">
-                <button type="button" onClick={() => {
-                  setZoom(1)
-                  setPanX(0)
-                  setPanY(0)
-                  setContrast(108)
-                  setBrightness(102)
-                  setSaturation(116)
-                  setClarity(14)
-                  setHue(0)
-                  setGrain(8)
-                  setTexture(10)
-                }}>Reset</button>
-                <button type="button" className="primary" onClick={() => setActiveTab('submit')}>Use for Submit</button>
-              </div>
-            </div>
+          <div className="approval-requirements">
+            <h2>Approval Requirement</h2>
+            <ol>
+              <li>A minimum of 15 likes for the first 100 submissions.</li>
+              <li>Create a free Open Edition mint for 1440 blocks (~10 days).</li>
+              <li>Lock the asset after the Open Edition mint is completed. Do not lock the asset before the Open Edition is completed.</li>
+              <li>Asset is approved into the directory.</li>
+            </ol>
           </div>
         </section>
       )}
@@ -754,7 +745,7 @@ function App() {
       {activeTab === 'submit' && (
         <section className="page submit-page">
           <div className="mint-form">
-            <h2>Submit Comic</h2>
+            <h2>Create Comic</h2>
             <label>
               ACME asset name
               <input
@@ -812,7 +803,7 @@ function App() {
               <span>Original Artwork</span>
             </label>
             <div className="mint-actions">
-              <button type="button" onClick={connectWallet} disabled={wallet.connecting}>{wallet.connected ? 'Reconnect Wallet' : 'Connect Wallet'}</button>
+              <button type="button" onClick={wallet.connected ? disconnectWallet : connectWallet} disabled={wallet.connecting}>{wallet.connected ? 'Disconnect Wallet' : 'Connect Wallet'}</button>
               <button type="button" className="primary" onClick={submitMint} disabled={!renderedComic || Boolean(validationError || assetAvailabilityError || walletError) || mintStatus === 'composing' || mintStatus === 'signing' || mintStatus === 'broadcasting'}>
                 {mintStatus === 'idle' || mintStatus === 'error' ? 'Mint on ACME' : mintStatus === 'success' ? 'Minted' : 'Minting...'}
               </button>
@@ -821,9 +812,47 @@ function App() {
             {mintStep && <p className="status-text">{PROGRESS_LABELS[mintStep]}{arweaveProgress ? `: ${arweaveProgress.percent}%` : ''}</p>}
             {txid && <p className="status-text">Broadcast transaction: {txid}</p>}
           </div>
-          <div className="submit-preview">
-            {renderedComic ? <img src={renderedComic} alt="Rendered SatoshiComics submission" /> : <p>Upload an image first.</p>}
-            <span>{formatBytes(renderedBytes)}</span>
+          <div className="submit-preview submit-workspace">
+            <div
+              className="submit-preview-stage"
+              role="button"
+              tabIndex={sourceImage && renderedComic ? 0 : -1}
+              aria-label="Open edited comic preview"
+              onClick={() => {
+                if (sourceImage && renderedComic) setSelectedEditedComic(renderedComic)
+              }}
+              onKeyDown={(event) => {
+                if (!sourceImage || !renderedComic) return
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault()
+                  setSelectedEditedComic(renderedComic)
+                }
+              }}
+              onDragOver={(event) => event.preventDefault()}
+              onDrop={(event) => {
+                event.preventDefault()
+                const file = event.dataTransfer.files[0]
+                if (file) loadFile(file)
+              }}
+            >
+              <canvas ref={activeTab === 'submit' ? canvasRef : null} className="comic-canvas" aria-label="Comic editor preview" />
+              {!sourceImage && (
+                <div className="upload-drop">
+                  <input ref={fileInputRef} type="file" accept="image/*" onChange={(event) => {
+                    const file = event.target.files?.[0]
+                    if (file) loadFile(file)
+                    event.currentTarget.value = ''
+                  }} />
+                  <button type="button" onClick={() => fileInputRef.current?.click()}>Choose Image</button>
+                  {uploadError && <span className="error-text">{uploadError}</span>}
+                </div>
+              )}
+              {sourceImage && uploadError && <span className="preview-error error-text">{uploadError}</span>}
+            </div>
+            <div className="submit-preview-meta">
+              <span>{formatBytes(renderedBytes)}</span>
+            </div>
+            {editorControls}
           </div>
         </section>
       )}
@@ -891,28 +920,21 @@ function App() {
                             />
                           </button>
                         </div>
-                      </article>
-                    )
-                  })}
-                </div>
-                <div className="rack-panel-row">
-                  {Array.from({ length: RACK_COMICS_PER_ROW }, (_, slotIndex) => {
-                    const asset = row[slotIndex]
-                    if (!asset) return <div className="asset-meta rack-panel empty-slot" key={`empty-panel-${rowIndex}-${slotIndex}`} aria-hidden="true" />
-
-                    return (
-                      <div className="asset-meta rack-panel" key={`${asset.asset}-rack-panel`}>
-                        <div className="rack-title-row">
-                          <strong>{asset.displayName}</strong>
-                          <LikeButton
-                            active={isAssetLiked(asset.asset)}
-                            count={getAssetLikeCount(asset.asset)}
-                            pending={likePendingAsset === asset.asset}
-                            onClick={() => void toggleAssetLike(asset)}
-                          />
+                        <div className="asset-meta asset-meta-mobile">
+                          <div className="rack-title-row">
+                            <div className="asset-title-stack">
+                              <strong>{asset.displayName}</strong>
+                              <span>{getAssetCreator(asset)}</span>
+                            </div>
+                            <LikeButton
+                              active={isAssetLiked(asset.asset)}
+                              count={getAssetLikeCount(asset.asset)}
+                              pending={likePendingAsset === asset.asset}
+                              onClick={() => void toggleAssetLike(asset)}
+                            />
+                          </div>
                         </div>
-                        <span>Creator: {getAssetCreator(asset)}</span>
-                      </div>
+                      </article>
                     )
                   })}
                 </div>
@@ -1015,10 +1037,6 @@ function App() {
                       <dd>{getAssetCreator(asset)}</dd>
                     </div>
                     <div>
-                      <dt>Collection</dt>
-                      <dd>{asset.collectionAsset ?? 'SATOSHICOMICS'}</dd>
-                    </div>
-                    <div>
                       <dt>Block</dt>
                       <dd>{asset.revealBlock ?? 'Pending'}</dd>
                     </div>
@@ -1074,8 +1092,8 @@ function App() {
               <p>{wallet.connected ? `Connected wallet ${formatAddress(wallet.address)}.` : 'Connect your wallet to view your SatoshiComics submissions.'}</p>
             </div>
             <div className="submission-actions">
-              <button type="button" onClick={connectWallet} disabled={wallet.connecting}>
-                {wallet.connected ? 'Reconnect Wallet' : wallet.connecting ? 'Connecting...' : 'Connect Wallet'}
+              <button type="button" onClick={wallet.connected ? disconnectWallet : connectWallet} disabled={wallet.connecting}>
+                {wallet.connected ? 'Disconnect Wallet' : wallet.connecting ? 'Connecting...' : 'Connect Wallet'}
               </button>
               <button
                 type="button"
@@ -1118,69 +1136,75 @@ function App() {
             <p className="empty-state">No wallet-matched submissions found yet. Portfolio matching uses owner/source/destination metadata from ACME when available.</p>
           )}
           {wallet.connected && portfolioAssets.length > 0 && (
-            <div className="portfolio-grid">
-              {portfolioAssets.map((asset) => (
-                <article className="portfolio-card" key={`${asset.asset}-portfolio`}>
-                  <button className="portfolio-cover" type="button" onClick={() => setSelectedComic(asset)} aria-label={`View ${asset.displayName}`}>
-                    <img
-                      src={asset.contentUrl || asset.thumbnailUrl}
-                      alt={asset.displayName}
-                      onError={(event) => {
-                        if (event.currentTarget.dataset.fallback !== 'true') {
-                          event.currentTarget.dataset.fallback = 'true'
-                          event.currentTarget.src = asset.thumbnailUrl
-                        }
-                      }}
-                    />
-                  </button>
-                  <div className="portfolio-card-body">
-                    <div className="portfolio-card-title">
-                      <strong>{asset.displayName}</strong>
-                      <span className={asset.collectionRelationshipStatus === 'synapsed' ? 'status-pill approved' : 'status-pill pending'}>{formatStatusLabel(asset)}</span>
-                    </div>
-                    <dl>
-                      <div>
-                        <dt>Asset</dt>
-                        <dd>{asset.asset}</dd>
-                      </div>
-                      <div>
-                        <dt>Creator</dt>
-                        <dd>{getAssetCreator(asset)}</dd>
-                      </div>
-                      <div>
-                        <dt>Submitted</dt>
-                        <dd>{formatAssetDate(asset.revealTimestamp)}</dd>
-                      </div>
-                      <div>
-                        <dt>Block</dt>
-                        <dd>{asset.revealBlock ?? 'Pending'}</dd>
-                      </div>
-                      <div>
-                        <dt>Likes</dt>
-                        <dd>{getAssetLikeCount(asset.asset)}</dd>
-                      </div>
-                    </dl>
-                    <a href={asset.artUrl} target="_blank" rel="noreferrer">Open original</a>
-                  </div>
-                </article>
-              ))}
+            <div className="portfolio-table-wrap">
+              <table className="portfolio-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Comic</th>
+                    <th scope="col">Asset</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Creator</th>
+                    <th scope="col">Submitted</th>
+                    <th scope="col">Block</th>
+                    <th scope="col">Likes</th>
+                    <th scope="col">Create Open Edition</th>
+                    <th scope="col">Locked Asset</th>
+                    <th scope="col">Original</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {portfolioAssets.map((asset) => (
+                    <tr key={`${asset.asset}-portfolio`}>
+                      <td>
+                        <button className="portfolio-table-cover" type="button" onClick={() => setSelectedComic(asset)} aria-label={`View ${asset.displayName}`}>
+                          <img
+                            src={asset.contentUrl || asset.thumbnailUrl}
+                            alt={asset.displayName}
+                            onError={(event) => {
+                              if (event.currentTarget.dataset.fallback !== 'true') {
+                                event.currentTarget.dataset.fallback = 'true'
+                                event.currentTarget.src = asset.thumbnailUrl
+                              }
+                            }}
+                          />
+                        </button>
+                      </td>
+                      <td>
+                        <strong>{asset.displayName}</strong>
+                        <span>{asset.asset}</span>
+                      </td>
+                      <td>
+                        <span className={asset.collectionRelationshipStatus === 'synapsed' ? 'status-pill approved' : 'status-pill pending'}>{formatStatusLabel(asset)}</span>
+                      </td>
+                      <td>{getAssetCreator(asset)}</td>
+                      <td>{formatAssetDate(asset.revealTimestamp)}</td>
+                      <td>{asset.revealBlock ?? 'Pending'}</td>
+                      <td>{getAssetLikeCount(asset.asset)}</td>
+                      <td><button type="button" disabled>Create Open Edition</button></td>
+                      <td><button type="button" disabled>Locked Asset</button></td>
+                      <td><a href={asset.artUrl} target="_blank" rel="noreferrer">Open</a></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           )}
         </section>
       )}
-
-      <footer className="app-footer">
-        <a
-          className="acme-footer-link"
-          href="https://acme.pics/mainnets"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Open ACME mainnets"
-        >
-          <img src={acmeLogo} alt="" />
-          <span>Power by the ACME Protocol</span>
-        </a>
-      </footer>
+          <footer className="app-footer">
+            <a
+              className="acme-footer-link"
+              href="https://acme.pics/mainnets"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Open ACME mainnets"
+            >
+              <img src={acmeLogo} alt="" />
+              <span>Power by the ACME Protocol</span>
+            </a>
+          </footer>
+        </div>
+      </div>
 
       {selectedGradedComic && (
         <div className="comic-lightbox" role="dialog" aria-modal="true" aria-label={`Graded card for ${selectedGradedComic.asset.displayName}`} onClick={() => setSelectedGradedComic(null)}>
@@ -1200,10 +1224,6 @@ function App() {
                   <div>
                     <dt>Creator</dt>
                     <dd>{getAssetCreator(selectedGradedComic.asset)}</dd>
-                  </div>
-                  <div>
-                    <dt>Collection</dt>
-                    <dd>{selectedGradedComic.asset.collectionAsset ?? 'SATOSHICOMICS'}</dd>
                   </div>
                   <div>
                     <dt>Block</dt>
@@ -1245,6 +1265,18 @@ function App() {
             </article>
             <div className="lightbox-meta">
               <a href={selectedGradedComic.asset.artUrl} target="_blank" rel="noreferrer">Open original</a>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {selectedEditedComic && (
+        <div className="comic-lightbox" role="dialog" aria-modal="true" aria-label="Edited comic preview" onClick={() => setSelectedEditedComic(null)}>
+          <div className="comic-lightbox-panel edited-lightbox-panel" onClick={(event) => event.stopPropagation()}>
+            <button className="lightbox-close" type="button" onClick={() => setSelectedEditedComic(null)} aria-label="Close preview">Close</button>
+            <img src={selectedEditedComic} alt="Edited SatoshiComics preview" />
+            <div className="lightbox-meta">
+              <strong>{normalizeAcmeAssetRef(form.assetName) || 'Edited preview'}</strong>
             </div>
           </div>
         </div>
