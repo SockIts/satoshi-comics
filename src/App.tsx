@@ -734,9 +734,9 @@ function App() {
             <h2>Approval Requirement</h2>
             <ol>
               <li>A minimum of 15 likes for the first 100 submissions.</li>
-              <li>Create a free Open Edition mint for 1440 blocks (~10 days).</li>
+              <li>Free Open Edition mint for a minimum of 1440 blocks (~10 days).</li>
               <li>Lock the asset after the Open Edition mint is completed. Do not lock the asset before the Open Edition is completed.</li>
-              <li>Asset is approved into the directory.</li>
+              <li>Onced locked, assets will be approved in the official directory.</li>
             </ol>
           </div>
         </section>
