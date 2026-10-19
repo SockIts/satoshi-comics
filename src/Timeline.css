@@ -1,0 +1,237 @@
+/* The collection is a camera moving through an unbroken diagonal archive. */
+body .app-shell.modern-app.timeline-app { --modern-paper: #fafaf8; --modern-ink: #191919; --modern-muted: #858580; --modern-lime: #dc4c49; --primary: #dc4c49; --primary-foreground: #fff; --ring: #dc4c49; background: #fafaf8 !important; }
+body .app-shell.modern-app.timeline-app .comic-page-shell { display: block !important; background: #fafaf8 !important; }
+body .app-shell.modern-app.timeline-app .comic-page-shell .site-topbar { position: relative !important; display: flex !important; flex-direction: row !important; align-items: center !important; flex-wrap: nowrap !important; height: 76px !important; min-height: 0 !important; width: 100% !important; padding: 0 36px !important; gap: 30px !important; background: #fafaf8 !important; border: 0 !important; border-bottom: 1px solid #deded7 !important; backdrop-filter: none !important; }
+body .app-shell.modern-app.timeline-app .site-topbar .topbar-brand { display: flex !important; width: auto !important; min-height: 0 !important; max-width: none !important; flex: 0 0 auto !important; padding: 0 !important; margin: 0 auto 0 0 !important; gap: 8px !important; }
+body .app-shell.modern-app.timeline-app .modern-monogram { width: 31px; height: 34px; color: #fafaf8; background: #202020; font-size: 18px; border-radius: 1px; }
+body .app-shell.modern-app.timeline-app .modern-wordmark { color: #202020; font-size: 18px; letter-spacing: -.8px; }
+body .app-shell.modern-app.timeline-app .modern-wordmark > span { color: #dc4c49; }
+body .app-shell.modern-app.timeline-app .site-topbar .tabbar,
+body .app-shell.modern-app.timeline-app .site-topbar .wallet-actions { display: flex !important; width: auto !important; flex-direction: row !important; flex-wrap: nowrap !important; gap: 20px !important; margin: 0 !important; }
+body .app-shell.modern-app.timeline-app .site-topbar .tabbar button,
+body .app-shell.modern-app.timeline-app .site-topbar .wallet-actions .portfolio-button { width: auto !important; min-height: 34px !important; padding: 8px 0 !important; gap: 7px !important; border: 0 !important; border-bottom: 1px solid transparent !important; border-radius: 0 !important; color: #888883 !important; background: transparent !important; font-size: 11px !important; font-weight: 500 !important; }
+body .app-shell.modern-app.timeline-app .site-topbar .tabbar button.active,
+body .app-shell.modern-app.timeline-app .site-topbar .wallet-actions .portfolio-button.active { color: #202020 !important; border-bottom-color: #dc4c49 !important; background: transparent !important; }
+body .app-shell.modern-app.timeline-app .sidebar-note { display: none; }
+body .app-shell.modern-app.timeline-app .comic-page-shell .content-panel { width: 100% !important; padding: 0 36px 20px !important; background: #fafaf8 !important; min-height: calc(100vh - 76px) !important; }
+body .app-shell.modern-app.timeline-app .modern-topline { min-height: 48px; border-bottom: 0; font-size: 9px; }
+body .app-shell.modern-app.timeline-app .modern-topline .wallet-button { min-height: 28px !important; height: 28px; padding: 6px 12px !important; border: 1px solid #d1d1c9 !important; border-radius: 0 !important; background: transparent !important; color: #383834 !important; font-size: 9px !important; }
+body .app-shell.modern-app.timeline-app .collection-intro.timeline-intro { display: flex; justify-content: space-between; align-items: flex-end; padding: 12px 0 24px; }
+body .app-shell.modern-app.timeline-app .timeline-intro .eyebrow { color: #858580 !important; font-size: 8px !important; letter-spacing: 2px !important; margin: 0 0 12px; }
+body .app-shell.modern-app.timeline-app .timeline-intro h1 { font-size: clamp(30px, 3.3vw, 49px) !important; line-height: .99 !important; letter-spacing: -2px !important; font-weight: 650 !important; margin: 0 !important; color: #202020 !important; }
+body .app-shell.modern-app.timeline-app .timeline-intro h1 em { font-style: normal; color: #dc4c49; }
+body .app-shell.modern-app.timeline-app .timeline-intro-aside { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
+body .app-shell.modern-app.timeline-app .timeline-intro-aside p { font-size: 10px; color: #858580 !important; text-align: right; line-height: 1.6; }
+body .app-shell.modern-app.timeline-app .submit-artwork { min-height: 28px; height: 28px; padding: 4px 0; border: 0 !important; border-bottom: 1px solid #dc4c49 !important; border-radius: 0 !important; background: transparent !important; color: #262623 !important; font-size: 10px; gap: 25px; }
+body .app-shell.modern-app.timeline-app .submit-artwork:hover { background: transparent !important; transform: none; color: #dc4c49 !important; }
+body .app-shell.modern-app.timeline-app .collection-toolbar { min-height: 40px; padding: 10px 0 !important; margin: 0 !important; border-top: 1px solid #deded7 !important; border-bottom: 1px solid #deded7 !important; gap: 12px !important; }
+body .app-shell.modern-app.timeline-app .collection-filters { gap: 18px; }
+body .app-shell.modern-app.timeline-app .collection-filters button { min-height: 24px; padding: 3px 0; border-radius: 0 !important; color: #999992 !important; font-size: 10px !important; font-weight: 400 !important; background: transparent !important; }
+body .app-shell.modern-app.timeline-app .collection-filters button.selected { color: #202020 !important; background: transparent !important; box-shadow: inset 0 -1px #dc4c49 !important; }
+body .app-shell.modern-app.timeline-app .submission-actions input,
+body .app-shell.modern-app.timeline-app .submission-actions select,
+body .app-shell.modern-app.timeline-app .submission-actions button { min-height: 27px !important; height: 27px !important; padding: 4px 8px !important; border: 1px solid #deded7 !important; border-radius: 0 !important; background: transparent !important; color: #777771 !important; font-size: 9px !important; }
+body .app-shell.modern-app.timeline-app .pending-page > .status-text { font-size: 9px !important; margin: 4px 0 0 !important; }
+body .app-shell.modern-app.timeline-app .content-panel .app-footer { margin-top: 20px !important; }
+.diagonal-gallery { position: relative; width: 100%; padding-bottom: 100px; --gallery-bleed: 36px; }
+.diagonal-viewport { position: relative; width: calc(100% + var(--gallery-bleed) * 2); margin-inline: calc(-1 * var(--gallery-bleed)); height: clamp(760px, calc(100svh - 230px), 1080px); overflow: hidden; isolation: isolate; cursor: grab; touch-action: pan-y; background: #fff; }
+.diagonal-viewport:active { cursor: grabbing; }
+.diagonal-viewport:focus-visible { outline: 1px solid #dc4c49; outline-offset: -1px; }
+.diagonal-scene { position: absolute; left: 0; top: 0; width: 0; height: 0; }
+.gallery-half { position: absolute; inset: 0; overflow: hidden; z-index: 1; }
+.gallery-diagonal-divider { position: absolute; background: #fff; transform-origin: left center; border: 0; box-shadow: none; z-index: 3; cursor: grab; }
+.timeline-entry { position: absolute; width: 0; height: 0; z-index: 2; }
+.timeline-artwork { position: absolute; display: flex; flex-direction: column; width: var(--gallery-cover-width); left: calc(var(--gallery-cover-width) * -.5); }
+.timeline-entry.above .timeline-artwork { bottom: calc(-1 * var(--slice-overlap)); }.timeline-entry.below .timeline-artwork { top: calc(-1 * var(--slice-overlap)); }
+body .app-shell.modern-app.timeline-app .timeline-cover { position: relative; display: block; padding: 0 !important; width: 100%; height: var(--gallery-cover-height); border: 0 !important; border-radius: 0 !important; background: #e7e7df !important; box-shadow: none !important; overflow: hidden; cursor: pointer; }
+body .app-shell.modern-app.timeline-app .timeline-cover img { display: block; width: 100%; height: 100%; object-fit: cover; filter: none !important; transition: transform .5s; }
+body .app-shell.modern-app.timeline-app .timeline-cover:hover img, body .app-shell.modern-app.timeline-app .timeline-cover:focus-visible img { filter: none !important; transform: scale(1.035); }
+.timeline-open { position: absolute; bottom: 0; left: 0; right: 0; padding: 8px 5px; color: #fff; background: #dc4c49; font-size: 8px; letter-spacing: .8px; text-align: center; transform: translateY(100%); transition: transform .2s; }
+.timeline-cover:hover .timeline-open, .timeline-cover:focus-visible .timeline-open { transform: translateY(0); }
+.timeline-caption { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin: 8px 0 5px; min-width: 0; }
+body .app-shell.modern-app.timeline-app .timeline-caption h3 { color: #dc4c49 !important; font-family: 'Inter', sans-serif !important; font-size: 12px !important; font-weight: 750; letter-spacing: -.3px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0; }
+body .app-shell.modern-app.timeline-app .timeline-caption .like-button { display: inline-flex !important; width: auto !important; min-width: 0 !important; min-height: 18px !important; height: auto !important; padding: 0 !important; gap: 3px !important; border: 0 !important; background: transparent !important; color: #92928a !important; font-size: 9px !important; }
+body .app-shell.modern-app.timeline-app .timeline-caption .like-icon,
+body .app-shell.modern-app.timeline-app .timeline-caption .like-count { color: inherit !important; font-size: 9px !important; }
+.timeline-byline { display: flex; justify-content: space-between; align-items: center; gap: 5px; color: #999992; font-size: 9px; line-height: 1.3; margin: 0; }
+.timeline-byline > span { color: #44443e; font-size: 9px; }
+.gallery-corner { position: absolute; z-index: 0; pointer-events: none; color: #a1a19a; font-size: 8px; line-height: 1.7; letter-spacing: 1px; }
+.gallery-corner-top { top: 23px; right: 0; text-align: right; border-top: 1px solid #dc4c49; padding-top: 8px; }
+.gallery-corner-top > span { font-size: 8px; letter-spacing: 0; color: #b4b4ac; }
+.gallery-corner-bottom { left: 1px; bottom: 20px; display: flex; flex-direction: column; }
+.gallery-corner-bottom > span { margin-top: 9px; font-size: 7px; letter-spacing: 1.6px; }
+.gallery-diagonal-caption { position: absolute; top: 50%; left: -38px; transform: rotate(-90deg); transform-origin: left bottom; color: #a9a99f; font-size: 6px; letter-spacing: 1.5px; pointer-events: none; }
+.gallery-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 14px; color: #88887d; font-size: 12px; letter-spacing: 1px; }
+.gallery-loading small { font-size: 10px; color: #b1b1a7; letter-spacing: 0; }
+.gallery-loading > span { width: 90px; height: 1px; background: #dc4c49; animation: archive-pulse 1s ease-in-out infinite alternate; }
+@keyframes archive-pulse { from { opacity: .2; transform: scaleX(.4); } to { opacity: 1; transform: scaleX(1); } }
+.gallery-transport { position: fixed; left: 0; right: 0; bottom: 0; display: flex; align-items: center; gap: 32px; border-top: 1px solid #deded7; padding: 18px 36px calc(14px + env(safe-area-inset-bottom)); background: #fafaf8; z-index: 20; }
+.gallery-position { display: flex; flex-direction: column; gap: 5px; flex-shrink: 0; }
+.gallery-position > span { color: #a7a79c; font-size: 7px; letter-spacing: 1.5px; }
+.gallery-position > strong { color: #33332e; font-size: 20px; font-weight: 400; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+.gallery-scrubber { flex: 1; min-width: 0; }
+.gallery-slider-label { display: flex; justify-content: space-between; align-items: center; color: #aaa99d; font-size: 7px; letter-spacing: 1px; margin-bottom: 6px; }
+.gallery-slider-label label { color: #65655d; font-size: 7px; }
+.gallery-scrubber [data-slot=slider] { position: relative; min-height: 24px; width: 100%; cursor: ew-resize; }
+.gallery-scrubber [data-slot=slider-track] { height: 1px; background: #cecec3; }
+.gallery-scrubber [data-slot=slider-range] { background: #dc4c49; height: 1px; }
+.gallery-scrubber [data-slot=slider-thumb] { width: 28px; height: 28px; border: 0; background: #242423; border-radius: 50%; cursor: ew-resize; box-shadow: 0 0 0 4px #fafaf8; }
+.gallery-scrubber [data-slot=slider-thumb]::before { content: '↔'; position: absolute; inset: 0; display: grid; place-items: center; font-size: 12px; color: #f5f5ef; }
+.gallery-scrubber [data-slot=slider-thumb]:focus-visible { outline: 2px solid #dc4c49; outline-offset: 4px; }
+.gallery-arrows { display: flex; gap: 7px; }
+body .app-shell.modern-app.timeline-app .gallery-arrows button { width: 34px; height: 34px; padding: 0; border: 1px solid #d6d6cb !important; border-radius: 50% !important; color: #202020; font-size: 17px; background: transparent !important; }
+body .app-shell.modern-app.timeline-app .gallery-arrows button:disabled { opacity: .3; cursor: not-allowed; }
+body .app-shell.modern-app.timeline-app .gallery-arrows button:not(:disabled):hover { background: #202020 !important; color: #fff; }
+@media (max-width: 800px) {
+  .diagonal-gallery { --gallery-bleed: 22px; }
+  body .app-shell.modern-app.timeline-app .comic-page-shell .site-topbar { padding: 0 22px !important; gap: 18px !important; height: 70px !important; }
+  body .app-shell.modern-app.timeline-app .site-topbar .tabbar { gap: 15px !important; }
+  body .app-shell.modern-app.timeline-app .site-topbar .tabbar button,
+  body .app-shell.modern-app.timeline-app .site-topbar .wallet-actions .portfolio-button { font-size: 10px !important; }
+  body .app-shell.modern-app.timeline-app .comic-page-shell .content-panel { padding: 0 22px 20px !important; }
+  body .app-shell.modern-app.timeline-app .timeline-intro h1 { font-size: 38px !important; }
+  .diagonal-viewport { height: 760px; }
+  .gallery-transport { gap: 20px; padding-inline: 22px; }
+}
+@media (max-width: 520px) {
+  .diagonal-gallery { --gallery-bleed: 16px; }
+  body .app-shell.modern-app.timeline-app .comic-page-shell .site-topbar { height: auto !important; min-height: 99px !important; flex-wrap: wrap !important; justify-content: space-between; gap: 9px !important; padding: 14px 16px 10px !important; }
+  body .app-shell.modern-app.timeline-app .site-topbar .topbar-brand { width: 100% !important; flex: 0 0 100% !important; }
+  body .app-shell.modern-app.timeline-app .site-topbar .wallet-actions { margin-left: auto !important; }
+  body .app-shell.modern-app.timeline-app .site-topbar .tabbar button,
+  body .app-shell.modern-app.timeline-app .site-topbar .wallet-actions .portfolio-button { font-size: 9px !important; padding: 4px 0 !important; }
+  body .app-shell.modern-app.timeline-app .comic-page-shell .content-panel { padding: 0 16px 15px !important; }
+  body .app-shell.modern-app.timeline-app .timeline-intro h1 { font-size: 34px !important; }
+  body .app-shell.modern-app.timeline-app .collection-intro.timeline-intro { align-items: flex-start; gap: 20px; flex-wrap: wrap; }
+  body .app-shell.modern-app.timeline-app .timeline-intro-aside { flex-direction: row; justify-content: space-between; align-items: flex-end; width: 100%; }
+  body .app-shell.modern-app.timeline-app .timeline-intro-aside p { text-align: left; font-size: 8px; }
+  body .app-shell.modern-app.timeline-app .collection-toolbar { gap: 12px !important; }
+  body .app-shell.modern-app.timeline-app .collection-filters { gap: 16px; }
+  body .app-shell.modern-app.timeline-app .collection-filters button { font-size: 9px !important; }
+  body .app-shell.modern-app.timeline-app .submission-actions { width: 100% !important; }
+  body .app-shell.modern-app.timeline-app .submission-actions .submission-search { flex: 1; }
+  body .app-shell.modern-app.timeline-app .submission-actions input { width: 100% !important; }
+  .diagonal-viewport { height: 700px; }
+  .gallery-corner-top { font-size: 6px; max-width: 100px; }
+  .diagonal-gallery { padding-bottom: 140px; }
+  .gallery-transport { flex-wrap: wrap; gap: 14px; padding-top: 14px; padding-inline: 16px; }
+  .gallery-position { order: 1; flex: 1; }.gallery-position > span { font-size: 6px; }.gallery-position > strong { font-size: 17px; }
+  .gallery-arrows { order: 2; }.gallery-scrubber { order: 0; flex: 0 0 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .diagonal-scene, .timeline-cover img, .timeline-open { transition: none !important; }.gallery-loading > span { animation: none; } }
+
+/* The creator studio and personal archive share the collection's editorial UI. */
+body .app-shell.modern-app.timeline-app .site-topbar .wallet-actions { gap: 24px !important; align-items: center !important; }
+body .app-shell.modern-app.timeline-app .site-topbar .wallet-button { display: inline-flex !important; align-items: center !important; justify-content: center !important; gap: 8px !important; width: auto !important; min-width: 0 !important; min-height: 32px !important; height: 32px !important; margin: 0 !important; padding: 7px 13px !important; border: 1px solid #292926 !important; border-radius: 0 !important; color: #292926 !important; background: transparent !important; font-size: 10px !important; line-height: 1.3 !important; }
+body .app-shell.modern-app.timeline-app .site-topbar .wallet-button::before,
+body .app-shell.modern-app.timeline-app .site-topbar .wallet-button::after { display: none !important; }
+body .app-shell.modern-app.timeline-app .site-topbar .wallet-button:hover { color: #fff !important; background: #292926 !important; }
+body .app-shell.modern-app.timeline-app .site-topbar .wallet-button .wallet-disconnect-label { display: none; }
+body .app-shell.modern-app.timeline-app .site-topbar .wallet-button.connected:hover .wallet-disconnect-label { display: inline; }
+body .app-shell.modern-app.timeline-app .site-topbar .wallet-button.connected:hover .wallet-address-label { display: none; }
+body .app-shell.modern-app.timeline-app .modern-topline { min-height: 40px; }
+body .app-shell.modern-app.timeline-app .content-panel > .submit-page { grid-template-columns: minmax(260px, .85fr) minmax(0, 1.15fr) !important; gap: 32px 54px !important; padding-top: 12px !important; }
+body .app-shell.modern-app.timeline-app .editorial-page-intro { width: 100% !important; max-width: none !important; justify-self: stretch !important; text-align: left !important; padding: 12px 0 30px !important; margin: 0 !important; border: 0 !important; border-bottom: 1px solid #deded7 !important; background: transparent !important; }
+body .app-shell.modern-app.timeline-app .editor-page-intro { grid-column: 1 / -1; }
+body .app-shell.modern-app.timeline-app .editorial-page-intro h1 { color: #202020 !important; font-size: clamp(34px, 3.3vw, 49px) !important; font-weight: 650 !important; letter-spacing: -2px !important; line-height: 1.06 !important; margin: 12px 0 18px !important; text-transform: none !important; }
+body .app-shell.modern-app.timeline-app .editorial-page-intro h1 em { color: #dc4c49; font-style: normal; }
+body .app-shell.modern-app.timeline-app .editorial-page-intro .eyebrow { color: #858580 !important; font-size: 8px !important; font-weight: 500 !important; letter-spacing: 2px !important; text-transform: uppercase !important; }
+body .app-shell.modern-app.timeline-app .editorial-page-intro p { display: block !important; color: #858580 !important; font-size: 11px !important; line-height: 1.7 !important; }
+body .app-shell.modern-app.timeline-app .submit-page .mint-form,
+body .app-shell.modern-app.timeline-app .submit-page .submit-workspace { display: block !important; align-self: start !important; width: 100% !important; max-width: none !important; padding: 0 !important; border: 0 !important; border-radius: 0 !important; background: transparent !important; box-shadow: none !important; }
+body .app-shell.modern-app.timeline-app .submit-page .studio-section-title { height: auto !important; min-height: 0 !important; margin: 0 0 26px !important; padding: 0 0 12px !important; border-bottom: 1px solid #deded7; color: #5d5d55 !important; font-size: 10px !important; font-weight: 500 !important; letter-spacing: 1.5px !important; text-transform: uppercase !important; }
+body .app-shell.modern-app.timeline-app .mint-form [data-slot=field-group] { gap: 22px; }
+body .app-shell.modern-app.timeline-app .submit-page .mint-form [data-slot=field-label] { color: #50504b !important; font-size: 11px !important; font-weight: 500 !important; }
+body .app-shell.modern-app.timeline-app .submit-page input,
+body .app-shell.modern-app.timeline-app .submit-page select,
+body .app-shell.modern-app.timeline-app .submit-page textarea { background: #fff !important; color: #252522 !important; border: 1px solid #d6d6ce !important; border-radius: 0 !important; font-size: 12px !important; box-shadow: none !important; }
+body .app-shell.modern-app.timeline-app .submit-page input:focus-visible,
+body .app-shell.modern-app.timeline-app .submit-page select:focus-visible,
+body .app-shell.modern-app.timeline-app .submit-page textarea:focus-visible { outline: 1px solid #dc4c49 !important; outline-offset: 2px; }
+body .app-shell.modern-app.timeline-app .mint-form [data-slot=field-description] { color: #96968b !important; font-size: 10px !important; }
+body .app-shell.modern-app.timeline-app .submit-page .mint-actions [data-slot=button],
+body .app-shell.modern-app.timeline-app .submit-page .editor-actions [data-slot=button] { background: transparent !important; color: #292926 !important; border: 1px solid #cecec3 !important; border-radius: 0 !important; font-size: 11px !important; }
+body .app-shell.modern-app.timeline-app .submit-page .mint-actions [data-slot=button].primary,
+body .app-shell.modern-app.timeline-app .submit-page .upload-drop [data-slot=button] { background: #292926 !important; color: #fafaf8 !important; border: 1px solid #292926 !important; border-radius: 0 !important; min-height: 38px !important; font-size: 11px !important; }
+body .app-shell.modern-app.timeline-app .submit-page .upload-drop [data-slot=button]:hover { background: #dc4c49 !important; border-color: #dc4c49 !important; }
+body .app-shell.modern-app.timeline-app .submit-page .upload-drop { border: 0 !important; border-radius: 0 !important; background: transparent !important; box-shadow: none !important; transform: none !important; }
+body .app-shell.modern-app.timeline-app .submit-page .upload-drop::before,
+body .app-shell.modern-app.timeline-app .submit-page .upload-drop::after { display: none !important; }
+body .app-shell.modern-app.timeline-app .mint-form [data-slot=checkbox] { border-color: #92928a !important; border-radius: 0 !important; }
+body .app-shell.modern-app.timeline-app .mint-form [data-slot=checkbox][data-state=checked] { background: #292926 !important; color: #fff !important; }
+body .app-shell.modern-app.timeline-app .submit-page .submit-preview-stage { width: 100% !important; max-width: none !important; min-height: 0 !important; margin: 0 !important; background: #f1f1eb !important; border: 1px solid #deded7 !important; border-radius: 0 !important; padding: 22px !important; box-shadow: none !important; }
+body .app-shell.modern-app.timeline-app .submit-page .comic-canvas { width: min(100%, 420px) !important; height: auto !important; max-height: none !important; }
+body .app-shell.modern-app.timeline-app .submit-page .submit-preview-stage::before,
+body .app-shell.modern-app.timeline-app .submit-page .submit-preview-stage::after { display: none !important; }
+body .app-shell.modern-app.timeline-app .submit-page .submit-preview-meta { margin: 12px 0 24px !important; padding: 0 !important; background: transparent !important; color: #858580 !important; }
+body .app-shell.modern-app.timeline-app .submit-page .submit-preview-meta span { color: #858580 !important; font-size: 10px !important; font-weight: 400 !important; }
+body .app-shell.modern-app.timeline-app .submit-workspace .editor-panel { background: transparent !important; border: 0 !important; border-top: 1px solid #deded7 !important; padding: 22px 0 !important; border-radius: 0 !important; }
+.editor-panel-title { grid-column: 1 / -1; margin: 0 0 6px; color: #77776d; font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; }
+body .app-shell.modern-app.timeline-app .submit-workspace .editor-slider-label [data-slot=field-label] { color: #77776d !important; font-weight: 400 !important; font-size: 10px !important; }
+body .app-shell.modern-app.timeline-app .editor-panel [data-slot=slider-track] { height: 2px; background: #deded7; }
+body .app-shell.modern-app.timeline-app .editor-panel [data-slot=slider-range] { background: #dc4c49; }
+body .app-shell.modern-app.timeline-app .editor-panel [data-slot=slider-thumb] { width: 12px; height: 12px; border: 1px solid #77776d; background: #fafaf8; }
+body .app-shell.modern-app.timeline-app .error-text { background: transparent !important; color: #af4444 !important; padding: 10px 12px !important; border: 0 !important; border-left: 1px solid #dc4c49 !important; font-size: 11px !important; font-weight: 400 !important; }
+body .app-shell.modern-app.timeline-app .content-panel > .portfolio-page { padding-top: 12px !important; }
+body .app-shell.modern-app.timeline-app .portfolio-page-intro { align-items: flex-end !important; }
+body .app-shell.modern-app.timeline-app .portfolio-stats { display: grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: 0 !important; margin: 30px 0 !important; background: transparent !important; border-bottom: 1px solid #deded7 !important; }
+body .app-shell.modern-app.timeline-app .portfolio-stats > div { padding: 20px 24px !important; border: 0 !important; border-right: 1px solid #deded7 !important; border-radius: 0 !important; background: transparent !important; box-shadow: none !important; }
+body .app-shell.modern-app.timeline-app .portfolio-stats > div:first-child { padding-left: 0 !important; }
+body .app-shell.modern-app.timeline-app .portfolio-stats > div:last-child { border-right: 0 !important; }
+body .app-shell.modern-app.timeline-app .portfolio-stats span { color: #96968b !important; font-size: 9px !important; text-transform: uppercase !important; letter-spacing: 1px !important; }
+body .app-shell.modern-app.timeline-app .portfolio-stats strong { display: block; margin-top: 12px; color: #292926 !important; font-size: 34px !important; font-weight: 400 !important; }
+body .app-shell.modern-app.timeline-app .portfolio-table-wrap { overflow-x: auto !important; border: 1px solid #deded7 !important; border-radius: 0 !important; background: transparent !important; margin-top: 24px !important; box-shadow: none !important; }
+body .app-shell.modern-app.timeline-app .portfolio-table { border-collapse: collapse !important; width: 100% !important; min-width: 1300px; color: #45453e !important; background: #fafaf8 !important; line-height: 1.5; }
+body .app-shell.modern-app.timeline-app .portfolio-table th { color: #505048 !important; padding: 18px !important; border: 0 !important; border-bottom: 1px solid #deded7 !important; background: #f4f4ef !important; font-size: 14px !important; font-weight: 600 !important; text-transform: uppercase !important; }
+body .app-shell.modern-app.timeline-app .portfolio-table td { padding: 20px 18px !important; border: 0 !important; border-bottom: 1px solid #e7e7df !important; background: transparent !important; font-size: 16px !important; }
+body .app-shell.modern-app.timeline-app .portfolio-table td strong { color: #292926 !important; font-size: 16px !important; font-weight: 600 !important; }
+body .app-shell.modern-app.timeline-app .portfolio-table td span { color: #66665d !important; font-size: 14px !important; }
+body .app-shell.modern-app.timeline-app .portfolio-table .portfolio-table-cover { padding: 0 !important; width: 64px !important; border: 0 !important; border-radius: 0 !important; background: transparent !important; }
+body .app-shell.modern-app.timeline-app .portfolio-table .portfolio-table-cover img { display: block; width: 64px !important; height: 96px !important; object-fit: cover; }
+body .app-shell.modern-app.timeline-app .portfolio-table .status-pill { border: 1px solid #dbdbd0 !important; border-radius: 0 !important; color: #55554d !important; background: #f1f1e9 !important; font-size: 13px !important; }
+body .app-shell.modern-app.timeline-app .portfolio-table td > button { background: transparent !important; border: 1px solid #deded7 !important; border-radius: 0 !important; color: #77776d !important; padding: 8px 10px !important; font-size: 14px !important; }
+body .app-shell.modern-app.timeline-app .portfolio-table a { color: #bc3734 !important; font-size: 16px !important; text-decoration: none; }
+.portfolio-empty { position: relative; min-height: 340px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 48px 0 48px 80px; margin-top: 26px; border-bottom: 1px solid #deded7; }
+.portfolio-empty-mark { position: absolute; left: 0; top: 42px; color: #dc4c49; font-size: 52px; line-height: 1; }
+body .app-shell.modern-app.timeline-app .portfolio-empty-mark { color: #dc4c49 !important; }
+body .app-shell.modern-app.timeline-app .portfolio-empty h2 { color: #292926 !important; font-size: 27px !important; font-weight: 500 !important; letter-spacing: -1px !important; margin: 16px 0 12px !important; }
+body .app-shell.modern-app.timeline-app .portfolio-empty p { color: #96968b !important; font-size: 11px !important; }
+body .app-shell.modern-app.timeline-app .portfolio-empty .eyebrow { color: #96968b !important; font-size: 8px !important; letter-spacing: 1.5px !important; text-transform: uppercase; }
+body .app-shell.modern-app.timeline-app .portfolio-empty [data-slot=button] { margin-top: 25px; border: 1px solid #292926 !important; border-radius: 0 !important; background: #292926 !important; color: #fff !important; padding: 10px 17px; font-size: 11px; }
+@media (max-width: 800px) {
+  body .app-shell.modern-app.timeline-app .comic-page-shell .site-topbar { gap: 18px !important; }
+  body .app-shell.modern-app.timeline-app .site-topbar .wallet-actions { gap: 15px !important; }
+  body .app-shell.modern-app.timeline-app .site-topbar .wallet-button { font-size: 9px !important; padding: 6px 9px !important; }
+  body .app-shell.modern-app.timeline-app .content-panel > .submit-page { gap: 28px !important; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) !important; }
+}
+
+/* Keep the adjustments beside the cover, with one compact control per row. */
+.studio-edit-layout { display: grid; grid-template-columns: minmax(0, 1fr) 190px; align-items: start; gap: 20px; }
+.studio-cover-column { min-width: 0; }
+body .app-shell.modern-app.timeline-app .submit-workspace .editor-panel { grid-template-columns: minmax(0, 1fr) !important; gap: 4px !important; padding: 14px !important; border: 1px solid #deded7 !important; background: #f5f5f0 !important; margin: 0 !important; }
+body .app-shell.modern-app.timeline-app .submit-workspace .editor-panel-title { font-size: 10px; line-height: 1.5; letter-spacing: .7px; margin: 0 0 8px; }
+body .app-shell.modern-app.timeline-app .editor-panel .editor-slider-field { gap: 2px !important; padding: 2px 0 !important; }
+body .app-shell.modern-app.timeline-app .submit-workspace .editor-slider-label [data-slot=field-label] { font-size: 11px !important; color: #55554d !important; }
+body .app-shell.modern-app.timeline-app .editor-panel .editor-actions { grid-column: 1 / -1; margin-top: 8px; }
+body .app-shell.modern-app.timeline-app .submit-workspace .editor-actions [data-slot=button] { width: 100%; min-height: 32px !important; }
+@media (max-width: 1100px) {
+  body .app-shell.modern-app.timeline-app .content-panel > .submit-page { grid-template-columns: minmax(0, 1fr) !important; }
+}
+@media (max-width: 600px) {
+  .studio-edit-layout { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  body .app-shell.modern-app.timeline-app .submit-workspace .editor-panel { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; column-gap: 18px !important; }
+}
+@media (max-width: 600px) {
+  body .app-shell.modern-app.timeline-app .content-panel > .submit-page { grid-template-columns: 1fr !important; }
+  body .app-shell.modern-app.timeline-app .editorial-page-intro h1 { font-size: 36px !important; }
+  body .app-shell.modern-app.timeline-app .site-topbar .wallet-actions { gap: 10px !important; }
+  body .app-shell.modern-app.timeline-app .site-topbar .wallet-button { min-height: 28px !important; padding: 5px 8px !important; font-size: 8px !important; }
+  body .app-shell.modern-app.timeline-app .site-topbar .wallet-actions .portfolio-button { font-size: 8px !important; }
+  body .app-shell.modern-app.timeline-app .site-topbar .tabbar { gap: 12px !important; }
+  body .app-shell.modern-app.timeline-app .site-topbar .tabbar button { font-size: 8px !important; }
+  .portfolio-empty { min-height: 340px; padding-left: 0; padding-top: 90px; }
+  .portfolio-empty-mark { top: 12px; }
+  body .app-shell.modern-app.timeline-app .portfolio-empty h2 { font-size: 24px !important; }
+  body .app-shell.modern-app.timeline-app .portfolio-stats { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  body .app-shell.modern-app.timeline-app .portfolio-stats > div { padding: 20px 14px !important; }
+}

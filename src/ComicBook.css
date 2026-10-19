@@ -1,0 +1,65 @@
+/* Shared physical cover; fill the cover edge-to-edge with artwork. */
+.comic-book {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  isolation: isolate;
+  background: #fbf7ec;
+  border: 1px solid #66665d;
+  box-shadow: 4px 4px 0 #393932, 7px 8px 0 -3px #b6b6aa, 0 16px 24px -14px #25251f70;
+}
+.comic-book-surface { position: relative; display: block; width: 100%; height: 100%; }
+.comic-book-surface::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, #0003 0%, #fff4 1.4%, #0002 3.3%, #fff3 4%, transparent 7%);
+  box-shadow: inset 1px 0 #fff8, inset -1px 0 #0002;
+}
+.comic-book-finished .comic-book-surface::after { display: none; }
+body .comic-book .comic-book-art {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: none;
+  margin: 0;
+  border-radius: 0;
+  object-fit: cover !important;
+  transform: none !important;
+  filter: none !important;
+}
+body .app-shell.modern-app.timeline-app :is(.timeline-cover, .reel-cover) {
+  overflow: visible;
+  background: transparent !important;
+}
+.reel-card { box-shadow: none; }
+body .app-shell.modern-app.timeline-app .reel-card-caption {
+  inset: 100% 0 auto;
+  padding: 12px 0 0;
+  gap: 3px;
+  background: none;
+  color: #252522 !important;
+  text-shadow: none;
+  pointer-events: auto;
+}
+body .app-shell.modern-app.timeline-app .reel-card-caption strong {
+  padding-right: 58px;
+  color: #252522 !important;
+  font-size: 13px !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+body .app-shell.modern-app.timeline-app .reel-card-creator { color: #66665c !important; }
+.reel-like { top: 10px; right: 0; }
+body .app-shell.modern-app.timeline-app .reel-like .like-button {
+  color: #55554b !important;
+  background: transparent !important;
+  border: 0 !important;
+  backdrop-filter: none;
+}
+body .app-shell.modern-app.timeline-app .portfolio-table-cover .comic-book { width: 64px; height: 96px; }
+body .artwork-dialog > .comic-book { width: min(100%, 39dvh); height: auto; aspect-ratio: 1048 / 1564; margin: 0 auto 6px; }
+body .app-shell.modern-app.timeline-app .submit-preview-stage { overflow: visible; box-shadow: 4px 4px 0 #393932, 7px 8px 0 -3px #b6b6aa, 0 16px 24px -14px #25251f70 !important; }

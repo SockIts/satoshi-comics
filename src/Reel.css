@@ -1,0 +1,31 @@
+body .app-shell.modern-app.timeline-app .collection-layout-toggle { display: flex; flex-shrink: 0; gap: 0; padding: 2px; border: 1px solid #deded7; background: #f0f0e9; }
+body .app-shell.modern-app.timeline-app .collection-layout-toggle button { border: 0 !important; padding: 4px 9px !important; min-height: 24px !important; height: 24px !important; font-size: 10px !important; }
+body .app-shell.modern-app.timeline-app .collection-layout-toggle button[data-state=on] { background: #252522 !important; color: #fff !important; }
+.reel-viewport { position: relative; width: calc(100% + var(--gallery-bleed) * 2); margin-inline: calc(-1 * var(--gallery-bleed)); height: clamp(620px, calc(100svh - 215px), 1100px); background: var(--app-surface, #e7e7e0); overflow-x: auto; overflow-y: hidden; scrollbar-width: none; overscroll-behavior-x: contain; cursor: grab; }
+body .app-shell.modern-app.timeline-app .reel-depth-toggle { position: absolute; top: 12px; right: 0; z-index: 5; padding: 5px 10px !important; border: 1px solid #bcbcb1 !important; border-radius: 2px !important; background: var(--app-surface) !important; color: #55554d !important; font-size: 10px !important; cursor: pointer; }
+body .app-shell.modern-app.timeline-app .reel-depth-toggle[aria-pressed=true] { color: #252522 !important; border-color: #858579 !important; }
+.reel-viewport::-webkit-scrollbar { display: none; }
+.reel-viewport:active { cursor: grabbing; }
+.reel-viewport:focus-visible { outline: 2px solid #dc4c49; outline-offset: -2px; }
+.reel-track { display: flex; align-items: center; width: max-content; min-width: 100%; height: 100%; box-sizing: border-box; }
+.reel-card { position: relative; width: var(--reel-cover-width); height: var(--reel-cover-height); flex: 0 0 var(--reel-cover-width); transform-origin: center; box-shadow: 0 22px 36px -18px #29291d55; }
+body .app-shell.modern-app.timeline-app .reel-cover { position: relative; display: block; width: 100%; height: 100%; min-height: 0 !important; padding: 0 !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; background: #d5d5cb !important; overflow: hidden; text-align: left; cursor: pointer; }
+body .app-shell.modern-app.timeline-app .reel-cover img { display: block; width: 100%; height: 100%; object-fit: cover; filter: none !important; pointer-events: none; }
+.reel-cover:focus-visible { outline: 2px solid #dc4c49 !important; outline-offset: 5px; }
+body .app-shell.modern-app.timeline-app .reel-card-caption { position: absolute; inset: auto 0 0; display: flex; flex-direction: column; gap: 5px; padding: 48px 18px 20px; background: linear-gradient(transparent, #12120fe6); color: #fff !important; text-shadow: 0 1px 3px #0008; pointer-events: none; }
+body .app-shell.modern-app.timeline-app .reel-card-caption strong { font-size: 16px !important; font-weight: 600; line-height: 1.25; color: #fff !important; overflow-wrap: anywhere; }
+body .app-shell.modern-app.timeline-app .reel-card-date { font-size: 9px !important; letter-spacing: 1.5px; text-transform: uppercase; color: #e8e8df !important; }
+body .app-shell.modern-app.timeline-app .reel-card-creator { font-size: 11px !important; color: #e8e8df !important; }
+.reel-like { position: absolute; right: 12px; top: 12px; }
+body .app-shell.modern-app.timeline-app .reel-like .like-button { display: inline-flex !important; align-items: center; gap: 5px; min-height: 30px !important; min-width: 0 !important; padding: 5px 9px !important; border: 1px solid #ffffff40 !important; border-radius: 2px !important; background: #191917a6 !important; color: #fff !important; font-size: 12px !important; backdrop-filter: blur(8px); }
+body .app-shell.modern-app.timeline-app .reel-like .like-button span { color: inherit !important; }
+@media (max-width: 900px) {
+  body .app-shell.modern-app.timeline-app .collection-toolbar { flex-wrap: wrap !important; }
+  body .app-shell.modern-app.timeline-app .collection-toolbar .submission-actions { flex-wrap: wrap; }
+}
+@media (max-width: 600px) {
+  .reel-viewport { height: 660px; }
+  body .app-shell.modern-app.timeline-app .collection-toolbar .submission-search { flex-basis: 140px; }
+  body .app-shell.modern-app.timeline-app .collection-layout-toggle { order: 3; }
+  body .app-shell.modern-app.timeline-app .reel-card-caption strong { font-size: 15px !important; }
+}

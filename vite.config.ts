@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite'
 import type { ProxyOptions } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+import { fileURLToPath, URL } from 'node:url'
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
 
 const API_PROXY_TARGET = process.env.VITE_API_PROXY_TARGET || 'https://acme.pics/api'
@@ -31,8 +33,10 @@ const configureLongRequestProxy: NonNullable<ProxyOptions['configure']> = (proxy
 
 export default defineConfig({
   base: APP_BASE_PATH,
+  resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
   plugins: [
     react(),
+    tailwindcss(),
     nodePolyfills({
       include: ['buffer', 'process'],
       globals: {

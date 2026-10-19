@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;600;800&family=M+PLUS+Rounded+1c:wght@400;700;800;900&family=Shippori+Mincho:wght@700;800&display=swap");
+
 .app-shell {
   position: relative;
   width: min(1440px, calc(100% - 28px));
@@ -12,6 +14,354 @@
     0 2px 0 rgba(255, 255, 255, 0.82) inset,
     0 10px 0 #d1a25b,
     0 28px 46px rgba(126, 91, 43, 0.2);
+}
+
+/* Clean bright black-and-white theme */
+:root {
+  --clean-paper: #ffffff;
+  --clean-panel: #f8f8f8;
+  --clean-panel-soft: #f1f1f1;
+  --clean-ink: #050505;
+  --clean-muted: #5e5e5e;
+  --clean-border: #101010;
+}
+
+html,
+body,
+#root {
+  background: var(--clean-paper) !important;
+  color: var(--clean-ink) !important;
+}
+
+body,
+.app-shell,
+.comic-page-shell,
+.site-topbar,
+.comic-page-shell .content-panel,
+.hero-banner,
+.comic-page-shell .page,
+.rules-page,
+.submit-page,
+.upload-page,
+.pending-page,
+.approved-page,
+.portfolio-page,
+.rules-copy,
+.approval-requirements,
+.rules-examples,
+.studio-layout,
+.comic-preview-card,
+.editor-panel,
+.mint-form,
+.submit-preview,
+.submit-workspace,
+.section-head,
+.bookshelf-grid,
+.graded-grid,
+.portfolio-stats,
+.portfolio-grid,
+.rules-notes section,
+.portfolio-stats div,
+.portfolio-card,
+.portfolio-table-wrap,
+.asset-card,
+.graded-slab,
+.empty-state,
+.status-text {
+  background-image: none !important;
+  text-shadow: none !important;
+}
+
+body {
+  background: var(--clean-paper) !important;
+}
+
+.app-shell {
+  --theme-ink: var(--clean-ink);
+  --theme-muted: var(--clean-muted);
+  --theme-line: var(--clean-border);
+  --theme-accent: var(--clean-ink);
+  --theme-accent-soft: var(--clean-panel-soft);
+  --comic-ink: var(--clean-ink);
+  --comic-lime: var(--clean-ink);
+  --comic-lime-soft: var(--clean-panel-soft);
+  --comic-panel: var(--clean-paper);
+  --comic-yellow: var(--clean-panel);
+  background: var(--clean-paper) !important;
+  color: var(--clean-ink) !important;
+}
+
+.comic-page-shell {
+  background: var(--clean-paper) !important;
+  color: var(--clean-ink) !important;
+  box-shadow: none !important;
+}
+
+.site-topbar {
+  background: var(--clean-panel) !important;
+  color: var(--clean-ink) !important;
+  border-color: var(--clean-border) !important;
+  box-shadow: none !important;
+}
+
+.comic-page-shell .content-panel {
+  background: var(--clean-paper) !important;
+  color: var(--clean-ink) !important;
+  box-shadow: none !important;
+}
+
+.comic-page-shell .content-panel > .hero-banner,
+.comic-page-shell .content-panel > .page,
+.hero-banner,
+.rules-copy,
+.approval-requirements,
+.submit-page .mint-form,
+.submit-page .submit-workspace,
+.editor-panel,
+.pending-page .asset-card,
+.portfolio-stats div,
+.portfolio-card,
+.portfolio-table-wrap,
+.approved-page .graded-slab,
+.empty-state,
+.status-text {
+  background: var(--clean-paper) !important;
+  color: var(--clean-ink) !important;
+  border: 1px solid var(--clean-border) !important;
+  border-radius: 14px !important;
+  box-shadow: none !important;
+}
+
+.comic-page-shell .content-panel > .page,
+.comic-page-shell .content-panel > .hero-banner {
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+.hero-banner::before,
+.hero-banner::after,
+.rules-copy::before,
+.approval-requirements::before,
+.submit-page .mint-form::before,
+.submit-page .submit-workspace::before,
+.editor-panel::before,
+.comic-page-shell .content-panel > .page::before,
+.comic-page-shell .content-panel > .page::after,
+.comic-page-shell .content-panel > .hero-banner::before,
+.comic-page-shell .content-panel > .hero-banner::after {
+  display: none !important;
+}
+
+.hero-copy span,
+.hero-copy p,
+.page-title p,
+.submission-controls p,
+.rules-copy li,
+.approval-requirements li,
+.status-text,
+.empty-state,
+.portfolio-stats span,
+.asset-creator,
+.asset-meta,
+.asset-title-stack span,
+.comic-page-shell .content-panel,
+.comic-page-shell .content-panel p,
+.comic-page-shell .content-panel li,
+.comic-page-shell .content-panel span,
+.comic-page-shell .content-panel label,
+.comic-page-shell .content-panel td,
+.comic-page-shell .content-panel th,
+.comic-page-shell .content-panel dd,
+.comic-page-shell .content-panel dt {
+  color: var(--clean-ink) !important;
+  text-shadow: none !important;
+}
+
+.page-title p,
+.hero-copy p,
+.asset-creator,
+.asset-meta,
+.portfolio-stats span {
+  color: var(--clean-muted) !important;
+}
+
+.hero-copy h1,
+.page-title h1,
+.page-title h2,
+.rules-copy h2,
+.approval-requirements h2,
+.mint-form h2,
+.approved-page h2,
+.portfolio-page h2,
+.comic-page-shell .content-panel h1,
+.comic-page-shell .content-panel h2,
+.comic-page-shell .content-panel h3,
+.comic-page-shell .content-panel strong {
+  color: var(--clean-ink) !important;
+  text-shadow: none !important;
+}
+
+button,
+.comic-page-shell .tabbar button,
+.wallet-actions .portfolio-button,
+.wallet-actions .wallet-button,
+.submission-actions button,
+.editor-actions button,
+.submit-actions button,
+.mint-form button,
+.portfolio-table button,
+.like-button,
+.lightbox-close {
+  border: 1px solid var(--clean-border) !important;
+  border-radius: 10px !important;
+  background: var(--clean-paper) !important;
+  color: var(--clean-ink) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+button:hover,
+button:focus-visible,
+.comic-page-shell .tabbar button:hover,
+.comic-page-shell .tabbar button.active,
+.wallet-actions .wallet-button:hover,
+.wallet-actions .wallet-button.connected,
+.wallet-actions .portfolio-button:hover,
+.wallet-actions .portfolio-button.active,
+.like-button.active {
+  background: var(--clean-ink) !important;
+  color: var(--clean-paper) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+input,
+select,
+textarea {
+  border: 1px solid var(--clean-border) !important;
+  border-radius: 10px !important;
+  background: var(--clean-paper) !important;
+  color: var(--clean-ink) !important;
+  box-shadow: none !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #777 !important;
+}
+
+input[type="range"] {
+  accent-color: var(--clean-ink) !important;
+}
+
+.book-frame,
+.comic-preview-card,
+.submit-preview-stage,
+.approved-page .graded-comic-frame,
+.portfolio-table-cover,
+.cover-upload-preview {
+  border: 1px solid var(--clean-border) !important;
+  border-radius: 12px !important;
+  background: var(--clean-paper) !important;
+  box-shadow: none !important;
+}
+
+img,
+picture,
+video,
+canvas,
+.topbar-brand img,
+.header-cover-strip,
+.header-cover-strip img,
+.book-frame img,
+.comic-preview-card img,
+.submit-preview-stage img,
+.portfolio-table-cover img,
+.graded-comic-frame img,
+.approved-page .graded-comic-frame img,
+.acme-footer-link img {
+  filter: none !important;
+}
+
+.status-pill,
+.asset-status,
+.asset-tag,
+.portfolio-status,
+.asset-check-text,
+.graded-sticker,
+.graded-brand,
+.graded-label,
+.graded-lightbox-panel .graded-label {
+  border: 1px solid var(--clean-border) !important;
+  border-radius: 999px !important;
+  background: var(--clean-panel) !important;
+  color: var(--clean-ink) !important;
+  box-shadow: none !important;
+}
+
+.graded-brand,
+.graded-label,
+.graded-lightbox-panel .graded-label {
+  border-radius: 10px !important;
+}
+
+.comic-lightbox {
+  background: rgba(255, 255, 255, 0.86) !important;
+}
+
+.comic-lightbox-panel,
+.graded-lightbox-panel,
+.graded-slab-modal {
+  border: 1px solid var(--clean-border) !important;
+  border-radius: 16px !important;
+  background: var(--clean-paper) !important;
+  color: var(--clean-ink) !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.16) !important;
+}
+
+.approved-page .graded-footer .like-button,
+.graded-lightbox-panel .graded-footer .like-button,
+.comic-page-shell .content-panel > .app-footer .acme-footer-link,
+.comic-page-shell .content-panel > .app-footer .acme-footer-link:hover {
+  color: var(--clean-ink) !important;
+  text-shadow: none !important;
+}
+
+@media (min-width: 761px) {
+  body,
+  .site-topbar,
+  .comic-page-shell .content-panel {
+    background: var(--clean-paper) !important;
+    background-image: none !important;
+  }
+
+  .site-topbar {
+    background: var(--clean-panel) !important;
+    border-right: 1px solid var(--clean-border) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body {
+    background: var(--clean-paper) !important;
+    background-image: none !important;
+  }
+
+  .site-topbar,
+  .comic-page-shell .page,
+  .comic-page-shell .rules-copy,
+  .comic-page-shell .approval-requirements,
+  .comic-page-shell .submit-page .mint-form,
+  .comic-page-shell .submit-page .submit-workspace,
+  .comic-page-shell .editor-panel,
+  .comic-page-shell .pending-page .asset-card,
+  .comic-page-shell .portfolio-card,
+  .comic-page-shell .approved-page .graded-slab {
+    background: var(--clean-paper) !important;
+    background-image: none !important;
+    color: var(--clean-ink) !important;
+    box-shadow: none !important;
+  }
 }
 
 /* Black-and-white comic strip redesign */
@@ -2875,7 +3225,7 @@ input[type="range"] {
   box-shadow: none;
 }
 
-.submit-preview span {
+.submit-preview > span {
   position: absolute;
   bottom: 18px;
   left: 18px;
@@ -6992,6 +7342,369 @@ textarea {
   }
 }
 
+/* Black-and-white ink-drawn theme */
+:root {
+  --ink-paper: #f7f4ec;
+  --ink-paper-soft: #ebe6da;
+  --ink-black: #050505;
+  --ink-gray: #2b2b2b;
+  --ink-wash: rgba(5, 5, 5, 0.08);
+}
+
+body {
+  background:
+    radial-gradient(circle, rgba(5, 5, 5, 0.16) 0 1px, transparent 1.35px),
+    linear-gradient(135deg, #f6f2e8 0%, #ded8cb 48%, #f9f7ef 100%) !important;
+  background-size: 9px 9px, auto !important;
+  color: var(--ink-black) !important;
+}
+
+.app-shell {
+  --theme-ink: var(--ink-black);
+  --theme-muted: #444;
+  --theme-line: var(--ink-black);
+  --theme-accent: var(--ink-black);
+  --theme-accent-soft: var(--ink-paper);
+  --comic-ink: var(--ink-black);
+  --comic-lime: var(--ink-black);
+  --comic-lime-soft: var(--ink-paper);
+  --comic-panel: var(--ink-paper);
+  --comic-yellow: var(--ink-paper);
+  color: var(--ink-black) !important;
+}
+
+@media (min-width: 761px) {
+  body {
+    background:
+      radial-gradient(circle, rgba(5, 5, 5, 0.15) 0 1px, transparent 1.35px),
+      linear-gradient(135deg, #f7f4ec 0%, #ded8cb 52%, #f9f7ef 100%) !important;
+    background-size: 9px 9px, auto !important;
+  }
+
+  .site-topbar,
+  .comic-page-shell .content-panel {
+    background:
+      radial-gradient(circle, rgba(5, 5, 5, 0.13) 0 1px, transparent 1.35px),
+      repeating-linear-gradient(0deg, rgba(5, 5, 5, 0.045) 0 1px, transparent 1px 9px),
+      linear-gradient(135deg, #faf8f1 0%, #e7e0d2 100%) !important;
+    background-size: 9px 9px, auto, auto !important;
+    color: var(--ink-black) !important;
+  }
+
+  .site-topbar {
+    border-right: 4px solid var(--ink-black) !important;
+  }
+
+  .topbar-brand img {
+    filter: grayscale(1) contrast(1.25) saturate(0) !important;
+  }
+}
+
+.hero-banner,
+.rules-copy,
+.approval-requirements,
+.submit-page .mint-form,
+.submit-page .submit-workspace,
+.editor-panel,
+.pending-page .asset-card,
+.portfolio-stats div,
+.portfolio-card,
+.portfolio-table-wrap,
+.approved-page .graded-slab,
+.empty-state,
+.status-text {
+  border: 3px solid var(--ink-black) !important;
+  border-radius: 0 !important;
+  background:
+    radial-gradient(circle, rgba(5, 5, 5, 0.11) 0 1px, transparent 1.35px),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(232, 226, 214, 0.98)) !important;
+  background-size: 8px 8px, auto !important;
+  color: var(--ink-black) !important;
+  box-shadow: 7px 7px 0 var(--ink-black) !important;
+}
+
+.hero-banner::before,
+.hero-banner::after,
+.rules-copy::before,
+.approval-requirements::before,
+.submit-page .mint-form::before,
+.submit-page .submit-workspace::before,
+.editor-panel::before,
+.approved-page::before {
+  color: var(--ink-black) !important;
+  border-color: var(--ink-black) !important;
+  background: var(--ink-paper) !important;
+  box-shadow: 3px 3px 0 var(--ink-black) !important;
+}
+
+.hero-copy span,
+.hero-copy p,
+.page-title p,
+.submission-controls p,
+.rules-copy li,
+.approval-requirements li,
+.status-text,
+.empty-state,
+.portfolio-stats span,
+.asset-creator,
+.asset-meta,
+.asset-title-stack span {
+  color: var(--ink-gray) !important;
+  text-shadow: none !important;
+}
+
+.hero-copy h1,
+.page-title h1,
+.page-title h2,
+.rules-copy h2,
+.approval-requirements h2,
+.mint-form h2,
+.approved-page h2,
+.portfolio-page h2 {
+  color: var(--ink-black) !important;
+  text-shadow:
+    2px 2px 0 #fff,
+    4px 4px 0 rgba(5, 5, 5, 0.22) !important;
+}
+
+.hero-mark {
+  border: 4px solid var(--ink-black) !important;
+  background: var(--ink-paper) !important;
+  color: var(--ink-black) !important;
+  box-shadow: 8px 8px 0 var(--ink-black) !important;
+  filter: grayscale(1) contrast(1.2) !important;
+}
+
+.hero-mark span {
+  color: var(--ink-black) !important;
+  text-shadow: none !important;
+}
+
+button,
+.comic-page-shell .tabbar button,
+.wallet-actions .portfolio-button,
+.wallet-actions .wallet-button,
+.submission-actions button,
+.editor-actions button,
+.submit-actions button,
+.mint-form button,
+.portfolio-table button,
+.like-button,
+.lightbox-close {
+  border: 3px solid var(--ink-black) !important;
+  border-radius: 0 !important;
+  background: var(--ink-paper) !important;
+  color: var(--ink-black) !important;
+  box-shadow: 4px 4px 0 var(--ink-black) !important;
+  text-shadow: none !important;
+}
+
+button:hover,
+button:focus-visible,
+.comic-page-shell .tabbar button:hover,
+.comic-page-shell .tabbar button.active,
+.wallet-actions .wallet-button:hover,
+.wallet-actions .portfolio-button:hover,
+.wallet-actions .portfolio-button.active,
+.like-button.active {
+  background: var(--ink-black) !important;
+  color: var(--ink-paper) !important;
+  transform: translate(1px, 1px) !important;
+  box-shadow: 2px 2px 0 var(--ink-black) !important;
+}
+
+input,
+select,
+textarea {
+  border: 3px solid var(--ink-black) !important;
+  border-radius: 0 !important;
+  background: #fffdf7 !important;
+  color: var(--ink-black) !important;
+  box-shadow: 3px 3px 0 var(--ink-black) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #555 !important;
+}
+
+input[type="range"] {
+  accent-color: var(--ink-black) !important;
+  box-shadow: none !important;
+}
+
+.book-frame,
+.comic-preview-card,
+.submit-preview-stage,
+.approved-page .graded-comic-frame,
+.portfolio-table-cover,
+.cover-upload-preview {
+  border-color: var(--ink-black) !important;
+  border-radius: 0 !important;
+  background: #fff !important;
+  box-shadow: 5px 5px 0 var(--ink-black) !important;
+}
+
+.header-cover-strip,
+.header-cover-strip img,
+.book-frame img,
+.comic-preview-card img,
+.submit-preview-stage img,
+.portfolio-table-cover img {
+  filter: grayscale(1) contrast(1.16) saturate(0) !important;
+}
+
+.graded-comic-frame img,
+.approved-page .graded-comic-frame img {
+  filter: grayscale(1) contrast(1.12) saturate(0) !important;
+}
+
+.status-pill,
+.asset-status,
+.asset-tag,
+.portfolio-status,
+.asset-check-text,
+.graded-sticker,
+.graded-brand {
+  border-color: var(--ink-black) !important;
+  border-radius: 0 !important;
+  background: var(--ink-paper) !important;
+  color: var(--ink-black) !important;
+  box-shadow: 2px 2px 0 var(--ink-black) !important;
+}
+
+.graded-label,
+.graded-lightbox-panel .graded-label {
+  border-color: var(--ink-black) !important;
+  background: #fffdf7 !important;
+  color: var(--ink-black) !important;
+}
+
+.comic-lightbox {
+  background: rgba(5, 5, 5, 0.72) !important;
+}
+
+.comic-lightbox-panel,
+.graded-lightbox-panel,
+.graded-slab-modal {
+  border: 4px solid var(--ink-black) !important;
+  border-radius: 0 !important;
+  background: var(--ink-paper) !important;
+  color: var(--ink-black) !important;
+  box-shadow: 10px 10px 0 var(--ink-black) !important;
+}
+
+.app-footer,
+.acme-footer-link {
+  color: var(--ink-black) !important;
+  text-shadow: none !important;
+}
+
+.acme-footer-link img {
+  filter: grayscale(1) contrast(1.3) saturate(0) !important;
+}
+
+@media (max-width: 760px) {
+  body {
+    background:
+      radial-gradient(circle, rgba(5, 5, 5, 0.15) 0 1px, transparent 1.35px),
+      linear-gradient(135deg, #f7f4ec 0%, #ded8cb 100%) !important;
+    background-size: 9px 9px, auto !important;
+  }
+
+  .site-topbar {
+    border: 3px solid var(--ink-black) !important;
+    border-radius: 0 !important;
+    background: var(--ink-paper) !important;
+    box-shadow: 5px 5px 0 var(--ink-black) !important;
+  }
+
+  .comic-page-shell .page,
+  .comic-page-shell .rules-copy,
+  .comic-page-shell .approval-requirements,
+  .comic-page-shell .submit-page .mint-form,
+  .comic-page-shell .submit-page .submit-workspace,
+  .comic-page-shell .editor-panel,
+  .comic-page-shell .pending-page .asset-card,
+  .comic-page-shell .portfolio-card,
+  .comic-page-shell .approved-page .graded-slab {
+    background:
+      radial-gradient(circle, rgba(5, 5, 5, 0.13) 0 1px, transparent 1.35px),
+      linear-gradient(135deg, #fbfaf5 0%, #eee8db 100%) !important;
+    background-size: 9px 9px, auto !important;
+    color: var(--ink-black) !important;
+  }
+}
+
+/* Readability correction for the monochrome paper theme */
+@media (min-width: 761px) {
+  body .comic-page-shell .content-panel {
+    background:
+      radial-gradient(circle, rgba(5, 5, 5, 0.14) 0 1px, transparent 1.35px),
+      repeating-linear-gradient(0deg, rgba(5, 5, 5, 0.035) 0 1px, transparent 1px 11px),
+      linear-gradient(135deg, #fbfaf5 0%, #eee8db 58%, #fffdf7 100%) !important;
+    background-size: 9px 9px, auto, auto !important;
+    color: var(--ink-black) !important;
+  }
+}
+
+.comic-page-shell .content-panel,
+.comic-page-shell .content-panel p,
+.comic-page-shell .content-panel li,
+.comic-page-shell .content-panel span,
+.comic-page-shell .content-panel label,
+.comic-page-shell .content-panel td,
+.comic-page-shell .content-panel th,
+.comic-page-shell .content-panel dd,
+.comic-page-shell .content-panel dt {
+  color: var(--ink-black) !important;
+  text-shadow: none !important;
+}
+
+.comic-page-shell .content-panel h1,
+.comic-page-shell .content-panel h2,
+.comic-page-shell .content-panel h3,
+.comic-page-shell .content-panel strong {
+  color: var(--ink-black) !important;
+}
+
+.comic-page-shell .content-panel .hero-copy h1,
+.comic-page-shell .content-panel .page-title h1,
+.comic-page-shell .content-panel .rules-copy h2,
+.comic-page-shell .content-panel .approval-requirements h2 {
+  text-shadow:
+    2px 2px 0 #fff,
+    4px 4px 0 rgba(5, 5, 5, 0.24) !important;
+}
+
+.comic-page-shell .content-panel .hero-copy p,
+.comic-page-shell .content-panel .rules-copy li,
+.comic-page-shell .content-panel .approval-requirements li {
+  color: #1f1f1f !important;
+}
+
+.comic-page-shell .content-panel .hero-banner,
+.comic-page-shell .content-panel .page {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.wallet-actions .portfolio-button,
+.wallet-actions .wallet-button,
+.site-topbar .wallet-actions .portfolio-button,
+.site-topbar .wallet-actions .wallet-button {
+  background: var(--ink-paper) !important;
+  color: var(--ink-black) !important;
+}
+
+.wallet-actions .portfolio-button:hover,
+.wallet-actions .portfolio-button.active,
+.wallet-actions .wallet-button:hover,
+.wallet-actions .wallet-button.connected {
+  background: var(--ink-black) !important;
+  color: var(--ink-paper) !important;
+}
+
 /* Single-container desktop navigation */
 @media (min-width: 761px) {
   .site-topbar {
@@ -7866,4 +8579,5698 @@ textarea {
     overflow-x: hidden !important;
     overflow-y: auto !important;
   }
+}
+
+/* Browser-level two-column shell */
+@media (min-width: 761px) {
+  html,
+  body,
+  #root {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    overflow: hidden !important;
+  }
+
+  body {
+    padding: 0 !important;
+    background:
+      radial-gradient(circle, rgba(255, 255, 255, 0.07) 0 1px, transparent 1.35px),
+      linear-gradient(135deg, #15171b 0%, #25282d 48%, #101215 100%) !important;
+    background-size: 9px 9px, auto !important;
+  }
+
+  .app-shell {
+    width: 100vw !important;
+    max-width: none !important;
+    height: 100vh !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .comic-page-shell {
+    display: grid !important;
+    grid-template-columns: clamp(220px, 18vw, 280px) minmax(0, 1fr) !important;
+    grid-template-rows: minmax(0, 1fr) !important;
+    gap: 0 !important;
+    width: 100vw !important;
+    max-width: none !important;
+    height: 100vh !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+  }
+
+  .site-topbar {
+    position: relative !important;
+    top: auto !important;
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    align-content: start !important;
+    justify-items: stretch !important;
+    gap: 14px !important;
+    width: 100% !important;
+    height: 100vh !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: clamp(16px, 1.7vw, 26px) !important;
+    border: 0 !important;
+    border-right: 3px solid #050505 !important;
+    border-radius: 0 !important;
+    background:
+      radial-gradient(circle, rgba(255, 255, 255, 0.055) 0 1px, transparent 1.35px),
+      linear-gradient(135deg, rgba(66, 69, 76, 0.96), rgba(31, 34, 39, 0.98)) !important;
+    background-size: 10px 10px, auto !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+  }
+
+  .topbar-brand {
+    justify-self: center !important;
+    width: min(76%, 160px) !important;
+    height: auto !important;
+    min-width: 0 !important;
+    margin: 10px 0 22px !important;
+  }
+
+  .topbar-brand img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  .comic-page-shell .tabbar {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  .comic-page-shell .tabbar button,
+  .wallet-actions .portfolio-button,
+  .wallet-actions .wallet-button {
+    width: 100% !important;
+    min-width: 0 !important;
+    justify-content: center !important;
+    min-height: 48px !important;
+  }
+
+  .wallet-actions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 24px 0 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .comic-page-shell .content-panel {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    height: 100vh !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: clamp(20px, 2.2vw, 38px) !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background:
+      radial-gradient(circle, rgba(255, 255, 255, 0.07) 0 1px, transparent 1.35px),
+      linear-gradient(135deg, #2e3238 0%, #1f2227 54%, #111316 100%) !important;
+    background-size: 9px 9px, auto !important;
+    box-shadow: none !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    scrollbar-gutter: stable !important;
+  }
+
+  .comic-page-shell .content-panel > .hero-banner,
+  .comic-page-shell .content-panel > .page {
+    flex: 0 0 auto !important;
+    width: min(100%, 1200px) !important;
+    align-self: flex-start !important;
+    margin: 0 !important;
+  }
+
+  .comic-page-shell .content-panel > .app-footer {
+    flex: 0 0 auto !important;
+    width: min(100%, 1200px) !important;
+    align-self: flex-start !important;
+    margin-top: auto !important;
+  }
+}
+
+/* Final clean bright theme override */
+:root {
+  --clean-paper: #ffffff;
+  --clean-panel: #f8f8f8;
+  --clean-panel-soft: #eeeeee;
+  --clean-ink: #050505;
+  --clean-muted: #5a5a5a;
+  --clean-border: #101010;
+}
+
+html,
+body,
+#root,
+.app-shell,
+.comic-page-shell,
+.site-topbar,
+.comic-page-shell .content-panel {
+  background: var(--clean-paper) !important;
+  background-image: none !important;
+  color: var(--clean-ink) !important;
+}
+
+.app-shell {
+  --theme-ink: var(--clean-ink);
+  --theme-muted: var(--clean-muted);
+  --theme-line: var(--clean-border);
+  --theme-accent: var(--clean-ink);
+  --theme-accent-soft: var(--clean-panel-soft);
+  --comic-ink: var(--clean-ink);
+  --comic-lime: var(--clean-ink);
+  --comic-lime-soft: var(--clean-panel-soft);
+  --comic-panel: var(--clean-paper);
+  --comic-yellow: var(--clean-panel);
+}
+
+.site-topbar {
+  background: var(--clean-panel) !important;
+  border-color: var(--clean-border) !important;
+  box-shadow: none !important;
+}
+
+@media (min-width: 761px) {
+  .site-topbar {
+    border-right: 1px solid var(--clean-border) !important;
+  }
+}
+
+.hero-banner,
+.comic-page-shell .content-panel > .hero-banner,
+.comic-page-shell .content-panel > .page,
+.comic-page-shell .page,
+.rules-page,
+.submit-page,
+.upload-page,
+.pending-page,
+.approved-page,
+.portfolio-page,
+.rules-copy,
+.approval-requirements,
+.rules-examples,
+.studio-layout,
+.comic-preview-card,
+.editor-panel,
+.mint-form,
+.submit-preview,
+.submit-workspace,
+.section-head,
+.bookshelf-grid,
+.graded-grid,
+.portfolio-stats,
+.portfolio-grid,
+.rules-notes section,
+.portfolio-stats div,
+.portfolio-card,
+.portfolio-table-wrap,
+.asset-card,
+.graded-slab,
+.empty-state,
+.status-text {
+  background: var(--clean-paper) !important;
+  background-image: none !important;
+  color: var(--clean-ink) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+.rules-copy,
+.approval-requirements,
+.submit-page .mint-form,
+.submit-page .submit-workspace,
+.editor-panel,
+.pending-page .asset-card,
+.portfolio-stats div,
+.portfolio-card,
+.portfolio-table-wrap,
+.approved-page .graded-slab,
+.empty-state,
+.status-text {
+  border: 1px solid var(--clean-border) !important;
+  border-radius: 14px !important;
+}
+
+.comic-page-shell .content-panel > .hero-banner,
+.comic-page-shell .content-panel > .page {
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+.hero-banner::before,
+.hero-banner::after,
+.rules-copy::before,
+.rules-copy::after,
+.approval-requirements::before,
+.approval-requirements::after,
+.submit-page .mint-form::before,
+.submit-page .mint-form::after,
+.submit-page .submit-workspace::before,
+.submit-page .submit-workspace::after,
+.editor-panel::before,
+.editor-panel::after,
+.comic-page-shell .content-panel > .page::before,
+.comic-page-shell .content-panel > .page::after,
+.comic-page-shell .content-panel > .hero-banner::before,
+.comic-page-shell .content-panel > .hero-banner::after {
+  display: none !important;
+}
+
+.hero-banner .header-cover-strip {
+  display: none !important;
+}
+
+.hero-copy span,
+.hero-copy p,
+.page-title p,
+.submission-controls p,
+.rules-copy li,
+.approval-requirements li,
+.status-text,
+.empty-state,
+.portfolio-stats span,
+.asset-creator,
+.asset-meta,
+.asset-title-stack span,
+.comic-page-shell .content-panel,
+.comic-page-shell .content-panel p,
+.comic-page-shell .content-panel li,
+.comic-page-shell .content-panel span,
+.comic-page-shell .content-panel label,
+.comic-page-shell .content-panel td,
+.comic-page-shell .content-panel th,
+.comic-page-shell .content-panel dd,
+.comic-page-shell .content-panel dt {
+  color: var(--clean-ink) !important;
+  text-shadow: none !important;
+}
+
+.page-title p,
+.hero-copy p,
+.asset-creator,
+.asset-meta,
+.portfolio-stats span {
+  color: var(--clean-muted) !important;
+}
+
+.hero-copy h1,
+.page-title h1,
+.page-title h2,
+.rules-copy h2,
+.approval-requirements h2,
+.mint-form h2,
+.approved-page h2,
+.portfolio-page h2,
+.comic-page-shell .content-panel h1,
+.comic-page-shell .content-panel h2,
+.comic-page-shell .content-panel h3,
+.comic-page-shell .content-panel strong {
+  color: var(--clean-ink) !important;
+  text-shadow: none !important;
+}
+
+button,
+.comic-page-shell .tabbar button,
+.wallet-actions .portfolio-button,
+.wallet-actions .wallet-button,
+.submission-actions button,
+.editor-actions button,
+.submit-actions button,
+.mint-form button,
+.portfolio-table button,
+.like-button,
+.lightbox-close {
+  border: 1px solid var(--clean-border) !important;
+  border-radius: 10px !important;
+  background: var(--clean-paper) !important;
+  color: var(--clean-ink) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+button:hover,
+button:focus-visible,
+.comic-page-shell .tabbar button:hover,
+.comic-page-shell .tabbar button.active,
+.wallet-actions .wallet-button:hover,
+.wallet-actions .wallet-button.connected,
+.wallet-actions .portfolio-button:hover,
+.wallet-actions .portfolio-button.active,
+.like-button.active {
+  background: var(--clean-ink) !important;
+  color: var(--clean-paper) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+input,
+select,
+textarea {
+  border: 1px solid var(--clean-border) !important;
+  border-radius: 10px !important;
+  background: var(--clean-paper) !important;
+  color: var(--clean-ink) !important;
+  box-shadow: none !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #777 !important;
+}
+
+input[type="range"] {
+  accent-color: var(--clean-ink) !important;
+}
+
+.book-frame,
+.comic-preview-card,
+.submit-preview-stage,
+.approved-page .graded-comic-frame,
+.portfolio-table-cover,
+.cover-upload-preview {
+  border: 1px solid var(--clean-border) !important;
+  border-radius: 12px !important;
+  background: var(--clean-paper) !important;
+  box-shadow: none !important;
+}
+
+img,
+picture,
+video,
+canvas,
+.topbar-brand img,
+.header-cover-strip,
+.header-cover-strip img,
+.book-frame img,
+.comic-preview-card img,
+.submit-preview-stage img,
+.portfolio-table-cover img,
+.graded-comic-frame img,
+.approved-page .graded-comic-frame img,
+.acme-footer-link img {
+  filter: none !important;
+}
+
+.status-pill,
+.asset-status,
+.asset-tag,
+.portfolio-status,
+.asset-check-text,
+.graded-sticker,
+.graded-brand,
+.graded-label,
+.graded-lightbox-panel .graded-label {
+  border: 1px solid var(--clean-border) !important;
+  border-radius: 999px !important;
+  background: var(--clean-panel) !important;
+  color: var(--clean-ink) !important;
+  box-shadow: none !important;
+}
+
+.graded-brand,
+.graded-label,
+.graded-lightbox-panel .graded-label {
+  border-radius: 10px !important;
+}
+
+.comic-lightbox {
+  background: rgba(255, 255, 255, 0.86) !important;
+}
+
+.comic-lightbox-panel,
+.graded-lightbox-panel,
+.graded-slab-modal {
+  border: 1px solid var(--clean-border) !important;
+  border-radius: 16px !important;
+  background: var(--clean-paper) !important;
+  color: var(--clean-ink) !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.16) !important;
+}
+
+.approved-page .graded-footer .like-button,
+.graded-lightbox-panel .graded-footer .like-button,
+.comic-page-shell .content-panel > .app-footer .acme-footer-link,
+.comic-page-shell .content-panel > .app-footer .acme-footer-link:hover,
+.approved-page .graded-footer .like-icon,
+.approved-page .graded-footer .like-count,
+.graded-lightbox-panel .graded-footer .like-icon,
+.graded-lightbox-panel .graded-footer .like-count {
+  color: var(--clean-ink) !important;
+  text-shadow: none !important;
+}
+
+/* Absolute final background cleanup: no paper dots, no comic texture overlays */
+body,
+body::before,
+body::after,
+body .app-shell,
+body .app-shell::before,
+body .app-shell::after,
+body .comic-page-shell,
+body .comic-page-shell::before,
+body .comic-page-shell::after,
+body .comic-page-shell .site-topbar,
+body .comic-page-shell .site-topbar::before,
+body .comic-page-shell .site-topbar::after,
+body .comic-page-shell .content-panel,
+body .comic-page-shell .content-panel::before,
+body .comic-page-shell .content-panel::after {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+body .comic-page-shell .site-topbar {
+  background: #f8f8f8 !important;
+  background-image: none !important;
+}
+
+body .comic-page-shell .content-panel :is(
+  section,
+  article,
+  aside,
+  header,
+  footer,
+  form,
+  div
+)::before,
+body .comic-page-shell .content-panel :is(
+  section,
+  article,
+  aside,
+  header,
+  footer,
+  form,
+  div
+)::after {
+  background-image: none !important;
+}
+
+body .comic-page-shell img,
+body .comic-page-shell picture,
+body .comic-page-shell video,
+body .comic-page-shell canvas {
+  filter: none !important;
+}
+
+@media (max-width: 760px) {
+  body .comic-page-shell .content-panel,
+  body .comic-page-shell .page,
+  body .comic-page-shell .rules-page,
+  body .comic-page-shell .rules-page .rules-copy,
+  body .comic-page-shell .rules-page .approval-requirements,
+  body .comic-page-shell .submit-page,
+  body .comic-page-shell .submit-page .mint-form,
+  body .comic-page-shell .submit-page .submit-workspace,
+  body .comic-page-shell .submit-page .editor-panel,
+  body .comic-page-shell .pending-page .asset-card,
+  body .comic-page-shell .portfolio-card,
+  body .comic-page-shell .approved-page .graded-slab {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    background-image: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Requested clean-page detail fixes */
+body .comic-page-shell .submit-page,
+body .comic-page-shell .submit-page .mint-form,
+body .comic-page-shell .submit-page .submit-workspace,
+body .comic-page-shell .submit-page .submit-preview,
+body .comic-page-shell .submit-page .editor-panel {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+  color: #050505 !important;
+}
+
+body .comic-page-shell .submit-page .mint-form,
+body .comic-page-shell .submit-page .submit-workspace {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+body .comic-page-shell .submit-page input,
+body .comic-page-shell .submit-page select,
+body .comic-page-shell .submit-page textarea {
+  background: #ffffff !important;
+  color: #050505 !important;
+}
+
+body .comic-page-shell .pending-page .asset-card,
+body .comic-page-shell .pending-page .asset-card:hover,
+body .comic-page-shell .pending-page .asset-card:focus-within {
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+body .comic-page-shell .pending-page .display-slot {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+body .comic-page-shell .pending-page .book-frame {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+body .comic-page-shell .pending-page .book-frame img {
+  border-radius: 0 !important;
+  filter: none !important;
+}
+
+body .comic-page-shell .pending-page .asset-meta,
+body .comic-page-shell .pending-page .asset-meta-mobile,
+body .comic-page-shell .pending-page .rack-title-row,
+body .comic-page-shell .pending-page .asset-title-stack {
+  background: transparent !important;
+  color: #050505 !important;
+}
+
+body .comic-page-shell .pending-page .asset-title-stack strong,
+body .comic-page-shell .pending-page .asset-title-stack span {
+  color: #050505 !important;
+  text-shadow: none !important;
+}
+
+body .comic-page-shell .like-button,
+body .comic-page-shell .like-button:hover,
+body .comic-page-shell .like-button.active,
+body .comic-page-shell .like-button.active:hover,
+body .comic-page-shell .like-button .like-icon,
+body .comic-page-shell .like-button .like-count,
+body .comic-page-shell .like-button.active .like-icon,
+body .comic-page-shell .like-button.active .like-count,
+body .comic-page-shell .pending-page .like-button,
+body .comic-page-shell .pending-page .like-button:hover,
+body .comic-page-shell .pending-page .like-button.active,
+body .comic-page-shell .pending-page .like-button.active:hover,
+body .comic-page-shell .pending-page .like-button .like-icon,
+body .comic-page-shell .pending-page .like-button .like-count {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: #111111 !important;
+  text-shadow: none !important;
+}
+
+body .comic-page-shell .like-button.active .like-icon,
+body .comic-page-shell .pending-page .like-button.active .like-icon {
+  color: #111111 !important;
+}
+
+body .comic-page-shell .approved-page .graded-sticker,
+body .comic-page-shell .graded-lightbox-panel .graded-sticker,
+body .comic-page-shell .graded-slab-modal .graded-sticker {
+  border: 2px solid #b10000 !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #fff1a8 0%, #ffd84d 48%, #f04b2f 100%) !important;
+  color: #2a0000 !important;
+  box-shadow: 0 0 0 2px #ffffff inset !important;
+}
+
+body .comic-page-shell .approved-page .graded-sticker span,
+body .comic-page-shell .approved-page .graded-sticker strong,
+body .comic-page-shell .graded-lightbox-panel .graded-sticker span,
+body .comic-page-shell .graded-lightbox-panel .graded-sticker strong,
+body .comic-page-shell .graded-slab-modal .graded-sticker span,
+body .comic-page-shell .graded-slab-modal .graded-sticker strong {
+  color: #2a0000 !important;
+}
+
+body .comic-page-shell .approved-page .graded-comic-frame,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame,
+body .comic-page-shell .approved-page .graded-comic-frame img,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame img,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame img {
+  border-radius: 0 !important;
+}
+
+body .comic-page-shell .portfolio-page,
+body .comic-page-shell .portfolio-stats,
+body .comic-page-shell .portfolio-stats div,
+body .comic-page-shell .portfolio-card,
+body .comic-page-shell .portfolio-table-wrap,
+body .comic-page-shell .portfolio-table,
+body .comic-page-shell .portfolio-table thead,
+body .comic-page-shell .portfolio-table tbody,
+body .comic-page-shell .portfolio-table tr,
+body .comic-page-shell .portfolio-table th,
+body .comic-page-shell .portfolio-table td {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+  color: #050505 !important;
+  text-shadow: none !important;
+}
+
+body .comic-page-shell .portfolio-table-wrap {
+  border: 1px solid #101010 !important;
+  box-shadow: none !important;
+}
+
+body .comic-page-shell .portfolio-table th {
+  background: #050505 !important;
+  color: #ffffff !important;
+}
+
+body .comic-page-shell .portfolio-page :is(strong, span, dt, dd, p, a, td, th),
+body .comic-page-shell .portfolio-card-title strong,
+body .comic-page-shell .portfolio-card dd,
+body .comic-page-shell .portfolio-stats span,
+body .comic-page-shell .portfolio-stats strong,
+body .comic-page-shell .portfolio-table td strong,
+body .comic-page-shell .portfolio-table td span,
+body .comic-page-shell .portfolio-table a {
+  color: #050505 !important;
+  text-shadow: none !important;
+}
+
+body .comic-page-shell .portfolio-table th,
+body .comic-page-shell .portfolio-table th span,
+body .comic-page-shell .portfolio-table th strong {
+  color: #ffffff !important;
+}
+
+body .comic-page-shell .portfolio-table button:disabled {
+  color: #555555 !important;
+  background: #ffffff !important;
+  border-color: #777777 !important;
+  opacity: 1 !important;
+}
+
+/* Final approved slab refinements */
+body .comic-page-shell .approved-page .graded-slab,
+body .comic-page-shell .graded-slab-modal {
+  aspect-ratio: 0.64 !important;
+  border-radius: 8px !important;
+}
+
+body .comic-page-shell .approved-page .graded-slab {
+  width: min(100%, 270px) !important;
+}
+
+body .comic-page-shell .graded-lightbox-panel {
+  display: grid !important;
+  place-items: center !important;
+  width: min(96vw, 520px) !important;
+  max-height: 96vh !important;
+  overflow: visible !important;
+}
+
+body .comic-page-shell .graded-slab-modal {
+  width: min(92vw, 420px) !important;
+  max-width: 420px !important;
+  max-height: min(94vh, 650px) !important;
+  overflow: visible !important;
+  padding: 10px !important;
+  gap: 8px !important;
+  border-radius: 8px !important;
+  cursor: default !important;
+}
+
+body .comic-page-shell .approved-page .graded-label,
+body .comic-page-shell .graded-slab-modal .graded-label,
+body .comic-page-shell .graded-lightbox-panel .graded-label {
+  grid-template-columns: 58px minmax(0, 1fr) 58px !important;
+  min-height: 54px !important;
+  gap: 7px !important;
+  padding: 6px !important;
+  border: 2px solid #050505 !important;
+  border-radius: 5px !important;
+  background: #f8f8f8 !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset !important;
+}
+
+body .comic-page-shell .approved-page .graded-brand,
+body .comic-page-shell .graded-slab-modal .graded-brand,
+body .comic-page-shell .graded-lightbox-panel .graded-brand {
+  min-width: 52px !important;
+  width: 52px !important;
+  min-height: 30px !important;
+  align-self: start !important;
+  padding: 3px 4px !important;
+  border: 1px solid #050505 !important;
+  border-radius: 2px !important;
+  background: #ffffff !important;
+  box-shadow: none !important;
+}
+
+body .comic-page-shell .approved-page .graded-brand span,
+body .comic-page-shell .graded-slab-modal .graded-brand span,
+body .comic-page-shell .graded-lightbox-panel .graded-brand span {
+  color: #2477ff !important;
+  font-size: 0.42rem !important;
+  line-height: 0.86 !important;
+  white-space: nowrap !important;
+}
+
+body .comic-page-shell .approved-page .graded-brand strong,
+body .comic-page-shell .graded-slab-modal .graded-brand strong,
+body .comic-page-shell .graded-lightbox-panel .graded-brand strong {
+  color: #ef3b2d !important;
+  font-size: 0.34rem !important;
+  line-height: 0.86 !important;
+  white-space: nowrap !important;
+}
+
+body .comic-page-shell .approved-page .graded-sticker,
+body .comic-page-shell .graded-lightbox-panel .graded-sticker,
+body .comic-page-shell .graded-slab-modal .graded-sticker {
+  border: 1px solid #050505 !important;
+  border-radius: 3px !important;
+  background:
+    linear-gradient(90deg, #ef3b2d 0 17%, #ff8d1a 17% 34%, #ffdb24 34% 51%, #24b85a 51% 68%, #2477ff 68% 85%, #8734d9 85% 100%) !important;
+  color: #050505 !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.7) inset !important;
+  align-self: start !important;
+  width: 56px !important;
+  min-height: 36px !important;
+  padding: 4px !important;
+}
+
+body .comic-page-shell .approved-page .graded-sticker::before,
+body .comic-page-shell .approved-page .graded-sticker::after,
+body .comic-page-shell .graded-lightbox-panel .graded-sticker::before,
+body .comic-page-shell .graded-lightbox-panel .graded-sticker::after,
+body .comic-page-shell .graded-slab-modal .graded-sticker::before,
+body .comic-page-shell .graded-slab-modal .graded-sticker::after {
+  display: none !important;
+}
+
+body .comic-page-shell .approved-page .graded-sticker span,
+body .comic-page-shell .approved-page .graded-sticker strong,
+body .comic-page-shell .graded-lightbox-panel .graded-sticker span,
+body .comic-page-shell .graded-lightbox-panel .graded-sticker strong,
+body .comic-page-shell .graded-slab-modal .graded-sticker span,
+body .comic-page-shell .graded-slab-modal .graded-sticker strong {
+  color: #050505 !important;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+body .comic-page-shell .approved-page .graded-sticker span,
+body .comic-page-shell .graded-lightbox-panel .graded-sticker span,
+body .comic-page-shell .graded-slab-modal .graded-sticker span {
+  font-size: 0.42rem !important;
+  line-height: 0.85 !important;
+}
+
+body .comic-page-shell .approved-page .graded-sticker strong,
+body .comic-page-shell .graded-lightbox-panel .graded-sticker strong,
+body .comic-page-shell .graded-slab-modal .graded-sticker strong {
+  font-size: 0.32rem !important;
+  line-height: 0.85 !important;
+}
+
+body .comic-page-shell .approved-page .graded-title,
+body .comic-page-shell .graded-slab-modal .graded-title,
+body .comic-page-shell .graded-lightbox-panel .graded-title {
+  align-content: start !important;
+  gap: 1px !important;
+  padding-top: 1px !important;
+}
+
+body .comic-page-shell .approved-page .graded-title strong,
+body .comic-page-shell .graded-slab-modal .graded-title strong,
+body .comic-page-shell .graded-lightbox-panel .graded-title strong {
+  font-size: 0.48rem !important;
+  line-height: 0.9 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+body .comic-page-shell .approved-page .graded-title span,
+body .comic-page-shell .graded-slab-modal .graded-title span,
+body .comic-page-shell .graded-lightbox-panel .graded-title span {
+  font-size: 0.38rem !important;
+  line-height: 0.9 !important;
+}
+
+body .comic-page-shell .approved-page .graded-details,
+body .comic-page-shell .graded-slab-modal .graded-details,
+body .comic-page-shell .graded-lightbox-panel .graded-details {
+  grid-column: 1 / 3 !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 3px !important;
+  align-items: end !important;
+}
+
+body .comic-page-shell .approved-page .graded-details dt,
+body .comic-page-shell .approved-page .graded-details dd,
+body .comic-page-shell .graded-slab-modal .graded-details dt,
+body .comic-page-shell .graded-slab-modal .graded-details dd,
+body .comic-page-shell .graded-lightbox-panel .graded-details dt,
+body .comic-page-shell .graded-lightbox-panel .graded-details dd {
+  font-size: 0.34rem !important;
+  line-height: 0.88 !important;
+  white-space: nowrap !important;
+}
+
+body .comic-page-shell .approved-page .graded-case-body,
+body .comic-page-shell .graded-lightbox-panel .graded-case-body,
+body .comic-page-shell .graded-slab-modal .graded-case-body {
+  border-radius: 4px !important;
+}
+
+body .comic-page-shell .approved-page .graded-comic-frame,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame,
+body .comic-page-shell .approved-page .graded-comic-frame img,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame img,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame img {
+  border-radius: 0 !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-comic-frame {
+  width: min(100%, 292px) !important;
+  max-height: none !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-title strong {
+  font-size: clamp(0.72rem, 2vw, 1rem) !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-title span,
+body .comic-page-shell .graded-slab-modal .graded-details dt,
+body .comic-page-shell .graded-slab-modal .graded-details dd {
+  font-size: 0.52rem !important;
+  white-space: nowrap !important;
+}
+
+/* Premium approved slab redesign */
+body .comic-page-shell .approved-page .graded-grid {
+  gap: 30px !important;
+  align-items: start !important;
+}
+
+body .comic-page-shell .approved-page .graded-slab,
+body .comic-page-shell .graded-slab-modal {
+  position: relative !important;
+  display: grid !important;
+  grid-template-rows: auto minmax(0, 1fr) auto !important;
+  aspect-ratio: 0.64 !important;
+  gap: 10px !important;
+  padding: 12px !important;
+  border: 2px solid #070707 !important;
+  border-radius: 10px !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(246, 246, 246, 0.98)) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.9) inset,
+    0 0 0 5px rgba(8, 8, 8, 0.04) inset,
+    0 14px 24px rgba(0, 0, 0, 0.16),
+    7px 8px 0 #070707 !important;
+  overflow: hidden !important;
+}
+
+body .comic-page-shell .approved-page .graded-slab {
+  width: min(100%, 286px) !important;
+}
+
+body .comic-page-shell .approved-page .graded-slab::before,
+body .comic-page-shell .graded-slab-modal::before {
+  display: block !important;
+  content: "" !important;
+  position: absolute !important;
+  inset: 7px !important;
+  pointer-events: none !important;
+  border: 1px solid rgba(0, 0, 0, 0.13) !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9) inset !important;
+}
+
+body .comic-page-shell .approved-page .graded-slab::after,
+body .comic-page-shell .graded-slab-modal::after {
+  display: block !important;
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  border-radius: 10px !important;
+  background:
+    linear-gradient(118deg, rgba(255, 255, 255, 0.55), transparent 18%, transparent 72%, rgba(0, 0, 0, 0.05)) !important;
+}
+
+body .comic-page-shell .approved-page .graded-slab:hover {
+  transform: translateY(-4px) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.9) inset,
+    0 0 0 5px rgba(8, 8, 8, 0.04) inset,
+    0 18px 28px rgba(0, 0, 0, 0.18),
+    7px 10px 0 #070707 !important;
+}
+
+body .comic-page-shell .approved-page .graded-label,
+body .comic-page-shell .graded-slab-modal .graded-label,
+body .comic-page-shell .graded-lightbox-panel .graded-label {
+  position: relative !important;
+  z-index: 1 !important;
+  display: grid !important;
+  grid-template-columns: 76px minmax(0, 1fr) 74px !important;
+  grid-template-rows: auto auto !important;
+  gap: 6px 9px !important;
+  align-items: stretch !important;
+  min-height: 84px !important;
+  padding: 8px !important;
+  border: 2px solid #080808 !important;
+  border-radius: 6px !important;
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f4f4f4 100%) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 0 0 1px rgba(0, 0, 0, 0.04) inset !important;
+}
+
+body .comic-page-shell .approved-page .graded-brand,
+body .comic-page-shell .graded-slab-modal .graded-brand,
+body .comic-page-shell .graded-lightbox-panel .graded-brand {
+  display: grid !important;
+  place-items: center !important;
+  min-width: 74px !important;
+  width: 74px !important;
+  min-height: 42px !important;
+  align-self: stretch !important;
+  padding: 6px 5px !important;
+  border: 1px solid #101010 !important;
+  border-radius: 4px !important;
+  background:
+    linear-gradient(180deg, #ffffff, #f1f1f1) !important;
+  box-shadow: 0 0 0 2px #ffffff inset !important;
+}
+
+body .comic-page-shell .approved-page .graded-brand span,
+body .comic-page-shell .graded-slab-modal .graded-brand span,
+body .comic-page-shell .graded-lightbox-panel .graded-brand span {
+  color: #1e63d8 !important;
+  font-size: 0.62rem !important;
+  line-height: 0.88 !important;
+  letter-spacing: 0 !important;
+  white-space: nowrap !important;
+}
+
+body .comic-page-shell .approved-page .graded-brand strong,
+body .comic-page-shell .graded-slab-modal .graded-brand strong,
+body .comic-page-shell .graded-lightbox-panel .graded-brand strong {
+  color: #e43122 !important;
+  font-size: 0.52rem !important;
+  line-height: 0.88 !important;
+  letter-spacing: 0 !important;
+  white-space: nowrap !important;
+}
+
+body .comic-page-shell .approved-page .graded-title,
+body .comic-page-shell .graded-slab-modal .graded-title,
+body .comic-page-shell .graded-lightbox-panel .graded-title {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  align-content: center !important;
+  gap: 3px !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+}
+
+body .comic-page-shell .approved-page .graded-title strong,
+body .comic-page-shell .graded-slab-modal .graded-title strong,
+body .comic-page-shell .graded-lightbox-panel .graded-title strong {
+  color: #050505 !important;
+  font-family: "Comic Neue", "Comic Sans MS", "Trebuchet MS", sans-serif !important;
+  font-size: clamp(0.72rem, 1.05vw, 0.95rem) !important;
+  font-weight: 1000 !important;
+  line-height: 0.95 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+body .comic-page-shell .approved-page .graded-title span,
+body .comic-page-shell .graded-slab-modal .graded-title span,
+body .comic-page-shell .graded-lightbox-panel .graded-title span {
+  color: #333333 !important;
+  font-size: 0.56rem !important;
+  font-weight: 900 !important;
+  line-height: 0.95 !important;
+  white-space: nowrap !important;
+}
+
+body .comic-page-shell .approved-page .graded-details,
+body .comic-page-shell .graded-slab-modal .graded-details,
+body .comic-page-shell .graded-lightbox-panel .graded-details {
+  grid-column: 1 / 3 !important;
+  grid-row: 2 !important;
+  display: grid !important;
+  grid-template-columns: 0.95fr 0.8fr 1fr !important;
+  gap: 5px !important;
+  align-items: end !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+body .comic-page-shell .approved-page .graded-details dt,
+body .comic-page-shell .graded-slab-modal .graded-details dt,
+body .comic-page-shell .graded-lightbox-panel .graded-details dt {
+  color: #656565 !important;
+  font-size: 0.43rem !important;
+  font-weight: 900 !important;
+  line-height: 0.95 !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+}
+
+body .comic-page-shell .approved-page .graded-details dd,
+body .comic-page-shell .graded-slab-modal .graded-details dd,
+body .comic-page-shell .graded-lightbox-panel .graded-details dd {
+  color: #050505 !important;
+  font-size: 0.52rem !important;
+  font-weight: 1000 !important;
+  line-height: 0.95 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+body .comic-page-shell .approved-page .graded-sticker,
+body .comic-page-shell .graded-lightbox-panel .graded-sticker,
+body .comic-page-shell .graded-slab-modal .graded-sticker {
+  grid-column: 3 !important;
+  grid-row: 1 / 3 !important;
+  display: grid !important;
+  place-items: center !important;
+  align-self: stretch !important;
+  width: 72px !important;
+  min-height: 58px !important;
+  padding: 6px !important;
+  border: 1px solid #080808 !important;
+  border-radius: 5px !important;
+  background:
+    linear-gradient(90deg, #e6392e 0 16%, #ff8a00 16% 32%, #ffe138 32% 48%, #22b455 48% 64%, #2878ff 64% 80%, #8d3fd1 80% 100%) !important;
+  color: #050505 !important;
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.62) inset,
+    0 2px 5px rgba(0, 0, 0, 0.14) !important;
+}
+
+body .comic-page-shell .approved-page .graded-sticker span,
+body .comic-page-shell .graded-lightbox-panel .graded-sticker span,
+body .comic-page-shell .graded-slab-modal .graded-sticker span {
+  color: #050505 !important;
+  font-size: 0.62rem !important;
+  font-weight: 1000 !important;
+  line-height: 0.82 !important;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.92) !important;
+}
+
+body .comic-page-shell .approved-page .graded-sticker strong,
+body .comic-page-shell .graded-lightbox-panel .graded-sticker strong,
+body .comic-page-shell .graded-slab-modal .graded-sticker strong {
+  color: #050505 !important;
+  font-size: 0.48rem !important;
+  font-weight: 1000 !important;
+  line-height: 0.82 !important;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.92) !important;
+}
+
+body .comic-page-shell .approved-page .graded-case-body,
+body .comic-page-shell .graded-lightbox-panel .graded-case-body,
+body .comic-page-shell .graded-slab-modal .graded-case-body {
+  position: relative !important;
+  z-index: 1 !important;
+  display: grid !important;
+  place-items: center !important;
+  padding: 9px !important;
+  border: 1px solid rgba(0, 0, 0, 0.28) !important;
+  border-radius: 6px !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(239, 239, 239, 0.96)) !important;
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.88) inset,
+    0 10px 18px rgba(0, 0, 0, 0.08) inset !important;
+}
+
+body .comic-page-shell .approved-page .graded-comic-frame,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame {
+  width: min(100%, 216px) !important;
+  aspect-ratio: 1048 / 1564 !important;
+  border: 2px solid #070707 !important;
+  border-radius: 0 !important;
+  background: #ffffff !important;
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.86) inset !important;
+  overflow: hidden !important;
+}
+
+body .comic-page-shell .approved-page .graded-comic-frame img,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame img,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame img {
+  border-radius: 0 !important;
+  object-fit: cover !important;
+  filter: none !important;
+}
+
+body .comic-page-shell .approved-page .graded-footer,
+body .comic-page-shell .graded-lightbox-panel .graded-footer,
+body .comic-page-shell .graded-slab-modal .graded-footer {
+  position: relative !important;
+  z-index: 1 !important;
+  min-height: 20px !important;
+}
+
+body .comic-page-shell .approved-page .graded-footer .graded-issue-number,
+body .comic-page-shell .graded-lightbox-panel .graded-footer .graded-issue-number,
+body .comic-page-shell .graded-slab-modal .graded-footer .graded-issue-number {
+  color: #050505 !important;
+  font-size: 1rem !important;
+  font-weight: 900 !important;
+}
+
+body .comic-page-shell .graded-lightbox-panel {
+  width: min(96vw, 560px) !important;
+  max-height: 96vh !important;
+  padding: 18px !important;
+}
+
+body .comic-page-shell .graded-slab-modal {
+  width: min(88vw, 460px) !important;
+  max-width: 460px !important;
+  max-height: min(94vh, 720px) !important;
+  padding: 14px !important;
+  gap: 12px !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-comic-frame {
+  width: min(100%, 330px) !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-label {
+  min-height: 94px !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-title strong {
+  font-size: 1rem !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-title span {
+  font-size: 0.62rem !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-details dt {
+  font-size: 0.48rem !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-details dd {
+  font-size: 0.62rem !important;
+}
+
+/* Arena-style interactive graded slab */
+body .comic-page-shell .approved-page .graded-slab,
+body .comic-page-shell .graded-slab-modal {
+  aspect-ratio: 0.63 !important;
+  border: 1px solid #7f858a !important;
+  border-radius: 18px !important;
+  padding: 14px !important;
+  gap: 12px !important;
+  background:
+    linear-gradient(180deg, #f8f9fa 0%, #dfe3e7 48%, #f8f9fa 100%) !important;
+  box-shadow:
+    0 0 0 1px #ffffff inset,
+    0 0 0 4px #c8cdd2 inset,
+    0 0 0 7px #f8f9fa inset,
+    0 0 0 10px #bcc2c8 inset,
+    0 18px 34px rgba(0, 0, 0, 0.22) !important;
+}
+
+body .comic-page-shell .approved-page .graded-slab {
+  width: min(100%, 300px) !important;
+}
+
+body .comic-page-shell .approved-page .graded-slab::before,
+body .comic-page-shell .graded-slab-modal::before {
+  display: block !important;
+  content: "" !important;
+  position: absolute !important;
+  inset: 10px !important;
+  z-index: 0 !important;
+  border: 1px solid rgba(80, 88, 96, 0.38) !important;
+  border-radius: 14px !important;
+  background:
+    linear-gradient(135deg, transparent 0 9%, rgba(255, 255, 255, 0.9) 9% 10%, transparent 10% 90%, rgba(80, 88, 96, 0.18) 90% 91%, transparent 91%),
+    linear-gradient(225deg, transparent 0 9%, rgba(255, 255, 255, 0.78) 9% 10%, transparent 10% 90%, rgba(80, 88, 96, 0.2) 90% 91%, transparent 91%) !important;
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.85) inset,
+    0 0 0 6px rgba(92, 100, 108, 0.12) inset !important;
+}
+
+body .comic-page-shell .approved-page .graded-slab::after,
+body .comic-page-shell .graded-slab-modal::after {
+  display: block !important;
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(110deg, rgba(255, 255, 255, 0.58), transparent 22%, transparent 70%, rgba(0, 0, 0, 0.07)),
+    radial-gradient(circle at 28% 12%, rgba(255, 255, 255, 0.9), transparent 22%) !important;
+}
+
+body .comic-page-shell .approved-page .graded-label,
+body .comic-page-shell .graded-slab-modal .graded-label,
+body .comic-page-shell .graded-lightbox-panel .graded-label {
+  position: relative !important;
+  z-index: 1 !important;
+  grid-template-columns: 74px minmax(0, 1fr) 74px !important;
+  grid-template-rows: auto auto !important;
+  min-height: 92px !important;
+  gap: 8px 10px !important;
+  padding: 9px !important;
+  border: 2px solid #121416 !important;
+  border-radius: 4px !important;
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.96), rgba(229, 232, 235, 0.98)),
+    repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.035) 0 1px, transparent 1px 7px) !important;
+  box-shadow:
+    0 1px 0 #ffffff inset,
+    0 -1px 0 rgba(0, 0, 0, 0.18) inset !important;
+}
+
+body .comic-page-shell .graded-grade {
+  grid-column: 1 !important;
+  grid-row: 1 / 3 !important;
+  display: grid !important;
+  place-items: center !important;
+  align-content: center !important;
+  gap: 2px !important;
+  min-width: 72px !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.26) !important;
+  color: #050505 !important;
+}
+
+body .comic-page-shell .graded-grade span {
+  color: #050505 !important;
+  font-family: "Bangers", "Comic Neue", sans-serif !important;
+  font-size: 2.35rem !important;
+  font-weight: 900 !important;
+  line-height: 0.82 !important;
+  letter-spacing: 0 !important;
+}
+
+body .comic-page-shell .graded-grade strong {
+  color: #050505 !important;
+  font-size: 0.52rem !important;
+  font-weight: 1000 !important;
+  line-height: 0.9 !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+}
+
+body .comic-page-shell .approved-page .graded-title,
+body .comic-page-shell .graded-slab-modal .graded-title,
+body .comic-page-shell .graded-lightbox-panel .graded-title {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  align-content: center !important;
+  gap: 4px !important;
+}
+
+body .comic-page-shell .approved-page .graded-title strong,
+body .comic-page-shell .graded-slab-modal .graded-title strong,
+body .comic-page-shell .graded-lightbox-panel .graded-title strong {
+  font-size: 0.92rem !important;
+  line-height: 0.95 !important;
+  color: #050505 !important;
+}
+
+body .comic-page-shell .approved-page .graded-title span,
+body .comic-page-shell .graded-slab-modal .graded-title span,
+body .comic-page-shell .graded-lightbox-panel .graded-title span {
+  font-size: 0.58rem !important;
+  color: #2a2f35 !important;
+}
+
+body .comic-page-shell .graded-auth {
+  grid-column: 3 !important;
+  grid-row: 1 !important;
+  display: grid !important;
+  place-items: center !important;
+  align-content: center !important;
+  min-height: 36px !important;
+  border-left: 1px solid rgba(0, 0, 0, 0.22) !important;
+}
+
+body .comic-page-shell .graded-auth span {
+  color: #050505 !important;
+  font-size: 0.7rem !important;
+  font-weight: 1000 !important;
+  line-height: 0.9 !important;
+}
+
+body .comic-page-shell .graded-auth strong {
+  color: #4d545c !important;
+  font-size: 0.42rem !important;
+  line-height: 0.9 !important;
+  text-transform: uppercase !important;
+}
+
+body .comic-page-shell .approved-page .graded-details,
+body .comic-page-shell .graded-slab-modal .graded-details,
+body .comic-page-shell .graded-lightbox-panel .graded-details {
+  grid-column: 2 / 4 !important;
+  grid-row: 2 !important;
+  grid-template-columns: 1fr 0.8fr 0.9fr !important;
+  gap: 5px !important;
+}
+
+body .comic-page-shell .approved-page .graded-details dt,
+body .comic-page-shell .graded-slab-modal .graded-details dt,
+body .comic-page-shell .graded-lightbox-panel .graded-details dt {
+  font-size: 0.44rem !important;
+  color: #68717a !important;
+}
+
+body .comic-page-shell .approved-page .graded-details dd,
+body .comic-page-shell .graded-slab-modal .graded-details dd,
+body .comic-page-shell .graded-lightbox-panel .graded-details dd {
+  font-size: 0.54rem !important;
+  color: #050505 !important;
+}
+
+body .comic-page-shell .approved-page .graded-sticker,
+body .comic-page-shell .graded-lightbox-panel .graded-sticker,
+body .comic-page-shell .graded-slab-modal .graded-sticker {
+  display: none !important;
+}
+
+body .comic-page-shell .approved-page .graded-case-body,
+body .comic-page-shell .graded-lightbox-panel .graded-case-body,
+body .comic-page-shell .graded-slab-modal .graded-case-body {
+  z-index: 1 !important;
+  padding: 18px 16px !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(210, 216, 222, 0.8)) !important;
+  box-shadow:
+    0 0 0 1px rgba(105, 113, 121, 0.28) inset,
+    0 0 0 5px rgba(255, 255, 255, 0.66) inset,
+    0 10px 24px rgba(0, 0, 0, 0.12) inset !important;
+}
+
+body .comic-page-shell .approved-page .graded-case-body::before,
+body .comic-page-shell .graded-lightbox-panel .graded-case-body::before,
+body .comic-page-shell .graded-slab-modal .graded-case-body::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 10px !important;
+  pointer-events: none !important;
+  border: 1px solid rgba(91, 99, 108, 0.28) !important;
+  border-radius: 5px !important;
+  background:
+    linear-gradient(135deg, transparent 0 12%, rgba(255, 255, 255, 0.8) 12% 14%, transparent 14% 86%, rgba(0, 0, 0, 0.1) 86% 88%, transparent 88%) !important;
+}
+
+body .comic-page-shell .approved-page .graded-comic-frame,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame {
+  position: relative !important;
+  z-index: 1 !important;
+  width: min(100%, 222px) !important;
+  border: 3px solid #111111 !important;
+  border-radius: 5px !important;
+  box-shadow:
+    0 16px 28px rgba(0, 0, 0, 0.24),
+    0 0 0 5px rgba(255, 255, 255, 0.42) !important;
+}
+
+body .comic-page-shell .approved-page .graded-comic-frame img,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame img,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame img {
+  border-radius: 2px !important;
+}
+
+body .comic-page-shell .approved-page .graded-footer,
+body .comic-page-shell .graded-lightbox-panel .graded-footer,
+body .comic-page-shell .graded-slab-modal .graded-footer {
+  z-index: 1 !important;
+  padding: 0 4px !important;
+}
+
+body .comic-page-shell .graded-lightbox {
+  perspective: 1200px !important;
+}
+
+body .comic-page-shell .graded-lightbox-panel {
+  perspective: 1400px !important;
+  overflow: visible !important;
+}
+
+body .comic-page-shell .graded-slab-modal {
+  width: min(86vw, 440px) !important;
+  max-width: 440px !important;
+  max-height: min(94vh, 700px) !important;
+  padding: 16px !important;
+  gap: 14px !important;
+  cursor: grab !important;
+  user-select: none !important;
+  touch-action: none !important;
+  transform:
+    translate3d(var(--slab-x, 0px), var(--slab-y, 0px), 0)
+    rotateX(var(--slab-rx, 0deg))
+    rotateY(var(--slab-ry, 0deg))
+    rotateZ(var(--slab-rz, 0deg)) !important;
+  transform-style: preserve-3d !important;
+  transition: box-shadow 180ms ease, filter 180ms ease !important;
+}
+
+body .comic-page-shell .graded-slab-modal:active {
+  cursor: grabbing !important;
+  filter: brightness(1.03) !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-label {
+  min-height: 100px !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-grade span {
+  font-size: 2.7rem !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-title strong {
+  font-size: 1.05rem !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-comic-frame {
+  width: min(100%, 316px) !important;
+}
+
+body .comic-page-shell .graded-lightbox-panel .lightbox-meta {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 14px !important;
+  color: #4d545c !important;
+  font-size: 0.82rem !important;
+}
+
+/* Keep expanded slab as the same portrait slab, centered and interactive */
+body .comic-page-shell .comic-lightbox:has(.graded-slab-modal) {
+  display: grid !important;
+  place-items: center !important;
+  padding: clamp(18px, 4vw, 42px) !important;
+  perspective: 1400px !important;
+}
+
+body .comic-page-shell .graded-lightbox-panel {
+  display: grid !important;
+  place-items: center !important;
+  width: auto !important;
+  max-width: none !important;
+  height: auto !important;
+  max-height: none !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  perspective: 1400px !important;
+}
+
+body .comic-page-shell .graded-lightbox-panel .lightbox-close {
+  position: fixed !important;
+  top: clamp(14px, 3vw, 26px) !important;
+  right: clamp(14px, 3vw, 26px) !important;
+  z-index: 5 !important;
+}
+
+body .comic-page-shell .graded-slab-modal {
+  width: min(78vw, 360px) !important;
+  max-width: 360px !important;
+  height: auto !important;
+  max-height: min(88vh, 572px) !important;
+  aspect-ratio: 0.63 !important;
+  grid-template-rows: 92px minmax(0, 1fr) 24px !important;
+  padding: 14px !important;
+  gap: 10px !important;
+  overflow: hidden !important;
+  transform:
+    translate3d(var(--slab-x, 0px), var(--slab-y, 0px), 0)
+    rotateX(var(--slab-rx, 0deg))
+    rotateY(var(--slab-ry, 0deg))
+    rotateZ(var(--slab-rz, 0deg)) !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-label {
+  min-height: 0 !important;
+  height: 92px !important;
+  grid-template-columns: 68px minmax(0, 1fr) 60px !important;
+  padding: 8px !important;
+  gap: 7px !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-grade {
+  min-width: 66px !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-grade span {
+  font-size: 2.25rem !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-grade strong {
+  font-size: 0.48rem !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-title strong {
+  font-size: 0.82rem !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-title span {
+  font-size: 0.52rem !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-auth span {
+  font-size: 0.6rem !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-auth strong {
+  font-size: 0.36rem !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-details dt {
+  font-size: 0.38rem !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-details dd {
+  font-size: 0.46rem !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-case-body {
+  min-height: 0 !important;
+  height: 100% !important;
+  padding: 13px !important;
+  overflow: hidden !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-case-body::before {
+  inset: 8px !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-comic-frame {
+  width: min(100%, 238px) !important;
+  max-width: 238px !important;
+  height: auto !important;
+  max-height: 100% !important;
+  aspect-ratio: 1048 / 1564 !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-comic-frame img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-footer {
+  min-height: 20px !important;
+  height: 20px !important;
+  padding: 0 2px !important;
+}
+
+body .comic-page-shell .graded-lightbox-panel .lightbox-meta {
+  position: fixed !important;
+  left: 50% !important;
+  bottom: clamp(12px, 3vw, 24px) !important;
+  transform: translateX(-50%) !important;
+  width: min(92vw, 520px) !important;
+  color: #333333 !important;
+}
+
+/* Hard slab geometry: keep comic inside the inner well */
+body .comic-page-shell .approved-page .graded-slab,
+body .comic-page-shell .graded-slab-modal {
+  display: grid !important;
+  grid-template-rows: 94px minmax(0, 1fr) 22px !important;
+  aspect-ratio: 0.63 !important;
+  gap: 10px !important;
+  overflow: hidden !important;
+}
+
+body .comic-page-shell .approved-page .graded-label,
+body .comic-page-shell .graded-slab-modal .graded-label,
+body .comic-page-shell .graded-lightbox-panel .graded-label {
+  grid-row: 1 !important;
+  height: 94px !important;
+  min-height: 94px !important;
+  max-height: 94px !important;
+  overflow: hidden !important;
+}
+
+body .comic-page-shell .approved-page .graded-case-body,
+body .comic-page-shell .graded-slab-modal .graded-case-body,
+body .comic-page-shell .graded-lightbox-panel .graded-case-body {
+  grid-row: 2 !important;
+  align-self: stretch !important;
+  min-height: 0 !important;
+  height: 100% !important;
+  padding: 12px !important;
+  overflow: hidden !important;
+  contain: layout paint !important;
+}
+
+body .comic-page-shell .approved-page .graded-comic-frame,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame {
+  width: auto !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  aspect-ratio: 1048 / 1564 !important;
+  margin: 0 auto !important;
+  overflow: hidden !important;
+}
+
+body .comic-page-shell .approved-page .graded-comic-frame img,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame img,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+body .comic-page-shell .approved-page .graded-footer,
+body .comic-page-shell .graded-slab-modal .graded-footer,
+body .comic-page-shell .graded-lightbox-panel .graded-footer {
+  grid-row: 3 !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  max-height: 22px !important;
+}
+
+body .comic-page-shell .graded-slab-modal {
+  width: min(72vw, 320px) !important;
+  max-width: 320px !important;
+  grid-template-rows: 94px minmax(0, 1fr) 22px !important;
+}
+
+/* Proportional slab geometry: modal is the same slab, just larger */
+body .comic-page-shell .approved-page .graded-slab,
+body .comic-page-shell .graded-slab-modal {
+  aspect-ratio: 0.63 !important;
+  grid-template-rows: 20% minmax(0, 1fr) 5.5% !important;
+  gap: 2.2% !important;
+  padding: 4.2% !important;
+}
+
+body .comic-page-shell .approved-page .graded-slab {
+  width: min(100%, 310px) !important;
+  max-width: 310px !important;
+}
+
+body .comic-page-shell .graded-slab-modal {
+  width: min(76vw, 390px) !important;
+  max-width: 390px !important;
+  height: auto !important;
+  max-height: min(90vh, 620px) !important;
+}
+
+body .comic-page-shell .approved-page .graded-label,
+body .comic-page-shell .graded-slab-modal .graded-label,
+body .comic-page-shell .graded-lightbox-panel .graded-label {
+  height: 100% !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  grid-template-columns: 24% minmax(0, 1fr) 22% !important;
+  gap: 3% !important;
+  padding: 3% !important;
+}
+
+body .comic-page-shell .approved-page .graded-case-body,
+body .comic-page-shell .graded-slab-modal .graded-case-body,
+body .comic-page-shell .graded-lightbox-panel .graded-case-body {
+  height: 100% !important;
+  min-height: 0 !important;
+  padding: 4% !important;
+  overflow: hidden !important;
+}
+
+body .comic-page-shell .approved-page .graded-comic-frame,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame {
+  aspect-ratio: 1048 / 1564 !important;
+  height: 100% !important;
+  width: auto !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  margin: 0 auto !important;
+}
+
+body .comic-page-shell .approved-page .graded-comic-frame img,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame img,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+body .comic-page-shell .approved-page .graded-footer,
+body .comic-page-shell .graded-slab-modal .graded-footer,
+body .comic-page-shell .graded-lightbox-panel .graded-footer {
+  height: 100% !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  padding: 0 1% !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-grade span,
+body .comic-page-shell .approved-page .graded-grade span {
+  font-size: clamp(1.9rem, 10vw, 2.55rem) !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-title strong,
+body .comic-page-shell .approved-page .graded-title strong {
+  font-size: clamp(0.72rem, 3vw, 1rem) !important;
+}
+
+/* Exact expanded slab: same slab, larger scale */
+body .comic-page-shell .comic-lightbox:has(.graded-slab-modal) {
+  display: grid !important;
+  place-items: center !important;
+  padding: 24px !important;
+  background: rgba(255, 255, 255, 0.82) !important;
+  perspective: 1400px !important;
+}
+
+body .comic-page-shell .graded-lightbox-panel {
+  display: grid !important;
+  place-items: center !important;
+  width: auto !important;
+  max-width: none !important;
+  height: auto !important;
+  max-height: none !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+body .comic-page-shell .graded-lightbox-panel .lightbox-close {
+  position: fixed !important;
+  top: 22px !important;
+  right: 22px !important;
+  z-index: 10 !important;
+}
+
+body .comic-page-shell .approved-page .graded-slab,
+body .comic-page-shell .graded-slab-modal {
+  display: grid !important;
+  grid-template-rows: 20% minmax(0, 1fr) 5.5% !important;
+  aspect-ratio: 0.63 !important;
+  gap: 2.2% !important;
+  padding: 4.2% !important;
+  border: 1px solid #7f858a !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(180deg, #f8f9fa 0%, #dfe3e7 48%, #f8f9fa 100%) !important;
+  box-shadow:
+    0 0 0 1px #ffffff inset,
+    0 0 0 4px #c8cdd2 inset,
+    0 0 0 7px #f8f9fa inset,
+    0 0 0 10px #bcc2c8 inset,
+    0 18px 34px rgba(0, 0, 0, 0.22) !important;
+  overflow: hidden !important;
+}
+
+body .comic-page-shell .approved-page .graded-slab {
+  width: min(100%, 310px) !important;
+  max-width: 310px !important;
+}
+
+body .comic-page-shell .graded-slab-modal {
+  width: min(72vw, 410px) !important;
+  max-width: 410px !important;
+  height: auto !important;
+  max-height: min(92vh, 650px) !important;
+  cursor: grab !important;
+  touch-action: none !important;
+  transform:
+    translate3d(var(--slab-x, 0px), var(--slab-y, 0px), 0)
+    rotateX(var(--slab-rx, 0deg))
+    rotateY(var(--slab-ry, 0deg))
+    rotateZ(var(--slab-rz, 0deg)) !important;
+  transform-style: preserve-3d !important;
+}
+
+body .comic-page-shell .approved-page .graded-label,
+body .comic-page-shell .graded-slab-modal .graded-label,
+body .comic-page-shell .graded-lightbox-panel .graded-label {
+  grid-row: 1 !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  grid-template-columns: 24% minmax(0, 1fr) 22% !important;
+  grid-template-rows: auto auto !important;
+  gap: 3% !important;
+  padding: 3% !important;
+  border: 2px solid #121416 !important;
+  border-radius: 4px !important;
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.96), rgba(229, 232, 235, 0.98)),
+    repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.035) 0 1px, transparent 1px 7px) !important;
+  overflow: hidden !important;
+}
+
+body .comic-page-shell .approved-page .graded-case-body,
+body .comic-page-shell .graded-slab-modal .graded-case-body,
+body .comic-page-shell .graded-lightbox-panel .graded-case-body {
+  grid-row: 2 !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  padding: 4% !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(210, 216, 222, 0.8)) !important;
+  overflow: hidden !important;
+  contain: layout paint !important;
+}
+
+body .comic-page-shell .approved-page .graded-comic-frame,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  aspect-ratio: 1048 / 1564 !important;
+  margin: auto !important;
+  border: 3px solid #111111 !important;
+  border-radius: 5px !important;
+  overflow: hidden !important;
+}
+
+body .comic-page-shell .approved-page .graded-comic-frame img,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame img,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+body .comic-page-shell .approved-page .graded-footer,
+body .comic-page-shell .graded-slab-modal .graded-footer,
+body .comic-page-shell .graded-lightbox-panel .graded-footer {
+  grid-row: 3 !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  padding: 0 1% !important;
+}
+
+body .comic-page-shell .graded-lightbox-panel .lightbox-meta {
+  position: fixed !important;
+  left: 50% !important;
+  bottom: 18px !important;
+  transform: translateX(-50%) !important;
+  width: min(92vw, 520px) !important;
+  justify-content: center !important;
+  color: #333333 !important;
+}
+
+/* Slab proportion tune: taller comic well, exact modal scale-up */
+body .comic-page-shell .approved-page .graded-slab,
+body .comic-page-shell .graded-slab-modal {
+  grid-template-rows: 18% minmax(0, 1fr) 5% !important;
+  gap: 2% !important;
+}
+
+body .comic-page-shell .approved-page .graded-label,
+body .comic-page-shell .graded-slab-modal .graded-label,
+body .comic-page-shell .graded-lightbox-panel .graded-label {
+  grid-template-columns: 22% minmax(0, 1fr) 20% !important;
+  padding: 2.6% !important;
+}
+
+body .comic-page-shell .approved-page .graded-case-body,
+body .comic-page-shell .graded-slab-modal .graded-case-body,
+body .comic-page-shell .graded-lightbox-panel .graded-case-body {
+  padding: 3.2% 6% !important;
+}
+
+body .comic-page-shell .approved-page .graded-comic-frame,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame {
+  width: auto !important;
+  height: 100% !important;
+  max-width: 94% !important;
+  max-height: 100% !important;
+  padding: 1.4% !important;
+  background: #ffffff !important;
+  box-sizing: border-box !important;
+}
+
+body .comic-page-shell .approved-page .graded-comic-frame img,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame img,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame img {
+  object-fit: contain !important;
+}
+
+/* Expand recessed well so the comic sits inside it, not over it */
+body .comic-page-shell .approved-page .graded-slab,
+body .comic-page-shell .graded-slab-modal {
+  grid-template-rows: 17% minmax(0, 1fr) 4.8% !important;
+  gap: 1.8% !important;
+}
+
+body .comic-page-shell .approved-page .graded-case-body,
+body .comic-page-shell .graded-slab-modal .graded-case-body,
+body .comic-page-shell .graded-lightbox-panel .graded-case-body {
+  padding: 8% 9% !important;
+  border: 2px solid rgba(122, 132, 142, 0.42) !important;
+  box-shadow:
+    0 0 0 4px rgba(255, 255, 255, 0.78) inset,
+    0 0 0 8px rgba(130, 140, 150, 0.1) inset,
+    0 10px 24px rgba(0, 0, 0, 0.12) inset !important;
+}
+
+body .comic-page-shell .approved-page .graded-case-body::before,
+body .comic-page-shell .graded-slab-modal .graded-case-body::before,
+body .comic-page-shell .graded-lightbox-panel .graded-case-body::before {
+  display: none !important;
+}
+
+body .comic-page-shell .approved-page .graded-comic-frame,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame {
+  height: 92% !important;
+  max-height: 92% !important;
+  max-width: 86% !important;
+}
+
+body .comic-page-shell .graded-slab-modal {
+  width: min(78vw, 430px) !important;
+  max-width: 430px !important;
+  max-height: min(92vh, 682px) !important;
+}
+
+body .comic-page-shell .comic-lightbox:has(.graded-slab-modal) {
+  align-items: center !important;
+  justify-items: center !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-grade span,
+body .comic-page-shell .approved-page .graded-grade span {
+  font-size: clamp(1.75rem, 8.5vw, 2.45rem) !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-grade strong,
+body .comic-page-shell .approved-page .graded-grade strong {
+  font-size: clamp(0.4rem, 1.5vw, 0.52rem) !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-title strong,
+body .comic-page-shell .approved-page .graded-title strong {
+  font-size: clamp(0.66rem, 2.3vw, 0.92rem) !important;
+}
+
+body .comic-page-shell .graded-slab-modal .graded-title span,
+body .comic-page-shell .approved-page .graded-title span {
+  font-size: clamp(0.42rem, 1.4vw, 0.56rem) !important;
+}
+
+/* PSA-inspired slab details and exact comic-fit well */
+body .comic-page-shell .approved-page .graded-label,
+body .comic-page-shell .graded-slab-modal .graded-label,
+body .comic-page-shell .graded-lightbox-panel .graded-label {
+  transform: scaleY(0.96) !important;
+  transform-origin: top center !important;
+  grid-template-columns: 27% minmax(0, 1fr) 20% !important;
+  border: 2px solid #c81f1f !important;
+  border-radius: 3px !important;
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f4f4f4 100%) !important;
+  padding: 2.4% !important;
+}
+
+body .comic-page-shell .graded-grade {
+  justify-items: start !important;
+  place-items: start !important;
+  align-content: center !important;
+  padding-left: 4% !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.18) !important;
+}
+
+body .comic-page-shell .graded-grade span {
+  text-align: left !important;
+  font-size: clamp(1.6rem, 8vw, 2.35rem) !important;
+}
+
+body .comic-page-shell .graded-grade strong {
+  text-align: left !important;
+  font-size: clamp(0.36rem, 1.4vw, 0.48rem) !important;
+}
+
+body .comic-page-shell .approved-page .graded-title,
+body .comic-page-shell .graded-slab-modal .graded-title,
+body .comic-page-shell .graded-lightbox-panel .graded-title {
+  padding-left: 2% !important;
+}
+
+body .comic-page-shell .approved-page .graded-details,
+body .comic-page-shell .graded-slab-modal .graded-details,
+body .comic-page-shell .graded-lightbox-panel .graded-details {
+  grid-column: 2 / 4 !important;
+  padding-left: 2% !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+body .comic-page-shell .graded-auth {
+  border-left: 1px solid rgba(0, 0, 0, 0.18) !important;
+}
+
+/* Keep comic frame clearly inside the recessed inner slab well */
+body .comic-page-shell .approved-page .graded-case-body,
+body .comic-page-shell .graded-slab-modal .graded-case-body,
+body .comic-page-shell .graded-lightbox-panel .graded-case-body {
+  padding: 6.5% 8% !important;
+  display: grid !important;
+  place-items: center !important;
+}
+
+body .comic-page-shell .approved-page .graded-case-body::before,
+body .comic-page-shell .graded-slab-modal .graded-case-body::before,
+body .comic-page-shell .graded-lightbox-panel .graded-case-body::before {
+  inset: 6.5% 8% !important;
+}
+
+body .comic-page-shell .approved-page .graded-comic-frame,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame {
+  position: relative !important;
+  z-index: 2 !important;
+  height: 88% !important;
+  width: auto !important;
+  max-width: 88% !important;
+  max-height: 88% !important;
+  place-self: center !important;
+  margin: auto !important;
+  box-sizing: border-box !important;
+}
+
+body .comic-page-shell .approved-page .graded-comic-frame img,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame img,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame img {
+  object-fit: contain !important;
+}
+
+body .comic-page-shell .approved-page .graded-case-body,
+body .comic-page-shell .graded-slab-modal .graded-case-body,
+body .comic-page-shell .graded-lightbox-panel .graded-case-body {
+  padding: 4.5% !important;
+}
+
+body .comic-page-shell .approved-page .graded-case-body::before,
+body .comic-page-shell .graded-slab-modal .graded-case-body::before,
+body .comic-page-shell .graded-lightbox-panel .graded-case-body::before {
+  inset: 4.5% !important;
+}
+
+body .comic-page-shell .approved-page .graded-comic-frame,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame {
+  aspect-ratio: 1048 / 1564 !important;
+  width: auto !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  padding: 0 !important;
+  border: 2px solid #111111 !important;
+  border-radius: 2px !important;
+  background: #ffffff !important;
+  box-sizing: border-box !important;
+}
+
+body .comic-page-shell .approved-page .graded-comic-frame img,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame img,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  border-radius: 0 !important;
+}
+
+/* Final spacing tune for slab casing and comic well */
+body .comic-page-shell .approved-page .graded-slab {
+  width: min(100%, 292px) !important;
+  max-width: 292px !important;
+  padding: 3.6% !important;
+}
+
+body .comic-page-shell .graded-slab-modal {
+  width: min(72vw, 386px) !important;
+  max-width: 386px !important;
+  padding: 3.6% !important;
+}
+
+body .comic-page-shell .approved-page .graded-label,
+body .comic-page-shell .graded-slab-modal .graded-label,
+body .comic-page-shell .graded-lightbox-panel .graded-label {
+  margin: 1.5% !important;
+}
+
+body .comic-page-shell .approved-page .graded-case-body,
+body .comic-page-shell .graded-slab-modal .graded-case-body,
+body .comic-page-shell .graded-lightbox-panel .graded-case-body {
+  margin: 1.4% !important;
+  padding: 4.4% 3.4% !important;
+}
+
+body .comic-page-shell .approved-page .graded-case-body::before,
+body .comic-page-shell .graded-slab-modal .graded-case-body::before,
+body .comic-page-shell .graded-lightbox-panel .graded-case-body::before {
+  display: none !important;
+}
+
+body .comic-page-shell .approved-page .graded-comic-frame,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame {
+  height: 99% !important;
+  max-height: 99% !important;
+  max-width: 99% !important;
+}
+
+/* Create page button and preview scale refinements */
+body .comic-page-shell .submit-page .mint-actions .primary {
+  background: #ffffff !important;
+  color: #050505 !important;
+  border: 1px solid #050505 !important;
+  box-shadow: none !important;
+}
+
+body .comic-page-shell .submit-page .mint-actions .primary:hover:not(:disabled),
+body .comic-page-shell .submit-page .mint-actions .primary:focus-visible:not(:disabled) {
+  background: #050505 !important;
+  color: #ffffff !important;
+}
+
+body .comic-page-shell .submit-page .mint-actions .primary:disabled {
+  background: #f2f2f2 !important;
+  color: #777777 !important;
+  border: 1px solid #bdbdbd !important;
+  opacity: 1 !important;
+  cursor: not-allowed !important;
+}
+
+body .comic-page-shell .submit-page .submit-preview-stage {
+  min-height: clamp(360px, 46vw, 620px) !important;
+  padding: clamp(10px, 1.5vw, 18px) !important;
+}
+
+body .comic-page-shell .submit-workspace .comic-canvas {
+  width: min(100%, 460px) !important;
+  max-height: min(62vh, 620px) !important;
+}
+
+@media (max-width: 760px) {
+  body .comic-page-shell .submit-page .submit-preview-stage {
+    min-height: 360px !important;
+  }
+
+  body .comic-page-shell .submit-workspace .comic-canvas {
+    width: min(100%, 300px) !important;
+    max-height: 440px !important;
+  }
+}
+
+/* Create page asset availability message */
+body .comic-page-shell .submit-page .mint-form .asset-check-text {
+  display: block !important;
+  margin: 6px 0 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #4a4a4a !important;
+}
+
+body .comic-page-shell .submit-page .mint-form .asset-check-text.available {
+  color: #1f7a3a !important;
+}
+
+/* SatoshiComics paper/ink palette and rounded-gothic type pass */
+:root {
+  --sc-paper: #f4ede0;
+  --sc-paper-deep: #efe6d6;
+  --sc-ink: #1a1410;
+  --sc-stamp: #c43b2c;
+  --sc-rule: rgba(26, 20, 16, 0.16);
+  --sc-rule-strong: rgba(26, 20, 16, 0.18);
+  --sc-display: "Shippori Mincho", Georgia, serif;
+  --sc-ui: "M PLUS Rounded 1c", system-ui, sans-serif;
+  --sc-mono: "Inconsolata", "Courier New", monospace;
+}
+
+html,
+body,
+#root,
+body .app-shell,
+body .comic-page-shell,
+body .comic-page-shell .content-panel {
+  background: linear-gradient(180deg, var(--sc-paper), var(--sc-paper-deep)) !important;
+  color: var(--sc-ink) !important;
+}
+
+body .app-shell {
+  --theme-ink: var(--sc-ink);
+  --theme-muted: rgba(26, 20, 16, 0.68);
+  --theme-line: var(--sc-rule-strong);
+  --theme-accent: var(--sc-stamp);
+  --theme-accent-soft: rgba(196, 59, 44, 0.12);
+  --comic-ink: var(--sc-ink);
+  --comic-panel: var(--sc-paper);
+  --comic-yellow: var(--sc-paper-deep);
+}
+
+body .comic-page-shell,
+body .comic-page-shell * {
+  text-shadow: none !important;
+}
+
+body .comic-page-shell {
+  font-family: var(--sc-ui) !important;
+}
+
+body .comic-page-shell :where(button, input, select, textarea, label, p, li, span, a, td, th, dd, dt) {
+  font-family: var(--sc-ui) !important;
+}
+
+body .comic-page-shell :where(.hero-copy h1, .page-title h1, .page-title h2, .rules-copy h2, .approval-requirements h2, .mint-form h2, .section-head h2, .portfolio-page h2) {
+  color: var(--sc-ink) !important;
+  font-family: var(--sc-display) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.01em !important;
+}
+
+body .comic-page-shell .hero-copy h1 {
+  letter-spacing: -0.01em !important;
+  text-transform: uppercase !important;
+}
+
+body .comic-page-shell :where(.asset-check-text, .graded-details dt, .graded-details dd, .graded-title span, .graded-issue-number, .like-count, .portfolio-table, .submit-preview-meta, .wallet-address-label, .status-pill, .asset-title-stack span) {
+  font-family: var(--sc-mono) !important;
+}
+
+body .comic-page-shell :where(.hero-copy span, .graded-auth span, .graded-auth strong, .graded-sticker span, .graded-sticker strong) {
+  color: var(--sc-stamp) !important;
+  font-family: var(--sc-ui) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: uppercase !important;
+}
+
+body .comic-page-shell .site-topbar,
+body .comic-page-shell .content-panel,
+body .comic-page-shell .hero-banner,
+body .comic-page-shell .content-panel > .page,
+body .comic-page-shell .rules-copy,
+body .comic-page-shell .approval-requirements,
+body .comic-page-shell .rules-notes section,
+body .comic-page-shell .mint-form,
+body .comic-page-shell .submit-workspace,
+body .comic-page-shell .submit-preview-stage,
+body .comic-page-shell .editor-panel,
+body .comic-page-shell .section-head,
+body .comic-page-shell .portfolio-table-wrap,
+body .comic-page-shell .portfolio-stats div,
+body .comic-page-shell .portfolio-card,
+body .comic-page-shell .empty-state,
+body .comic-page-shell .status-text,
+body .comic-page-shell .comic-lightbox-panel {
+  background: rgba(244, 237, 224, 0.86) !important;
+  color: var(--sc-ink) !important;
+  border-color: var(--sc-rule-strong) !important;
+  box-shadow: none !important;
+}
+
+body .comic-page-shell .site-topbar,
+body .comic-page-shell .content-panel {
+  background: var(--sc-paper) !important;
+}
+
+body .comic-page-shell .hero-banner,
+body .comic-page-shell .rules-copy,
+body .comic-page-shell .approval-requirements,
+body .comic-page-shell .mint-form,
+body .comic-page-shell .submit-workspace,
+body .comic-page-shell .section-head {
+  border: 1px solid var(--sc-rule-strong) !important;
+}
+
+body .comic-page-shell .rules-notes section,
+body .comic-page-shell .portfolio-stats div,
+body .comic-page-shell .empty-state,
+body .comic-page-shell .status-text {
+  border: 1px solid var(--sc-rule) !important;
+}
+
+body .comic-page-shell :where(input, select, textarea) {
+  background: rgba(239, 230, 214, 0.72) !important;
+  border: 1px solid var(--sc-rule-strong) !important;
+  color: var(--sc-ink) !important;
+  font-size: 0.9rem !important;
+}
+
+body .comic-page-shell :where(input, select, textarea)::placeholder {
+  color: rgba(26, 20, 16, 0.54) !important;
+}
+
+body .comic-page-shell .topbar-brand {
+  border-color: var(--sc-stamp) !important;
+  background: var(--sc-stamp) !important;
+}
+
+body .comic-page-shell .topbar-brand img {
+  filter: grayscale(1) contrast(1.45) !important;
+}
+
+body .comic-page-shell .tabbar,
+body .comic-page-shell .wallet-actions {
+  gap: 6px !important;
+}
+
+body .comic-page-shell .tabbar button,
+body .comic-page-shell .wallet-actions .portfolio-button,
+body .comic-page-shell .wallet-actions .wallet-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 9px !important;
+  min-height: 38px !important;
+  padding: 8px 10px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--sc-ink) !important;
+  box-shadow: none !important;
+  font-family: var(--sc-ui) !important;
+  font-size: 0.9rem !important;
+  font-weight: 900 !important;
+  text-align: left !important;
+  text-transform: uppercase !important;
+}
+
+body .comic-page-shell .tabbar button::before,
+body .comic-page-shell .wallet-actions .portfolio-button::before,
+body .comic-page-shell .wallet-actions .wallet-button::before {
+  display: inline-grid !important;
+  place-items: center !important;
+  flex: 0 0 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+  color: currentColor !important;
+  font-family: var(--sc-mono) !important;
+  font-size: 1rem !important;
+  line-height: 1 !important;
+}
+
+body .comic-page-shell .tabbar button:nth-child(1)::before { content: "⌂" !important; }
+body .comic-page-shell .tabbar button:nth-child(2)::before { content: "✚" !important; }
+body .comic-page-shell .tabbar button:nth-child(3)::before { content: "▧" !important; }
+body .comic-page-shell .tabbar button:nth-child(4)::before { content: "✓" !important; }
+body .comic-page-shell .wallet-actions .portfolio-button::before { content: "◇" !important; }
+body .comic-page-shell .wallet-actions .wallet-button::before { content: "◌" !important; }
+
+body .comic-page-shell .tabbar button.active,
+body .comic-page-shell .tabbar button:hover,
+body .comic-page-shell .wallet-actions .portfolio-button.active,
+body .comic-page-shell .wallet-actions .portfolio-button:hover,
+body .comic-page-shell .wallet-actions .wallet-button:hover,
+body .comic-page-shell .wallet-actions .wallet-button.connected {
+  background: var(--sc-stamp) !important;
+  color: var(--sc-paper) !important;
+}
+
+body .comic-page-shell :where(button, .mint-actions button, .submission-actions button, .editor-actions button, .portfolio-table button, .lightbox-close) {
+  border-color: var(--sc-rule-strong) !important;
+  background: var(--sc-paper) !important;
+  color: var(--sc-ink) !important;
+  font-family: var(--sc-ui) !important;
+  font-size: 0.9rem !important;
+  font-weight: 900 !important;
+}
+
+body .comic-page-shell .submit-page .mint-actions .primary,
+body .comic-page-shell .submit-page .mint-actions .primary:disabled {
+  background: var(--sc-stamp) !important;
+  border-color: var(--sc-stamp) !important;
+  color: var(--sc-paper) !important;
+}
+
+body .comic-page-shell .submit-page .mint-actions .primary:disabled {
+  color: rgba(244, 237, 224, 0.48) !important;
+}
+
+body .comic-page-shell .submit-page .mint-actions button:first-child {
+  background: var(--sc-ink) !important;
+  border-color: var(--sc-ink) !important;
+  color: var(--sc-paper) !important;
+}
+
+body .comic-page-shell .asset-check-text {
+  color: rgba(26, 20, 16, 0.7) !important;
+}
+
+body .comic-page-shell .asset-check-text.available {
+  color: #14642d !important;
+}
+
+body .comic-page-shell .error-text {
+  background: rgba(244, 237, 224, 0.92) !important;
+  border-color: var(--sc-stamp) !important;
+  color: var(--sc-ink) !important;
+  box-shadow: none !important;
+}
+
+body .comic-page-shell .graded-label {
+  border-color: var(--sc-stamp) !important;
+  background: rgba(244, 237, 224, 0.92) !important;
+}
+
+body .comic-page-shell .graded-comic-frame,
+body .comic-page-shell .approved-page .graded-comic-frame,
+body .comic-page-shell .graded-slab-modal .graded-comic-frame,
+body .comic-page-shell .graded-lightbox-panel .graded-comic-frame {
+  background: var(--sc-paper) !important;
+  border-color: var(--sc-ink) !important;
+}
+
+body .comic-page-shell .book-frame,
+body .comic-page-shell .asset-card,
+body .comic-page-shell .asset-meta-mobile {
+  background: rgba(244, 237, 224, 0.86) !important;
+  border-color: var(--sc-rule-strong) !important;
+}
+
+/* Remove remaining white panels from the main page sections */
+body .comic-page-shell .hero-banner,
+body .comic-page-shell .hero-banner .header-brand,
+body .comic-page-shell .hero-copy,
+body .comic-page-shell .hero-mark,
+body .comic-page-shell .submit-page,
+body .comic-page-shell .submit-page .mint-form,
+body .comic-page-shell .submit-page .submit-preview,
+body .comic-page-shell .submit-page .submit-workspace,
+body .comic-page-shell .submit-page .submit-preview-stage,
+body .comic-page-shell .submit-page .editor-panel,
+body .comic-page-shell .pending-page,
+body .comic-page-shell .approved-page,
+body .comic-page-shell .pending-page .section-head,
+body .comic-page-shell .approved-page .section-head {
+  background: var(--sc-paper) !important;
+  background-image: none !important;
+}
+
+body .comic-page-shell .rules-copy,
+body .comic-page-shell .approval-requirements,
+body .comic-page-shell .submit-page .mint-form,
+body .comic-page-shell .submit-page .submit-workspace,
+body .comic-page-shell .submit-page .editor-panel,
+body .comic-page-shell .pending-page .bookshelf-grid,
+body .comic-page-shell .pending-page .book-grid,
+body .comic-page-shell .approved-page .graded-grid {
+  background: rgba(239, 230, 214, 0.72) !important;
+  background-image: none !important;
+  border-color: var(--sc-rule-strong) !important;
+}
+
+body .comic-page-shell .submit-page input,
+body .comic-page-shell .submit-page select,
+body .comic-page-shell .submit-page textarea,
+body .comic-page-shell .submit-page .upload-drop button,
+body .comic-page-shell .submit-workspace .comic-canvas,
+body .comic-page-shell .pending-page .asset-card,
+body .comic-page-shell .pending-page .display-slot,
+body .comic-page-shell .pending-page .book-frame,
+body .comic-page-shell .pending-page .asset-meta,
+body .comic-page-shell .pending-page .asset-meta-mobile,
+body .comic-page-shell .approved-page .graded-slab,
+body .comic-page-shell .approved-page .graded-label,
+body .comic-page-shell .approved-page .graded-brand,
+body .comic-page-shell .approved-page .graded-case-body,
+body .comic-page-shell .approved-page .graded-comic-frame,
+body .comic-page-shell .approved-page .graded-footer {
+  background: var(--sc-paper) !important;
+  background-image: none !important;
+}
+
+body .comic-page-shell .submit-page .submit-preview-stage::before,
+body .comic-page-shell .approved-page .graded-slab::before,
+body .comic-page-shell .approved-page .graded-slab::after {
+  background: transparent !important;
+  background-image: none !important;
+}
+
+body .comic-page-shell .pending-page .book-frame img,
+body .comic-page-shell .approved-page .graded-comic-frame img {
+  background: transparent !important;
+}
+
+/* Fully flatten page panels to one paper color */
+html,
+body,
+#root,
+body .app-shell,
+body .comic-page-shell,
+body .comic-page-shell .site-topbar,
+body .comic-page-shell .content-panel,
+body .comic-page-shell .content-panel > .page,
+body .comic-page-shell .hero-banner,
+body .comic-page-shell .hero-banner .header-brand,
+body .comic-page-shell .hero-copy,
+body .comic-page-shell .hero-mark,
+body .comic-page-shell .rules-page,
+body .comic-page-shell .rules-copy,
+body .comic-page-shell .approval-requirements,
+body .comic-page-shell .rules-notes section,
+body .comic-page-shell .submit-page,
+body .comic-page-shell .submit-page .mint-form,
+body .comic-page-shell .submit-page .submit-preview,
+body .comic-page-shell .submit-page .submit-workspace,
+body .comic-page-shell .submit-page .submit-preview-stage,
+body .comic-page-shell .submit-page .editor-panel,
+body .comic-page-shell .pending-page,
+body .comic-page-shell .pending-page .section-head,
+body .comic-page-shell .pending-page .bookshelf-grid,
+body .comic-page-shell .pending-page .book-grid,
+body .comic-page-shell .approved-page,
+body .comic-page-shell .approved-page .section-head,
+body .comic-page-shell .approved-page .graded-grid,
+body .comic-page-shell .portfolio-page,
+body .comic-page-shell .portfolio-table-wrap,
+body .comic-page-shell .portfolio-stats div {
+  background: var(--sc-paper) !important;
+  background-color: var(--sc-paper) !important;
+  background-image: none !important;
+}
+
+/* Homepage reference alignment */
+body .comic-page-shell {
+  grid-template-columns: 245px minmax(0, 1fr) !important;
+  border-top: 1px solid var(--sc-ink) !important;
+}
+
+body .comic-page-shell .site-topbar {
+  align-items: stretch !important;
+  padding: 34px 22px 28px !important;
+  border-right: 1px solid var(--sc-stamp) !important;
+}
+
+body .comic-page-shell .topbar-brand {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 70px !important;
+  margin: 0 0 24px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--sc-stamp) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: var(--sc-ink) !important;
+}
+
+body .comic-page-shell .topbar-brand img {
+  display: none !important;
+}
+
+body .comic-page-shell .topbar-brand::before {
+  content: "SatoshiComics" !important;
+  color: var(--sc-ink) !important;
+  font-family: var(--sc-display) !important;
+  font-size: 1.9rem !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.03em !important;
+}
+
+body .comic-page-shell .topbar-brand::after {
+  content: "SC" !important;
+  display: grid !important;
+  place-items: center !important;
+  width: 44px !important;
+  height: 44px !important;
+  border: 2px solid var(--sc-stamp) !important;
+  border-radius: 50% !important;
+  color: var(--sc-stamp) !important;
+  font-family: var(--sc-ui) !important;
+  font-size: 1.35rem !important;
+  font-weight: 900 !important;
+}
+
+body .comic-page-shell .tabbar {
+  gap: 14px !important;
+}
+
+body .comic-page-shell .tabbar button,
+body .comic-page-shell .wallet-actions .portfolio-button {
+  min-height: 44px !important;
+  padding: 8px 14px !important;
+  font-family: var(--sc-display) !important;
+  font-size: 1.45rem !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.02em !important;
+  text-transform: none !important;
+}
+
+body .comic-page-shell .tabbar button::before,
+body .comic-page-shell .wallet-actions .portfolio-button::before {
+  color: currentColor !important;
+  font-family: var(--sc-mono) !important;
+  font-size: 0.95rem !important;
+}
+
+body .comic-page-shell .tabbar button:nth-child(1)::before {
+  content: "⌂" !important;
+}
+
+body .comic-page-shell .tabbar button.active {
+  background: var(--sc-stamp) !important;
+  color: var(--sc-paper) !important;
+}
+
+body .comic-page-shell .wallet-actions {
+  margin-top: auto !important;
+  padding-top: 26px !important;
+  border-top: 1px solid var(--sc-stamp) !important;
+}
+
+body .comic-page-shell .wallet-actions::before {
+  content: "EST. 2024 / SATOSHI COMICS" !important;
+  display: block !important;
+  padding: 10px 12px !important;
+  border: 1px solid var(--sc-stamp) !important;
+  color: var(--sc-stamp) !important;
+  font-family: var(--sc-mono) !important;
+  font-size: 0.78rem !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  text-align: center !important;
+}
+
+body .comic-page-shell .wallet-actions::after {
+  content: "SC" !important;
+  align-self: center !important;
+  display: grid !important;
+  place-items: center !important;
+  width: 34px !important;
+  height: 34px !important;
+  margin: 4px 0 10px !important;
+  border: 2px solid var(--sc-stamp) !important;
+  border-radius: 50% !important;
+  color: var(--sc-stamp) !important;
+  font-family: var(--sc-ui) !important;
+  font-weight: 900 !important;
+}
+
+body .comic-page-shell .wallet-actions .wallet-button {
+  margin-top: 8px !important;
+  border: 2px solid var(--sc-stamp) !important;
+  color: var(--sc-stamp) !important;
+  justify-content: center !important;
+  font-family: var(--sc-display) !important;
+  font-size: 1.2rem !important;
+  text-transform: none !important;
+}
+
+body .comic-page-shell .content-panel {
+  padding: clamp(34px, 4.8vw, 66px) !important;
+}
+
+body .comic-page-shell .content-panel > * {
+  max-width: 1120px !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+body .comic-page-shell .content-panel > .hero-banner,
+body .comic-page-shell .hero-banner {
+  margin-bottom: clamp(36px, 5vw, 58px) !important;
+  padding: 0 !important;
+}
+
+body .comic-page-shell .header-brand {
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 0.9fr) !important;
+  gap: clamp(32px, 5vw, 74px) !important;
+  width: 100% !important;
+  max-width: 1100px !important;
+}
+
+body .comic-page-shell .hero-copy h1 {
+  max-width: 720px !important;
+  font-size: clamp(5.5rem, 9vw, 8.7rem) !important;
+  line-height: 0.8 !important;
+  letter-spacing: -0.04em !important;
+}
+
+body .comic-page-shell .hero-copy p {
+  max-width: 48ch !important;
+  margin-top: 22px !important;
+  font-size: 1rem !important;
+  line-height: 1.55 !important;
+}
+
+body .comic-page-shell .hero-stamp-row {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 230px)) !important;
+  gap: 18px !important;
+  margin-top: 28px !important;
+}
+
+body .comic-page-shell .hero-stamp-row div {
+  min-height: 88px !important;
+  padding: 12px 16px !important;
+  border: 2px solid var(--sc-stamp) !important;
+  color: var(--sc-ink) !important;
+}
+
+body .comic-page-shell .hero-stamp-row div:first-child::after {
+  content: "₿" !important;
+  float: right !important;
+  display: grid !important;
+  place-items: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  margin-top: -6px !important;
+  border: 2px solid var(--sc-stamp) !important;
+  border-radius: 50% !important;
+  color: var(--sc-stamp) !important;
+  font-family: var(--sc-mono) !important;
+  font-weight: 800 !important;
+}
+
+body .comic-page-shell .hero-stamp-row strong,
+body .comic-page-shell .hero-stamp-row span {
+  display: block !important;
+  color: var(--sc-ink) !important;
+  font-family: var(--sc-mono) !important;
+  font-size: 0.92rem !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  text-transform: uppercase !important;
+}
+
+body .comic-page-shell .hero-mark {
+  width: clamp(245px, 23vw, 330px) !important;
+  border: 6px solid var(--sc-stamp) !important;
+  border-radius: 0 !important;
+  color: var(--sc-stamp) !important;
+  box-shadow: none !important;
+  transform: rotate(-1deg) !important;
+}
+
+body .comic-page-shell .hero-mark span {
+  color: var(--sc-stamp) !important;
+  font-family: var(--sc-display) !important;
+  font-size: clamp(6rem, 10vw, 9.5rem) !important;
+  font-weight: 800 !important;
+}
+
+body .comic-page-shell .rules-page {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.62fr) !important;
+  gap: 24px !important;
+}
+
+body .comic-page-shell .rules-copy,
+body .comic-page-shell .approval-requirements {
+  padding: 24px 26px !important;
+  border-top: 1px solid var(--sc-stamp) !important;
+  border-bottom: 1px solid var(--sc-rule) !important;
+}
+
+body .comic-page-shell .rules-notes {
+  grid-column: 1 / -1 !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+  margin-top: 0 !important;
+}
+
+body .comic-page-shell .rules-notes section {
+  padding: 18px !important;
+  border: 1px solid var(--sc-stamp) !important;
+}
+
+body .comic-page-shell .app-footer {
+  border-top: 1px solid var(--sc-ink) !important;
+}
+
+@media (max-width: 900px) {
+  body .comic-page-shell {
+    grid-template-columns: 1fr !important;
+  }
+
+  body .comic-page-shell .site-topbar {
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--sc-stamp) !important;
+  }
+
+  body .comic-page-shell .header-brand,
+  body .comic-page-shell .rules-page,
+  body .comic-page-shell .rules-notes {
+    grid-template-columns: 1fr !important;
+  }
+
+  body .comic-page-shell .hero-mark {
+    justify-self: start !important;
+  }
+}
+
+/* Homepage banner: no white wrapper, tighter left-aligned masthead */
+body .comic-page-shell .content-panel > .hero-banner,
+body .comic-page-shell .hero-banner {
+  width: 100% !important;
+  margin: 0 0 clamp(24px, 3vw, 38px) !important;
+  padding: clamp(26px, 3.4vw, 42px) clamp(28px, 5vw, 68px) !important;
+  border: 0 !important;
+  background: var(--sc-paper) !important;
+  background-color: var(--sc-paper) !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+body .comic-page-shell .header-brand {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 250px) !important;
+  align-items: center !important;
+  gap: clamp(34px, 7vw, 96px) !important;
+  width: min(100%, 960px) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: var(--sc-paper) !important;
+  background-image: none !important;
+}
+
+body .comic-page-shell .hero-copy {
+  max-width: 610px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+body .comic-page-shell .hero-copy span {
+  display: block !important;
+  margin: 0 0 10px !important;
+  color: var(--sc-ink) !important;
+  font-family: var(--sc-ui) !important;
+  font-size: 0.88rem !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.035em !important;
+  text-align: left !important;
+  text-transform: uppercase !important;
+}
+
+body .comic-page-shell .hero-copy h1 {
+  margin: 0 0 12px !important;
+  color: var(--sc-ink) !important;
+  font-family: var(--sc-display) !important;
+  font-size: clamp(4.6rem, 8.4vw, 7.2rem) !important;
+  font-weight: 800 !important;
+  line-height: 0.76 !important;
+  letter-spacing: -0.025em !important;
+  text-align: left !important;
+  text-transform: uppercase !important;
+  text-shadow:
+    2px 2px 0 var(--sc-paper),
+    5px 5px 0 rgba(26, 20, 16, 0.22) !important;
+}
+
+body .comic-page-shell .hero-copy p {
+  max-width: 47ch !important;
+  margin: 0 !important;
+  color: var(--sc-ink) !important;
+  font-family: var(--sc-ui) !important;
+  font-size: clamp(1rem, 1.35vw, 1.12rem) !important;
+  font-weight: 900 !important;
+  line-height: 1.42 !important;
+  letter-spacing: 0 !important;
+  text-align: left !important;
+}
+
+body .comic-page-shell .hero-mark {
+  justify-self: end !important;
+  width: clamp(170px, 18vw, 235px) !important;
+  aspect-ratio: 1.08 / 1 !important;
+  border: 4px solid var(--sc-ink) !important;
+  border-radius: 18% !important;
+  background: var(--sc-paper) !important;
+  box-shadow: 8px 10px 0 var(--sc-ink) !important;
+  transform: rotate(-4deg) !important;
+}
+
+body .comic-page-shell .hero-mark span {
+  color: var(--sc-ink) !important;
+  font-family: var(--sc-ui) !important;
+  font-size: clamp(4.5rem, 8vw, 7rem) !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+  letter-spacing: 0 !important;
+}
+
+@media (max-width: 760px) {
+  body .comic-page-shell .header-brand {
+    grid-template-columns: 1fr !important;
+  }
+
+  body .comic-page-shell .hero-mark {
+    justify-self: start !important;
+    width: 150px !important;
+  }
+}
+
+body .comic-page-shell .submit-page input,
+body .comic-page-shell .submit-page select,
+body .comic-page-shell .submit-page textarea,
+body .comic-page-shell .submit-page .upload-drop button,
+body .comic-page-shell .submit-workspace .comic-canvas,
+body .comic-page-shell .pending-page .asset-card,
+body .comic-page-shell .pending-page .display-slot,
+body .comic-page-shell .pending-page .book-frame,
+body .comic-page-shell .pending-page .asset-meta,
+body .comic-page-shell .pending-page .asset-meta-mobile,
+body .comic-page-shell .approved-page .graded-slab,
+body .comic-page-shell .approved-page .graded-label,
+body .comic-page-shell .approved-page .graded-brand,
+body .comic-page-shell .approved-page .graded-case-body,
+body .comic-page-shell .approved-page .graded-comic-frame,
+body .comic-page-shell .approved-page .graded-footer {
+  background: var(--sc-paper) !important;
+  background-color: var(--sc-paper) !important;
+  background-image: none !important;
+}
+
+/* Corrected homepage hero layout: masthead + red SC, examples under manifesto, cards right */
+body .comic-page-shell .content-panel > .hero-banner,
+body .comic-page-shell .hero-banner {
+  padding: clamp(28px, 4vw, 52px) 0 0 !important;
+  overflow: hidden !important;
+}
+
+body .comic-page-shell .header-brand {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(238px, 0.34fr) !important;
+  grid-template-areas:
+    "copy cards"
+    "showcase cards" !important;
+  column-gap: clamp(34px, 5.6vw, 76px) !important;
+  row-gap: 26px !important;
+  align-items: start !important;
+  width: 100% !important;
+  max-width: 1120px !important;
+}
+
+body .comic-page-shell .hero-copy {
+  grid-area: copy !important;
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) clamp(210px, 19vw, 305px) !important;
+  grid-template-areas:
+    "eyebrow sc"
+    "title sc"
+    "manifesto sc"
+    "stamps sc" !important;
+  column-gap: clamp(26px, 4vw, 58px) !important;
+  align-items: start !important;
+  max-width: none !important;
+}
+
+body .comic-page-shell .hero-copy > span {
+  grid-area: eyebrow !important;
+  margin: 0 0 8px !important;
+}
+
+body .comic-page-shell .hero-copy h1 {
+  grid-area: title !important;
+  max-width: 720px !important;
+  margin: 0 !important;
+  font-size: clamp(6.2rem, 11.3vw, 11.2rem) !important;
+  line-height: 0.72 !important;
+  letter-spacing: -0.055em !important;
+}
+
+body .comic-page-shell .hero-copy p {
+  grid-area: manifesto !important;
+  max-width: 48ch !important;
+  margin: 20px 0 0 !important;
+  font-size: 1rem !important;
+  line-height: 1.42 !important;
+}
+
+body .comic-page-shell .hero-copy::after {
+  content: "SC" !important;
+  grid-area: sc !important;
+  display: grid !important;
+  place-items: center !important;
+  width: clamp(210px, 19vw, 305px) !important;
+  aspect-ratio: 1 / 1 !important;
+  border: 7px solid var(--sc-stamp) !important;
+  color: var(--sc-stamp) !important;
+  font-family: var(--sc-display) !important;
+  font-size: clamp(6.8rem, 10vw, 10.5rem) !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+}
+
+body .comic-page-shell .hero-stamp-row {
+  grid-area: stamps !important;
+  width: min(100%, 500px) !important;
+}
+
+body .comic-page-shell .hero-showcase {
+  grid-area: showcase !important;
+  width: min(50%, 520px) !important;
+  min-width: 360px !important;
+  padding-top: 0 !important;
+  justify-self: start !important;
+}
+
+body .comic-page-shell .hero-showcase img {
+  max-height: 220px !important;
+}
+
+body .comic-page-shell .hero-info-cards {
+  grid-area: cards !important;
+  align-self: start !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  width: min(100%, 300px) !important;
+  gap: 20px !important;
+}
+
+body .comic-page-shell .hero-info-card {
+  min-height: 180px !important;
+}
+
+body .comic-page-shell .hero-mark {
+  display: none !important;
+}
+
+@media (max-width: 1180px) {
+  body .comic-page-shell .header-brand {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "copy"
+      "showcase"
+      "cards" !important;
+  }
+
+  body .comic-page-shell .hero-info-cards {
+    width: 100% !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Actual final home composition override */
+body .comic-page-shell .content-panel > .hero-banner,
+body .comic-page-shell .hero-banner {
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body .comic-page-shell .header-cover-strip {
+  display: none !important;
+}
+
+body .comic-page-shell .header-brand {
+  display: grid !important;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 0.78fr) !important;
+  grid-template-areas:
+    "copy cards"
+    "showcase cards" !important;
+  column-gap: clamp(26px, 3.4vw, 48px) !important;
+  row-gap: clamp(18px, 2.5vw, 30px) !important;
+  align-items: start !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: calc(100vh - 82px) !important;
+  margin: 0 !important;
+  padding: clamp(20px, 3vw, 42px) clamp(20px, 3vw, 40px) clamp(24px, 3vw, 38px) !important;
+}
+
+body .comic-page-shell .hero-copy {
+  grid-area: copy !important;
+  display: block !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+body .comic-page-shell .hero-copy > span {
+  display: block !important;
+  margin: 0 0 8px !important;
+  color: var(--sc-stamp) !important;
+  font-family: var(--sc-ui) !important;
+  font-size: clamp(0.9rem, 1.1vw, 1.05rem) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase !important;
+}
+
+body .comic-page-shell .hero-copy h1 {
+  max-width: 840px !important;
+  margin: 0 !important;
+  color: var(--sc-ink) !important;
+  font-size: clamp(3.7rem, 6vw, 7.45rem) !important;
+  line-height: 0.86 !important;
+  letter-spacing: 0 !important;
+}
+
+body .comic-page-shell .hero-copy h1::after {
+  content: "" !important;
+  display: block !important;
+  width: min(420px, 54%) !important;
+  height: 2px !important;
+  margin: clamp(12px, 1.8vw, 20px) 0 0 !important;
+  background: var(--sc-stamp) !important;
+}
+
+body .comic-page-shell .hero-copy p {
+  max-width: 37ch !important;
+  margin: clamp(18px, 2vw, 26px) 0 0 !important;
+  color: var(--sc-ink) !important;
+  font-family: var(--sc-body) !important;
+  font-size: clamp(1rem, 1.28vw, 1.22rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.56 !important;
+}
+
+body .comic-page-shell .hero-copy::after,
+body .comic-page-shell .hero-stamp-row,
+body .comic-page-shell .hero-mark {
+  display: none !important;
+  content: none !important;
+}
+
+body .comic-page-shell .hero-showcase {
+  grid-area: showcase !important;
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  place-items: center !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  min-height: clamp(260px, 35vw, 440px) !important;
+  padding: clamp(6px, 1vw, 14px) 0 clamp(32px, 4vw, 54px) !important;
+  margin: 0 !important;
+  isolation: isolate !important;
+}
+
+body .comic-page-shell .hero-showcase::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  bottom: clamp(18px, 2.5vw, 34px) !important;
+  z-index: -1 !important;
+  width: min(70%, 560px) !important;
+  height: clamp(54px, 7vw, 92px) !important;
+  border: 1px solid rgba(52, 46, 38, 0.52) !important;
+  border-radius: 10px !important;
+  background:
+    linear-gradient(100deg, rgba(255, 255, 255, 0.36), transparent 28%),
+    repeating-linear-gradient(8deg, rgba(43, 39, 32, 0.14) 0 2px, transparent 2px 13px),
+    linear-gradient(180deg, #aaa08c, #756f61) !important;
+  box-shadow: 0 20px 28px rgba(38, 31, 22, 0.2) !important;
+  transform: translateX(-50%) perspective(680px) rotateX(58deg) rotateZ(-1deg) !important;
+  transform-origin: center bottom !important;
+}
+
+body .comic-page-shell .hero-showcase img {
+  width: min(38%, 260px) !important;
+  min-width: 190px !important;
+  max-height: none !important;
+  aspect-ratio: 0.68 !important;
+  object-fit: cover !important;
+  border: 2px solid var(--sc-ink) !important;
+  border-radius: 8px !important;
+  background: var(--sc-paper) !important;
+  box-shadow:
+    12px 10px 0 #8b4a32,
+    18px 18px 24px rgba(37, 30, 22, 0.2) !important;
+  transform: rotateY(-8deg) rotateZ(-1deg) !important;
+}
+
+body .comic-page-shell .hero-info-cards {
+  grid-area: cards !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  align-content: start !important;
+  gap: clamp(18px, 2.1vw, 28px) !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin-top: clamp(80px, 9vw, 128px) !important;
+}
+
+body .comic-page-shell .hero-info-card {
+  min-height: clamp(190px, 19vw, 240px) !important;
+  padding: clamp(18px, 2vw, 26px) !important;
+  border: 2px solid var(--sc-stamp) !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body .comic-page-shell .hero-info-card h2 {
+  font-size: clamp(1.45rem, 2vw, 2rem) !important;
+  line-height: 1.04 !important;
+  letter-spacing: 0 !important;
+}
+
+body .comic-page-shell .hero-info-card p {
+  margin: clamp(16px, 1.8vw, 22px) 0 !important;
+  font-family: var(--sc-body) !important;
+  font-size: clamp(0.96rem, 1.15vw, 1.08rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.6 !important;
+}
+
+body .comic-page-shell .hero-info-card button {
+  color: var(--sc-stamp) !important;
+  letter-spacing: 0 !important;
+}
+
+body .comic-page-shell .rules-page {
+  display: none !important;
+}
+
+@media (max-width: 1220px) {
+  body .comic-page-shell .header-brand {
+    grid-template-columns: minmax(0, 1.65fr) minmax(250px, 0.82fr) !important;
+    column-gap: 28px !important;
+  }
+
+  body .comic-page-shell .hero-info-cards {
+    margin-top: clamp(82px, 10vw, 128px) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  body .comic-page-shell .header-brand {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "copy"
+      "showcase"
+      "cards" !important;
+    min-height: 0 !important;
+  }
+
+  body .comic-page-shell .hero-copy h1 {
+    font-size: clamp(3.2rem, 12vw, 6rem) !important;
+  }
+
+  body .comic-page-shell .hero-showcase {
+    min-height: clamp(300px, 72vw, 520px) !important;
+  }
+
+  body .comic-page-shell .hero-info-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    margin-top: 0 !important;
+  }
+}
+
+@media (max-width: 620px) {
+  body .app-shell {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  body .comic-page-shell {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  body .comic-page-shell .site-topbar {
+    position: static !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    padding: 16px 14px !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--sc-stamp) !important;
+  }
+
+  body .comic-page-shell .topbar-brand {
+    justify-self: start !important;
+    max-width: 190px !important;
+  }
+
+  body .comic-page-shell .tabbar,
+  body .comic-page-shell .wallet-actions {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  body .comic-page-shell .tabbar button,
+  body .comic-page-shell .wallet-actions button {
+    width: auto !important;
+    min-width: 0 !important;
+    min-height: 38px !important;
+    padding: 8px 10px !important;
+    font-size: 1rem !important;
+    line-height: 1 !important;
+  }
+
+  body .comic-page-shell .content-panel {
+    width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+
+  body .comic-page-shell .header-brand {
+    padding: 20px 14px 24px !important;
+  }
+
+  body .comic-page-shell .hero-copy h1 {
+    max-width: 100% !important;
+    font-size: clamp(2.9rem, 17vw, 4.4rem) !important;
+    line-height: 0.9 !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  body .comic-page-shell .hero-copy p {
+    max-width: none !important;
+  }
+
+  body .comic-page-shell .hero-showcase img {
+    width: min(58%, 260px) !important;
+  }
+
+  body .comic-page-shell .hero-info-cards {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Final measured homepage width fix */
+body .comic-page-shell .content-panel,
+body .comic-page-shell .content-panel > .hero-banner,
+body .comic-page-shell .hero-banner,
+body .comic-page-shell .header-brand,
+body .comic-page-shell .rules-notes {
+  box-sizing: border-box !important;
+}
+
+body .comic-page-shell .content-panel > *,
+body .comic-page-shell .content-panel > .hero-banner,
+body .comic-page-shell .hero-banner,
+body .comic-page-shell .header-brand,
+body .comic-page-shell .rules-page,
+body .comic-page-shell .rules-notes {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+body .comic-page-shell .header-brand {
+  grid-template-columns: minmax(0, 1fr) 320px !important;
+  grid-template-areas:
+    "copy copy"
+    "showcase cards" !important;
+  column-gap: 42px !important;
+  row-gap: 42px !important;
+}
+
+body .comic-page-shell .hero-copy {
+  grid-template-columns: minmax(0, 1fr) 310px !important;
+  column-gap: 42px !important;
+  min-height: 310px !important;
+}
+
+body .comic-page-shell .hero-copy h1 {
+  max-width: 620px !important;
+  font-size: clamp(4.7rem, 6.9vw, 7.25rem) !important;
+  line-height: 0.78 !important;
+}
+
+body .comic-page-shell .hero-copy::after {
+  width: 310px !important;
+  font-size: 8.4rem !important;
+}
+
+body .comic-page-shell .hero-showcase {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+  overflow: visible !important;
+}
+
+body .comic-page-shell .hero-showcase img {
+  width: 100% !important;
+  max-height: 220px !important;
+  object-fit: cover !important;
+}
+
+body .comic-page-shell .hero-info-cards {
+  width: 100% !important;
+  max-width: none !important;
+  justify-self: stretch !important;
+  overflow: visible !important;
+}
+
+body .comic-page-shell .hero-info-card {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+body .comic-page-shell .rules-page {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+body .comic-page-shell .rules-notes {
+  width: 100% !important;
+  max-width: none !important;
+  justify-self: stretch !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+body .comic-page-shell .rules-notes section {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 1180px) {
+  body .comic-page-shell .header-brand {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "copy"
+      "showcase"
+      "cards" !important;
+  }
+
+  body .comic-page-shell .hero-copy {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 30vw) !important;
+  }
+
+  body .comic-page-shell .hero-copy::after {
+    width: min(30vw, 300px) !important;
+    font-size: clamp(5rem, 10vw, 8rem) !important;
+  }
+
+  body .comic-page-shell .hero-info-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* End-of-file home composition override */
+body .comic-page-shell .content-panel > .hero-banner,
+body .comic-page-shell .hero-banner {
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body .comic-page-shell .header-cover-strip {
+  display: none !important;
+}
+
+body .comic-page-shell .header-brand {
+  display: grid !important;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 0.78fr) !important;
+  grid-template-areas:
+    "copy cards"
+    "showcase cards" !important;
+  column-gap: clamp(26px, 3.4vw, 48px) !important;
+  row-gap: clamp(18px, 2.5vw, 30px) !important;
+  align-items: start !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: calc(100vh - 82px) !important;
+  margin: 0 !important;
+  padding: clamp(20px, 3vw, 42px) clamp(20px, 3vw, 40px) clamp(24px, 3vw, 38px) !important;
+}
+
+body .comic-page-shell .hero-copy {
+  grid-area: copy !important;
+  display: block !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+body .comic-page-shell .hero-copy > span {
+  display: block !important;
+  margin: 0 0 8px !important;
+  color: var(--sc-stamp) !important;
+  font-family: var(--sc-ui) !important;
+  font-size: clamp(0.9rem, 1.1vw, 1.05rem) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase !important;
+}
+
+body .comic-page-shell .hero-copy h1 {
+  max-width: 840px !important;
+  margin: 0 !important;
+  color: var(--sc-ink) !important;
+  font-size: clamp(4rem, 7.1vw, 8.6rem) !important;
+  line-height: 0.86 !important;
+  letter-spacing: 0 !important;
+}
+
+body .comic-page-shell .hero-copy h1::after {
+  content: "" !important;
+  display: block !important;
+  width: min(420px, 54%) !important;
+  height: 2px !important;
+  margin: clamp(12px, 1.8vw, 20px) 0 0 !important;
+  background: var(--sc-stamp) !important;
+}
+
+body .comic-page-shell .hero-copy p {
+  max-width: 37ch !important;
+  margin: clamp(18px, 2vw, 26px) 0 0 !important;
+  color: var(--sc-ink) !important;
+  font-family: var(--sc-body) !important;
+  font-size: clamp(1rem, 1.28vw, 1.22rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.56 !important;
+}
+
+body .comic-page-shell .hero-copy::after,
+body .comic-page-shell .hero-stamp-row,
+body .comic-page-shell .hero-mark {
+  display: none !important;
+  content: none !important;
+}
+
+body .comic-page-shell .hero-showcase {
+  grid-area: showcase !important;
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  place-items: center !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  min-height: clamp(300px, 42vw, 560px) !important;
+  padding: clamp(10px, 1.4vw, 20px) 0 clamp(42px, 5.4vw, 74px) !important;
+  margin: 0 !important;
+  isolation: isolate !important;
+}
+
+body .comic-page-shell .hero-showcase::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  bottom: clamp(18px, 2.5vw, 34px) !important;
+  z-index: -1 !important;
+  width: min(70%, 560px) !important;
+  height: clamp(54px, 7vw, 92px) !important;
+  border: 1px solid rgba(52, 46, 38, 0.52) !important;
+  border-radius: 10px !important;
+  background:
+    linear-gradient(100deg, rgba(255, 255, 255, 0.36), transparent 28%),
+    repeating-linear-gradient(8deg, rgba(43, 39, 32, 0.14) 0 2px, transparent 2px 13px),
+    linear-gradient(180deg, #aaa08c, #756f61) !important;
+  box-shadow: 0 20px 28px rgba(38, 31, 22, 0.2) !important;
+  transform: translateX(-50%) perspective(680px) rotateX(58deg) rotateZ(-1deg) !important;
+  transform-origin: center bottom !important;
+}
+
+body .comic-page-shell .hero-showcase img {
+  width: min(44%, 300px) !important;
+  min-width: 190px !important;
+  max-height: none !important;
+  aspect-ratio: 0.68 !important;
+  object-fit: cover !important;
+  border: 2px solid var(--sc-ink) !important;
+  border-radius: 8px !important;
+  background: var(--sc-paper) !important;
+  box-shadow:
+    12px 10px 0 #8b4a32,
+    18px 18px 24px rgba(37, 30, 22, 0.2) !important;
+  transform: rotateY(-8deg) rotateZ(-1deg) !important;
+}
+
+body .comic-page-shell .hero-info-cards {
+  grid-area: cards !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  align-content: start !important;
+  gap: clamp(18px, 2.1vw, 28px) !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin-top: clamp(112px, 12vw, 178px) !important;
+}
+
+body .comic-page-shell .hero-info-card {
+  min-height: clamp(190px, 19vw, 240px) !important;
+  padding: clamp(18px, 2vw, 26px) !important;
+  border: 2px solid var(--sc-stamp) !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body .comic-page-shell .hero-info-card h2 {
+  font-size: clamp(1.45rem, 2vw, 2rem) !important;
+  line-height: 1.04 !important;
+  letter-spacing: 0 !important;
+}
+
+body .comic-page-shell .hero-info-card p {
+  margin: clamp(16px, 1.8vw, 22px) 0 !important;
+  font-family: var(--sc-body) !important;
+  font-size: clamp(0.96rem, 1.15vw, 1.08rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.6 !important;
+}
+
+body .comic-page-shell .hero-info-card button {
+  color: var(--sc-stamp) !important;
+  letter-spacing: 0 !important;
+}
+
+body .comic-page-shell .rules-page {
+  display: none !important;
+}
+
+@media (max-width: 1220px) {
+  body .comic-page-shell .header-brand {
+    grid-template-columns: minmax(0, 1.65fr) minmax(250px, 0.82fr) !important;
+    column-gap: 28px !important;
+  }
+
+  body .comic-page-shell .hero-info-cards {
+    margin-top: clamp(82px, 10vw, 128px) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  body .comic-page-shell .header-brand {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "copy"
+      "showcase"
+      "cards" !important;
+    min-height: 0 !important;
+  }
+
+  body .comic-page-shell .hero-copy h1 {
+    font-size: clamp(3.2rem, 12vw, 6rem) !important;
+  }
+
+  body .comic-page-shell .hero-showcase {
+    min-height: clamp(300px, 72vw, 520px) !important;
+  }
+
+  body .comic-page-shell .hero-info-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    margin-top: 0 !important;
+  }
+}
+
+@media (max-width: 620px) {
+  body .comic-page-shell .header-brand {
+    padding: 20px 14px 24px !important;
+  }
+
+  body .comic-page-shell .hero-copy h1 {
+    font-size: clamp(3rem, 18vw, 4.9rem) !important;
+  }
+
+  body .comic-page-shell .hero-copy p {
+    max-width: none !important;
+  }
+
+  body .comic-page-shell .hero-showcase img {
+    width: min(58%, 260px) !important;
+  }
+
+  body .comic-page-shell .hero-info-cards {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Reference home composition: visual left column, rule cards right column */
+body .comic-page-shell .content-panel > .hero-banner,
+body .comic-page-shell .hero-banner {
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+body .comic-page-shell .header-cover-strip {
+  display: none !important;
+}
+
+body .comic-page-shell .header-brand {
+  display: grid !important;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 0.78fr) !important;
+  grid-template-areas:
+    "copy cards"
+    "showcase cards" !important;
+  column-gap: clamp(26px, 3.4vw, 48px) !important;
+  row-gap: clamp(18px, 2.5vw, 30px) !important;
+  align-items: start !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: calc(100vh - 82px) !important;
+  margin: 0 !important;
+  padding: clamp(20px, 3vw, 42px) clamp(20px, 3vw, 40px) clamp(24px, 3vw, 38px) !important;
+}
+
+body .comic-page-shell .hero-copy {
+  grid-area: copy !important;
+  display: block !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+body .comic-page-shell .hero-copy > span {
+  display: block !important;
+  margin: 0 0 8px !important;
+  color: var(--sc-stamp) !important;
+  font-family: var(--sc-ui) !important;
+  font-size: clamp(0.9rem, 1.1vw, 1.05rem) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase !important;
+}
+
+body .comic-page-shell .hero-copy h1 {
+  max-width: 840px !important;
+  margin: 0 !important;
+  color: var(--sc-ink) !important;
+  font-size: clamp(4rem, 7.1vw, 8.6rem) !important;
+  line-height: 0.86 !important;
+  letter-spacing: 0 !important;
+}
+
+body .comic-page-shell .hero-copy h1::after {
+  content: "" !important;
+  display: block !important;
+  width: min(420px, 54%) !important;
+  height: 2px !important;
+  margin: clamp(12px, 1.8vw, 20px) 0 0 !important;
+  background: var(--sc-stamp) !important;
+}
+
+body .comic-page-shell .hero-copy p {
+  max-width: 37ch !important;
+  margin: clamp(18px, 2vw, 26px) 0 0 !important;
+  color: var(--sc-ink) !important;
+  font-family: var(--sc-body) !important;
+  font-size: clamp(1rem, 1.28vw, 1.22rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.56 !important;
+}
+
+body .comic-page-shell .hero-copy::after,
+body .comic-page-shell .hero-stamp-row {
+  display: none !important;
+  content: none !important;
+}
+
+body .comic-page-shell .hero-showcase {
+  grid-area: showcase !important;
+  position: relative !important;
+  display: grid !important;
+  place-items: center !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  min-height: clamp(300px, 42vw, 560px) !important;
+  padding: clamp(10px, 1.4vw, 20px) 0 clamp(42px, 5.4vw, 74px) !important;
+  margin: 0 !important;
+  isolation: isolate !important;
+}
+
+body .comic-page-shell .hero-showcase::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  bottom: clamp(18px, 2.5vw, 34px) !important;
+  z-index: -1 !important;
+  width: min(70%, 560px) !important;
+  height: clamp(54px, 7vw, 92px) !important;
+  border: 1px solid rgba(52, 46, 38, 0.52) !important;
+  border-radius: 10px !important;
+  background:
+    linear-gradient(100deg, rgba(255, 255, 255, 0.36), transparent 28%),
+    repeating-linear-gradient(8deg, rgba(43, 39, 32, 0.14) 0 2px, transparent 2px 13px),
+    linear-gradient(180deg, #aaa08c, #756f61) !important;
+  box-shadow: 0 20px 28px rgba(38, 31, 22, 0.2) !important;
+  transform: translateX(-50%) perspective(680px) rotateX(58deg) rotateZ(-1deg) !important;
+  transform-origin: center bottom !important;
+}
+
+body .comic-page-shell .hero-showcase img {
+  width: min(44%, 300px) !important;
+  min-width: 190px !important;
+  max-height: none !important;
+  aspect-ratio: 0.68 !important;
+  object-fit: cover !important;
+  border: 2px solid var(--sc-ink) !important;
+  border-radius: 8px !important;
+  background: var(--sc-paper) !important;
+  box-shadow:
+    12px 10px 0 #8b4a32,
+    18px 18px 24px rgba(37, 30, 22, 0.2) !important;
+  transform: rotateY(-8deg) rotateZ(-1deg) !important;
+}
+
+body .comic-page-shell .hero-info-cards {
+  grid-area: cards !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  align-content: start !important;
+  gap: clamp(18px, 2.1vw, 28px) !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin-top: clamp(112px, 12vw, 178px) !important;
+}
+
+body .comic-page-shell .hero-info-card {
+  min-height: clamp(190px, 19vw, 240px) !important;
+  padding: clamp(18px, 2vw, 26px) !important;
+  border: 2px solid var(--sc-stamp) !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body .comic-page-shell .hero-info-card h2 {
+  font-size: clamp(1.45rem, 2vw, 2rem) !important;
+  line-height: 1.04 !important;
+  letter-spacing: 0 !important;
+}
+
+body .comic-page-shell .hero-info-card p {
+  margin: clamp(16px, 1.8vw, 22px) 0 !important;
+  font-family: var(--sc-body) !important;
+  font-size: clamp(0.96rem, 1.15vw, 1.08rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.6 !important;
+}
+
+body .comic-page-shell .hero-info-card button {
+  color: var(--sc-stamp) !important;
+  letter-spacing: 0 !important;
+}
+
+body .comic-page-shell .rules-page {
+  display: none !important;
+}
+
+@media (max-width: 1220px) {
+  body .comic-page-shell .header-brand {
+    grid-template-columns: minmax(0, 1.65fr) minmax(250px, 0.82fr) !important;
+    column-gap: 28px !important;
+  }
+
+  body .comic-page-shell .hero-info-cards {
+    margin-top: clamp(82px, 10vw, 128px) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  body .comic-page-shell .header-brand {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "copy"
+      "showcase"
+      "cards" !important;
+    min-height: 0 !important;
+  }
+
+  body .comic-page-shell .hero-copy h1 {
+    font-size: clamp(3.2rem, 12vw, 6rem) !important;
+  }
+
+  body .comic-page-shell .hero-showcase {
+    min-height: clamp(300px, 72vw, 520px) !important;
+  }
+
+  body .comic-page-shell .hero-info-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    margin-top: 0 !important;
+  }
+}
+
+@media (max-width: 620px) {
+  body .comic-page-shell .header-brand {
+    padding: 20px 14px 24px !important;
+  }
+
+  body .comic-page-shell .hero-copy h1 {
+    font-size: clamp(3rem, 18vw, 4.9rem) !important;
+  }
+
+  body .comic-page-shell .hero-copy p {
+    max-width: none !important;
+  }
+
+  body .comic-page-shell .hero-showcase img {
+    width: min(58%, 260px) !important;
+  }
+
+  body .comic-page-shell .hero-info-cards {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body .comic-page-shell .hero-copy {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "eyebrow"
+      "title"
+      "manifesto"
+      "stamps"
+      "sc" !important;
+  }
+
+  body .comic-page-shell .hero-copy::after {
+    width: 160px !important;
+    font-size: 5rem !important;
+  }
+
+  body .comic-page-shell .hero-showcase {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  body .comic-page-shell .hero-info-cards {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Align hero and rules rows with the full ticket row width */
+body .comic-page-shell .content-panel > .hero-banner,
+body .comic-page-shell .hero-banner,
+body .comic-page-shell .header-brand,
+body .comic-page-shell .rules-page,
+body .comic-page-shell .rules-notes {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+body .comic-page-shell .header-brand {
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.42fr) !important;
+  grid-template-areas:
+    "copy copy"
+    "showcase cards" !important;
+}
+
+body .comic-page-shell .hero-copy {
+  grid-template-columns: minmax(0, 1fr) clamp(260px, 30vw, 390px) !important;
+}
+
+body .comic-page-shell .hero-copy h1 {
+  max-width: min(100%, 760px) !important;
+}
+
+body .comic-page-shell .hero-copy::after {
+  width: clamp(260px, 30vw, 390px) !important;
+}
+
+body .comic-page-shell .hero-showcase {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+body .comic-page-shell .hero-info-cards {
+  width: 100% !important;
+  max-width: none !important;
+  justify-self: stretch !important;
+}
+
+body .comic-page-shell .hero-info-card {
+  width: 100% !important;
+}
+
+@media (max-width: 1180px) {
+  body .comic-page-shell .header-brand {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "copy"
+      "showcase"
+      "cards" !important;
+  }
+}
+
+/* Repair hero collision: masthead, SC mark, rules cards, and covers get real space */
+body .comic-page-shell .content-panel > .hero-banner,
+body .comic-page-shell .hero-banner {
+  overflow: visible !important;
+}
+
+body .comic-page-shell .header-brand {
+  grid-template-columns: minmax(660px, 1fr) minmax(250px, 300px) !important;
+  grid-template-areas:
+    "copy cards"
+    "showcase cards" !important;
+  column-gap: clamp(34px, 5vw, 66px) !important;
+  row-gap: 26px !important;
+  align-items: start !important;
+  max-width: 1180px !important;
+}
+
+body .comic-page-shell .hero-copy {
+  grid-area: copy !important;
+  position: relative !important;
+  display: block !important;
+  min-height: clamp(330px, 34vw, 430px) !important;
+  padding-right: clamp(245px, 29vw, 360px) !important;
+}
+
+body .comic-page-shell .hero-copy > span {
+  display: block !important;
+  margin: 0 0 10px !important;
+}
+
+body .comic-page-shell .hero-copy h1 {
+  display: block !important;
+  max-width: min(100%, 650px) !important;
+  margin: 0 !important;
+  font-size: clamp(5.3rem, 8vw, 8.7rem) !important;
+  line-height: 0.78 !important;
+  letter-spacing: -0.05em !important;
+  overflow: visible !important;
+}
+
+body .comic-page-shell .hero-copy p {
+  display: block !important;
+  max-width: 48ch !important;
+  margin: 24px 0 0 !important;
+}
+
+body .comic-page-shell .hero-copy::after {
+  position: absolute !important;
+  top: 34px !important;
+  right: 0 !important;
+  width: clamp(220px, 25vw, 335px) !important;
+  max-width: 38% !important;
+  aspect-ratio: 1 / 1 !important;
+  z-index: 0 !important;
+}
+
+body .comic-page-shell .hero-copy > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+body .comic-page-shell .hero-stamp-row {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(180px, 230px)) !important;
+  width: min(100%, 500px) !important;
+  gap: 18px !important;
+  margin-top: 30px !important;
+}
+
+body .comic-page-shell .hero-stamp-row div {
+  min-width: 0 !important;
+}
+
+body .comic-page-shell .hero-showcase {
+  grid-area: showcase !important;
+  width: min(50%, 520px) !important;
+  min-width: 420px !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+body .comic-page-shell .hero-info-cards {
+  grid-area: cards !important;
+  width: 100% !important;
+}
+
+@media (max-width: 1180px) {
+  body .comic-page-shell .header-brand {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "copy"
+      "showcase"
+      "cards" !important;
+  }
+
+  body .comic-page-shell .hero-copy {
+    padding-right: clamp(220px, 32vw, 320px) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body .comic-page-shell .hero-copy {
+    min-height: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  body .comic-page-shell .hero-copy::after {
+    position: static !important;
+    margin-top: 22px !important;
+    max-width: none !important;
+  }
+
+  body .comic-page-shell .hero-showcase {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  body .comic-page-shell .hero-stamp-row {
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+  }
+}
+
+/* Homepage reset: full-width hero banner, examples below, rules on the right */
+body .comic-page-shell .content-panel {
+  overflow: hidden !important;
+}
+
+body .comic-page-shell .content-panel > .hero-banner,
+body .comic-page-shell .hero-banner {
+  width: 100% !important;
+  max-width: 1120px !important;
+  margin: 0 0 clamp(34px, 4vw, 52px) !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+body .comic-page-shell .header-brand {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 330px) !important;
+  grid-template-areas:
+    "copy copy"
+    "showcase cards" !important;
+  gap: clamp(28px, 4vw, 52px) clamp(32px, 4vw, 58px) !important;
+  align-items: start !important;
+  width: 100% !important;
+  max-width: 1120px !important;
+  margin: 0 !important;
+}
+
+body .comic-page-shell .hero-copy {
+  grid-area: copy !important;
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) clamp(220px, 24vw, 330px) !important;
+  grid-template-areas:
+    "eyebrow sc"
+    "title sc"
+    "manifesto sc" !important;
+  column-gap: clamp(28px, 5vw, 72px) !important;
+  align-items: center !important;
+  min-height: clamp(310px, 34vw, 430px) !important;
+  max-width: none !important;
+  padding: clamp(18px, 2.5vw, 34px) 0 !important;
+}
+
+body .comic-page-shell .hero-copy > span {
+  grid-area: eyebrow !important;
+  margin: 0 0 10px !important;
+}
+
+body .comic-page-shell .hero-copy h1 {
+  grid-area: title !important;
+  max-width: 730px !important;
+  margin: 0 !important;
+  font-size: clamp(5.4rem, 8.5vw, 9.2rem) !important;
+  line-height: 0.75 !important;
+  letter-spacing: -0.055em !important;
+  overflow: visible !important;
+}
+
+body .comic-page-shell .hero-copy p {
+  grid-area: manifesto !important;
+  max-width: 48ch !important;
+  margin: 22px 0 0 !important;
+  font-size: 1rem !important;
+  line-height: 1.45 !important;
+}
+
+body .comic-page-shell .hero-copy::after {
+  content: "SC" !important;
+  grid-area: sc !important;
+  position: static !important;
+  display: grid !important;
+  place-items: center !important;
+  justify-self: end !important;
+  width: clamp(220px, 24vw, 330px) !important;
+  max-width: none !important;
+  aspect-ratio: 1 / 1 !important;
+  border: 7px solid var(--sc-stamp) !important;
+  color: var(--sc-stamp) !important;
+  font-family: var(--sc-display) !important;
+  font-size: clamp(7rem, 11vw, 11rem) !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  z-index: 0 !important;
+}
+
+body .comic-page-shell .hero-stamp-row {
+  display: none !important;
+}
+
+body .comic-page-shell .hero-showcase {
+  grid-area: showcase !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+  width: min(50%, 560px) !important;
+  min-width: 440px !important;
+  justify-self: start !important;
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+body .comic-page-shell .hero-showcase img {
+  width: 100% !important;
+  max-height: 240px !important;
+  aspect-ratio: 0.68 !important;
+  object-fit: cover !important;
+}
+
+body .comic-page-shell .hero-info-cards {
+  grid-area: cards !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 20px !important;
+  width: 100% !important;
+  max-width: 330px !important;
+  justify-self: end !important;
+}
+
+body .comic-page-shell .hero-info-card {
+  min-height: 178px !important;
+}
+
+body .comic-page-shell .rules-page {
+  margin-top: clamp(28px, 4vw, 50px) !important;
+}
+
+@media (max-width: 1180px) {
+  body .comic-page-shell .header-brand {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "copy"
+      "showcase"
+      "cards" !important;
+  }
+
+  body .comic-page-shell .hero-info-cards {
+    max-width: none !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    justify-self: stretch !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body .comic-page-shell .hero-copy {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "eyebrow"
+      "title"
+      "manifesto"
+      "sc" !important;
+    min-height: 0 !important;
+  }
+
+  body .comic-page-shell .hero-copy::after {
+    justify-self: start !important;
+    width: 160px !important;
+    font-size: 5rem !important;
+    margin-top: 22px !important;
+  }
+
+  body .comic-page-shell .hero-showcase {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  body .comic-page-shell .hero-info-cards {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Final homepage composition pass */
+body .comic-page-shell .topbar-brand {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 42px !important;
+  grid-template-rows: auto auto !important;
+  column-gap: 12px !important;
+  align-items: center !important;
+}
+
+body .comic-page-shell .topbar-brand::before {
+  content: "Satoshi\a Comics" !important;
+  white-space: pre-line !important;
+  grid-column: 1 !important;
+  grid-row: 1 / 3 !important;
+  font-size: 1.72rem !important;
+  line-height: 0.92 !important;
+}
+
+body .comic-page-shell .topbar-brand::after {
+  grid-column: 2 !important;
+  grid-row: 1 / 3 !important;
+  justify-self: end !important;
+}
+
+body .comic-page-shell .wallet-actions::before,
+body .comic-page-shell .wallet-actions::after {
+  display: none !important;
+  content: none !important;
+}
+
+body .comic-page-shell .wallet-actions {
+  margin-top: auto !important;
+  padding-top: 24px !important;
+}
+
+body .comic-page-shell .header-brand {
+  grid-template-columns: minmax(360px, 1.12fr) minmax(230px, 0.72fr) minmax(260px, 0.66fr) !important;
+  align-items: start !important;
+  gap: clamp(22px, 3.5vw, 46px) !important;
+  max-width: 1180px !important;
+}
+
+body .comic-page-shell .hero-copy h1 {
+  max-width: 670px !important;
+  font-size: clamp(5rem, 7.8vw, 8rem) !important;
+}
+
+body .comic-page-shell .hero-copy p {
+  max-width: 42ch !important;
+}
+
+body .comic-page-shell .hero-showcase {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  align-items: end !important;
+  padding-top: 36px !important;
+}
+
+body .comic-page-shell .hero-showcase img {
+  width: 100% !important;
+  aspect-ratio: 0.68 !important;
+  object-fit: cover !important;
+  border: 1px solid var(--sc-ink) !important;
+  box-shadow: 6px 7px 0 rgba(26, 20, 16, 0.16) !important;
+}
+
+body .comic-page-shell .hero-showcase img:nth-child(1) {
+  transform: rotate(-2deg) translateY(14px) !important;
+}
+
+body .comic-page-shell .hero-showcase img:nth-child(2) {
+  transform: rotate(1deg) !important;
+}
+
+body .comic-page-shell .hero-showcase img:nth-child(3) {
+  transform: rotate(2deg) translateY(20px) !important;
+}
+
+body .comic-page-shell .hero-info-cards {
+  display: grid !important;
+  gap: 20px !important;
+}
+
+body .comic-page-shell .hero-info-card {
+  padding: 18px 18px 16px !important;
+  border: 2px solid var(--sc-stamp) !important;
+  color: var(--sc-ink) !important;
+  background: var(--sc-paper) !important;
+}
+
+body .comic-page-shell .hero-info-card > div {
+  display: flex !important;
+  align-items: start !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+}
+
+body .comic-page-shell .hero-info-card h2 {
+  margin: 0 !important;
+  color: var(--sc-ink) !important;
+  font-family: var(--sc-display) !important;
+  font-size: 1.65rem !important;
+  line-height: 1.04 !important;
+}
+
+body .comic-page-shell .hero-info-card > div span {
+  display: grid !important;
+  place-items: center !important;
+  width: 34px !important;
+  height: 34px !important;
+  border: 2px solid var(--sc-stamp) !important;
+  color: var(--sc-stamp) !important;
+  font-family: var(--sc-ui) !important;
+  font-weight: 900 !important;
+}
+
+body .comic-page-shell .hero-info-card p {
+  margin: 16px 0 !important;
+  color: var(--sc-ink) !important;
+  font-size: 0.98rem !important;
+  font-weight: 600 !important;
+  line-height: 1.48 !important;
+}
+
+body .comic-page-shell .hero-info-card button {
+  min-height: 32px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--sc-stamp) !important;
+  font-family: var(--sc-display) !important;
+  font-size: 1.08rem !important;
+  font-weight: 800 !important;
+  text-transform: none !important;
+}
+
+body .comic-page-shell .hero-info-card button::after {
+  content: "›" !important;
+  margin-left: 8px !important;
+}
+
+body .comic-page-shell .hero-info-card ol {
+  margin: 14px 0 0 !important;
+  padding-left: 1.2rem !important;
+}
+
+body .comic-page-shell .hero-info-card li {
+  margin-bottom: 7px !important;
+  font-size: 0.86rem !important;
+  line-height: 1.35 !important;
+}
+
+body .comic-page-shell .hero-mark {
+  display: none !important;
+}
+
+body .comic-page-shell .rules-page {
+  grid-template-columns: 1fr !important;
+}
+
+body .comic-page-shell .rules-page > .rules-copy,
+body .comic-page-shell .rules-page > .approval-requirements {
+  display: none !important;
+}
+
+body .comic-page-shell .rules-notes {
+  grid-column: 1 !important;
+}
+
+@media (max-width: 1180px) {
+  body .comic-page-shell .header-brand {
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.72fr) !important;
+  }
+
+  body .comic-page-shell .hero-info-cards {
+    grid-column: 1 / -1 !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body .comic-page-shell .header-brand,
+  body .comic-page-shell .hero-info-cards {
+    grid-template-columns: 1fr !important;
+  }
+
+  body .comic-page-shell .hero-showcase {
+    max-width: 420px !important;
+  }
+}
+
+/* TRUE FINAL homepage row-width correction */
+body .comic-page-shell .content-panel > *,
+body .comic-page-shell .content-panel > .hero-banner,
+body .comic-page-shell .hero-banner,
+body .comic-page-shell .header-brand,
+body .comic-page-shell .rules-page,
+body .comic-page-shell .rules-notes {
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+}
+
+body .comic-page-shell .header-brand {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 320px !important;
+  grid-template-areas:
+    "copy copy"
+    "showcase cards" !important;
+  gap: 42px !important;
+  align-items: start !important;
+}
+
+body .comic-page-shell .hero-copy {
+  grid-area: copy !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 310px !important;
+  grid-template-areas:
+    "eyebrow sc"
+    "title sc"
+    "manifesto sc" !important;
+  column-gap: 42px !important;
+  min-height: 310px !important;
+  padding: 18px 0 !important;
+}
+
+body .comic-page-shell .hero-copy h1 {
+  max-width: 620px !important;
+  font-size: clamp(4.7rem, 6.9vw, 7.25rem) !important;
+  line-height: 0.78 !important;
+}
+
+body .comic-page-shell .hero-copy::after {
+  grid-area: sc !important;
+  position: static !important;
+  justify-self: end !important;
+  width: 310px !important;
+  max-width: none !important;
+  font-size: 8.4rem !important;
+}
+
+body .comic-page-shell .hero-showcase {
+  grid-area: showcase !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  padding-top: 0 !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+}
+
+body .comic-page-shell .hero-showcase img {
+  width: 100% !important;
+  max-height: 220px !important;
+}
+
+body .comic-page-shell .hero-info-cards {
+  grid-area: cards !important;
+  grid-column: auto !important;
+  width: 100% !important;
+  max-width: none !important;
+  justify-self: stretch !important;
+  grid-template-columns: 1fr !important;
+}
+
+body .comic-page-shell .hero-info-card {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 1180px) {
+  body .comic-page-shell .header-brand {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "copy"
+      "showcase"
+      "cards" !important;
+  }
+
+  body .comic-page-shell .hero-copy {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 30vw) !important;
+  }
+
+  body .comic-page-shell .hero-copy::after {
+    width: min(30vw, 300px) !important;
+    font-size: clamp(5rem, 10vw, 8rem) !important;
+  }
+
+  body .comic-page-shell .hero-info-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* TRUE LAST home composition override */
+body .comic-page-shell .content-panel > .hero-banner,
+body .comic-page-shell .hero-banner {
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body .comic-page-shell .header-cover-strip {
+  display: none !important;
+}
+
+body .comic-page-shell .header-brand {
+  display: grid !important;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 0.78fr) !important;
+  grid-template-areas:
+    "copy cards"
+    "showcase cards" !important;
+  column-gap: clamp(26px, 3.4vw, 48px) !important;
+  row-gap: clamp(14px, 2vw, 24px) !important;
+  align-items: start !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: calc(100vh - 82px) !important;
+  margin: 0 !important;
+  padding: clamp(20px, 3vw, 42px) clamp(20px, 3vw, 40px) clamp(24px, 3vw, 38px) !important;
+}
+
+body .comic-page-shell .hero-copy {
+  grid-area: copy !important;
+  display: block !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+body .comic-page-shell .hero-copy > span {
+  display: block !important;
+  margin: 0 0 8px !important;
+  color: var(--sc-stamp) !important;
+  font-family: var(--sc-ui) !important;
+  font-size: clamp(0.9rem, 1.1vw, 1.05rem) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase !important;
+}
+
+body .comic-page-shell .hero-copy h1 {
+  max-width: 840px !important;
+  margin: 0 !important;
+  color: var(--sc-ink) !important;
+  font-size: clamp(3.7rem, 6vw, 7.45rem) !important;
+  line-height: 0.86 !important;
+  letter-spacing: 0 !important;
+}
+
+body .comic-page-shell .hero-copy h1::after {
+  content: "" !important;
+  display: block !important;
+  width: min(420px, 54%) !important;
+  height: 2px !important;
+  margin: clamp(12px, 1.8vw, 20px) 0 0 !important;
+  background: var(--sc-stamp) !important;
+}
+
+body .comic-page-shell .hero-copy p {
+  max-width: 37ch !important;
+  margin: clamp(16px, 1.8vw, 22px) 0 0 !important;
+  color: var(--sc-ink) !important;
+  font-family: var(--sc-body) !important;
+  font-size: clamp(1rem, 1.28vw, 1.22rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.56 !important;
+}
+
+body .comic-page-shell .hero-copy::after,
+body .comic-page-shell .hero-stamp-row,
+body .comic-page-shell .hero-mark {
+  display: none !important;
+  content: none !important;
+}
+
+body .comic-page-shell .hero-showcase {
+  grid-area: showcase !important;
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  place-items: center !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  min-height: clamp(260px, 35vw, 440px) !important;
+  padding: clamp(6px, 1vw, 14px) 0 clamp(32px, 4vw, 54px) !important;
+  margin: 0 !important;
+  isolation: isolate !important;
+}
+
+body .comic-page-shell .hero-showcase::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  bottom: clamp(18px, 2.5vw, 34px) !important;
+  z-index: -1 !important;
+  width: min(70%, 560px) !important;
+  height: clamp(54px, 7vw, 92px) !important;
+  border: 1px solid rgba(52, 46, 38, 0.52) !important;
+  border-radius: 10px !important;
+  background:
+    linear-gradient(100deg, rgba(255, 255, 255, 0.36), transparent 28%),
+    repeating-linear-gradient(8deg, rgba(43, 39, 32, 0.14) 0 2px, transparent 2px 13px),
+    linear-gradient(180deg, #aaa08c, #756f61) !important;
+  box-shadow: 0 20px 28px rgba(38, 31, 22, 0.2) !important;
+  transform: translateX(-50%) perspective(680px) rotateX(58deg) rotateZ(-1deg) !important;
+  transform-origin: center bottom !important;
+}
+
+body .comic-page-shell .hero-showcase img {
+  width: min(38%, 260px) !important;
+  min-width: 190px !important;
+  max-height: none !important;
+  aspect-ratio: 0.68 !important;
+  object-fit: cover !important;
+  border: 2px solid var(--sc-ink) !important;
+  border-radius: 8px !important;
+  background: var(--sc-paper) !important;
+  box-shadow:
+    12px 10px 0 #8b4a32,
+    18px 18px 24px rgba(37, 30, 22, 0.2) !important;
+  transform: rotateY(-8deg) rotateZ(-1deg) !important;
+}
+
+body .comic-page-shell .hero-info-cards {
+  grid-area: cards !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  align-content: start !important;
+  gap: clamp(18px, 2.1vw, 28px) !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin-top: clamp(80px, 9vw, 128px) !important;
+}
+
+body .comic-page-shell .hero-info-card {
+  min-height: clamp(190px, 19vw, 240px) !important;
+  padding: clamp(18px, 2vw, 26px) !important;
+  border: 2px solid var(--sc-stamp) !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body .comic-page-shell .hero-info-card h2 {
+  font-size: clamp(1.45rem, 2vw, 2rem) !important;
+  line-height: 1.04 !important;
+  letter-spacing: 0 !important;
+}
+
+body .comic-page-shell .hero-info-card p {
+  margin: clamp(16px, 1.8vw, 22px) 0 !important;
+  font-family: var(--sc-body) !important;
+  font-size: clamp(0.96rem, 1.15vw, 1.08rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.6 !important;
+}
+
+body .comic-page-shell .hero-info-card button {
+  color: var(--sc-stamp) !important;
+  letter-spacing: 0 !important;
+}
+
+body .comic-page-shell .rules-page {
+  display: none !important;
+}
+
+@media (max-width: 1220px) {
+  body .comic-page-shell .header-brand {
+    grid-template-columns: minmax(0, 1.65fr) minmax(250px, 0.82fr) !important;
+    column-gap: 28px !important;
+  }
+
+  body .comic-page-shell .hero-info-cards {
+    margin-top: clamp(82px, 10vw, 128px) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  body .comic-page-shell .header-brand {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "copy"
+      "showcase"
+      "cards" !important;
+    min-height: 0 !important;
+  }
+
+  body .comic-page-shell .hero-copy h1 {
+    font-size: clamp(3.2rem, 12vw, 6rem) !important;
+  }
+
+  body .comic-page-shell .hero-showcase {
+    min-height: clamp(300px, 72vw, 520px) !important;
+  }
+
+  body .comic-page-shell .hero-info-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    margin-top: 0 !important;
+  }
+}
+
+@media (max-width: 620px) {
+  body .app-shell {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  body .comic-page-shell {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  body .comic-page-shell .site-topbar {
+    position: static !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    padding: 16px 14px !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--sc-stamp) !important;
+  }
+
+  body .comic-page-shell .topbar-brand {
+    justify-self: start !important;
+    max-width: 190px !important;
+  }
+
+  body .comic-page-shell .tabbar,
+  body .comic-page-shell .wallet-actions {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  body .comic-page-shell .tabbar button,
+  body .comic-page-shell .wallet-actions button {
+    width: auto !important;
+    min-width: 0 !important;
+    min-height: 38px !important;
+    padding: 8px 10px !important;
+    font-size: 1rem !important;
+    line-height: 1 !important;
+  }
+
+  body .comic-page-shell .content-panel {
+    width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+
+  body .comic-page-shell .header-brand {
+    padding: 20px 14px 24px !important;
+  }
+
+  body .comic-page-shell .hero-copy h1 {
+    max-width: 100% !important;
+    font-size: clamp(2.9rem, 17vw, 4.4rem) !important;
+    line-height: 0.9 !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  body .comic-page-shell .hero-copy p {
+    max-width: none !important;
+  }
+
+  body .comic-page-shell .hero-showcase img {
+    width: min(58%, 260px) !important;
+  }
+
+  body .comic-page-shell .hero-info-cards {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* TRUE LAST mobile overflow repair */
+@media (max-width: 620px) {
+  html,
+  body,
+  #root,
+  body .app-shell,
+  body .comic-page-shell,
+  body .comic-page-shell .site-topbar,
+  body .comic-page-shell .content-panel,
+  body .comic-page-shell .content-panel > .hero-banner,
+  body .comic-page-shell .hero-banner,
+  body .comic-page-shell .header-brand {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    overflow-x: hidden !important;
+  }
+
+  body .comic-page-shell .site-topbar {
+    box-sizing: border-box !important;
+  }
+
+  body .comic-page-shell .tabbar,
+  body .comic-page-shell .wallet-actions {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  body .comic-page-shell .tabbar button,
+  body .comic-page-shell .wallet-actions button {
+    width: 100% !important;
+    max-width: 100% !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  body .comic-page-shell .header-brand {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  body .comic-page-shell .hero-copy h1 {
+    font-size: clamp(2.75rem, 13vw, 3.45rem) !important;
+    line-height: 0.94 !important;
+  }
+
+  body .comic-page-shell .hero-copy p {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+    overflow-wrap: break-word !important;
+  }
+
+  body .comic-page-shell .hero-showcase {
+    min-height: 380px !important;
+  }
+}
+
+/* TRUE LAST mobile nav and content clamp */
+@media (max-width: 620px) {
+  body .comic-page-shell,
+  body .comic-page-shell *,
+  body .comic-page-shell *::before,
+  body .comic-page-shell *::after {
+    box-sizing: border-box !important;
+  }
+
+  body .comic-page-shell .site-topbar .tabbar,
+  body .comic-page-shell .site-topbar .wallet-actions {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+
+  body .comic-page-shell .site-topbar .tabbar button,
+  body .comic-page-shell .site-topbar .wallet-actions button,
+  body .comic-page-shell .site-topbar .wallet-actions .portfolio-button,
+  body .comic-page-shell .site-topbar .wallet-actions .wallet-button {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding: 8px 6px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  body .comic-page-shell .content-panel,
+  body .comic-page-shell .hero-banner,
+  body .comic-page-shell .header-brand,
+  body .comic-page-shell .hero-copy,
+  body .comic-page-shell .hero-showcase,
+  body .comic-page-shell .hero-info-cards {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  body .comic-page-shell .hero-copy h1,
+  body .comic-page-shell .hero-copy p {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  body .comic-page-shell .hero-showcase {
+    justify-items: center !important;
+    min-height: 360px !important;
+  }
+
+  body .comic-page-shell .hero-showcase img {
+    width: 230px !important;
+    min-width: 0 !important;
+    max-width: calc(100vw - 72px) !important;
+  }
+}
+
+/* TRUE LAST mobile topbar simplification */
+@media (max-width: 620px) {
+  body .comic-page-shell .site-topbar {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 16px !important;
+  }
+
+  body .comic-page-shell .site-topbar .topbar-brand {
+    order: 1 !important;
+    width: 190px !important;
+    max-width: 190px !important;
+  }
+
+  body .comic-page-shell .site-topbar .tabbar {
+    order: 2 !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  body .comic-page-shell .site-topbar .wallet-actions {
+    order: 3 !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  body .comic-page-shell .site-topbar .tabbar button,
+  body .comic-page-shell .site-topbar .wallet-actions button {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    text-align: center !important;
+  }
+}
+
+/* TRUE LAST mobile one-column nav */
+@media (max-width: 620px) {
+  body .comic-page-shell .site-topbar .tabbar,
+  body .comic-page-shell .site-topbar .wallet-actions {
+    grid-template-columns: 1fr !important;
+    justify-items: stretch !important;
+  }
+
+  body .comic-page-shell .site-topbar .tabbar button,
+  body .comic-page-shell .site-topbar .wallet-actions button {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* TRUE LAST mobile hero clamp */
+@media (max-width: 620px) {
+  body .comic-page-shell .hero-copy p {
+    max-width: min(28ch, calc(100vw - 104px)) !important;
+  }
+
+  body .comic-page-shell .hero-showcase {
+    justify-items: center !important;
+    min-height: 320px !important;
+  }
+
+  body .comic-page-shell .hero-showcase img {
+    width: 190px !important;
+    max-width: 190px !important;
+  }
+}
+
+/* Reference index.html rules-page composition */
+body .comic-page-shell .content-panel {
+  display: block !important;
+}
+
+body .comic-page-shell .content-panel > .hero-banner,
+body .comic-page-shell .hero-banner {
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body .comic-page-shell .header-brand {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  grid-template-areas:
+    "copy mark" !important;
+  gap: 24px !important;
+  align-items: start !important;
+  min-height: 0 !important;
+  padding: 36px 48px 0 !important;
+}
+
+body .comic-page-shell .hero-copy {
+  grid-area: copy !important;
+  display: block !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+}
+
+body .comic-page-shell .hero-copy > span {
+  display: block !important;
+  margin: 0 0 8px !important;
+  color: var(--sc-stamp) !important;
+  font-family: var(--sc-ui) !important;
+  font-size: 0.72rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+}
+
+body .comic-page-shell .hero-copy h1 {
+  max-width: 820px !important;
+  margin: 0 !important;
+  color: var(--sc-ink) !important;
+  font-family: var(--sc-display) !important;
+  font-size: clamp(4.2rem, 7vw, 6.9rem) !important;
+  font-weight: 800 !important;
+  line-height: 0.86 !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase !important;
+}
+
+body .comic-page-shell .hero-copy h1::after {
+  display: none !important;
+}
+
+body .comic-page-shell .hero-copy p {
+  max-width: 46ch !important;
+  margin: 22px 0 22px !important;
+  color: rgba(26, 20, 16, 0.72) !important;
+  font-family: var(--sc-ui) !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  line-height: 1.55 !important;
+}
+
+body .comic-page-shell .hero-copy::after {
+  content: "SC" !important;
+  grid-area: mark !important;
+  display: grid !important;
+  place-items: center !important;
+  position: absolute !important;
+  top: 36px !important;
+  right: 48px !important;
+  width: 118px !important;
+  height: 118px !important;
+  border: 6px solid var(--sc-stamp) !important;
+  color: var(--sc-stamp) !important;
+  font-family: var(--sc-ui) !important;
+  font-size: 42px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+  line-height: 1 !important;
+}
+
+body .comic-page-shell .hero-stamp-row {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 280px)) !important;
+  gap: 12px !important;
+  margin: 0 0 36px !important;
+  width: 100% !important;
+}
+
+body .comic-page-shell .hero-stamp-row div {
+  display: block !important;
+  border: 2px solid var(--sc-stamp) !important;
+  color: var(--sc-stamp) !important;
+  padding: 12px 14px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  font-family: var(--sc-ui) !important;
+  font-size: 0.78rem !important;
+  font-weight: 900 !important;
+  line-height: 1.45 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+body .comic-page-shell .hero-stamp-row strong,
+body .comic-page-shell .hero-stamp-row span {
+  display: block !important;
+  color: var(--sc-stamp) !important;
+}
+
+body .comic-page-shell .hero-showcase,
+body .comic-page-shell .hero-info-cards {
+  display: none !important;
+}
+
+body .comic-page-shell .rules-page {
+  display: grid !important;
+  grid-template-columns: 1.3fr 0.9fr !important;
+  gap: 16px !important;
+  margin: 0 !important;
+  padding: 0 48px 56px !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+body .comic-page-shell .rules-page > .rules-copy,
+body .comic-page-shell .rules-page > .approval-requirements {
+  display: block !important;
+}
+
+body .comic-page-shell .rules-copy,
+body .comic-page-shell .approval-requirements,
+body .comic-page-shell .rules-notes section {
+  border: 1px solid rgba(26, 20, 16, 0.16) !important;
+  border-radius: 0 !important;
+  background: rgba(255, 255, 255, 0.28) !important;
+  padding: 22px 24px !important;
+  box-shadow: none !important;
+}
+
+body .comic-page-shell .rules-copy h2,
+body .comic-page-shell .approval-requirements h2 {
+  margin: 0 0 14px !important;
+  color: var(--sc-ink) !important;
+  font-family: var(--sc-display) !important;
+  font-size: 1.75rem !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0 !important;
+}
+
+body .comic-page-shell .rules-copy ol,
+body .comic-page-shell .approval-requirements ol {
+  margin: 0 !important;
+  padding-left: 18px !important;
+}
+
+body .comic-page-shell .rules-copy li,
+body .comic-page-shell .approval-requirements li {
+  margin: 0 0 8px !important;
+  color: rgba(26, 20, 16, 0.72) !important;
+  font-family: var(--sc-ui) !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  line-height: 1.55 !important;
+}
+
+body .comic-page-shell .rules-notes {
+  grid-column: 1 / -1 !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  margin: 0 !important;
+}
+
+body .comic-page-shell .rules-notes h3 {
+  margin: 0 0 8px !important;
+  color: var(--sc-stamp) !important;
+  font-family: var(--sc-ui) !important;
+  font-size: 0.78rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+}
+
+body .comic-page-shell .rules-notes p {
+  margin: 0 !important;
+  color: rgba(26, 20, 16, 0.72) !important;
+  font-family: var(--sc-ui) !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  line-height: 1.55 !important;
+}
+
+@media (max-width: 980px) {
+  body .comic-page-shell .header-brand {
+    grid-template-columns: 1fr !important;
+    grid-template-areas: "copy" !important;
+    padding: 24px 18px 0 !important;
+  }
+
+  body .comic-page-shell .hero-copy::after {
+    position: static !important;
+    width: 96px !important;
+    height: 96px !important;
+    margin: 18px 0 0 !important;
+    font-size: 34px !important;
+  }
+
+  body .comic-page-shell .hero-copy h1 {
+    font-size: clamp(3.2rem, 12vw, 5.3rem) !important;
+  }
+
+  body .comic-page-shell .hero-stamp-row,
+  body .comic-page-shell .rules-page,
+  body .comic-page-shell .rules-notes {
+    grid-template-columns: 1fr !important;
+  }
+
+  body .comic-page-shell .rules-page {
+    padding: 0 18px 40px !important;
+  }
+}
+
+/* Reference page polish: remove legacy comic effects */
+body .comic-page-shell .hero-copy h1,
+body .comic-page-shell .rules-copy h2,
+body .comic-page-shell .approval-requirements h2,
+body .comic-page-shell .rules-notes h3,
+body .comic-page-shell .hero-copy p,
+body .comic-page-shell .rules-copy li,
+body .comic-page-shell .approval-requirements li,
+body .comic-page-shell .rules-notes p {
+  text-align: left !important;
+  text-shadow: none !important;
+  white-space: normal !important;
+}
+
+body .comic-page-shell .header-brand {
+  position: relative !important;
+}
+
+body .comic-page-shell .hero-copy h1 {
+  text-wrap: balance !important;
+}
+
+body .comic-page-shell .rules-page {
+  align-items: start !important;
+}
+
+body .comic-page-shell .rules-copy,
+body .comic-page-shell .approval-requirements,
+body .comic-page-shell .rules-notes section {
+  background: rgba(255, 255, 255, 0.34) !important;
+  border: 1px solid rgba(26, 20, 16, 0.18) !important;
+}
+
+body .comic-page-shell .rules-copy li,
+body .comic-page-shell .approval-requirements li {
+  font-weight: 500 !important;
+}
+
+@media (max-width: 620px) {
+  body .comic-page-shell .hero-copy h1 {
+    max-width: calc(100vw - 36px) !important;
+    font-size: clamp(2.9rem, 14vw, 3.6rem) !important;
+    overflow-wrap: normal !important;
+  }
+
+  body .comic-page-shell .hero-copy p {
+    width: auto !important;
+    max-width: calc(100vw - 36px) !important;
+    overflow: visible !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+  }
+
+  body .comic-page-shell .hero-stamp-row,
+  body .comic-page-shell .rules-page,
+  body .comic-page-shell .rules-notes {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* Reference page final typography reset */
+body .comic-page-shell .content-panel .hero-copy h1,
+body .comic-page-shell .content-panel .rules-copy h2,
+body .comic-page-shell .content-panel .approval-requirements h2 {
+  color: var(--sc-ink) !important;
+  filter: none !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 !important;
+  paint-order: normal !important;
+}
+
+body .comic-page-shell .content-panel .hero-copy h1 *,
+body .comic-page-shell .content-panel .rules-copy h2 *,
+body .comic-page-shell .content-panel .approval-requirements h2 * {
+  filter: none !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+@media (max-width: 620px) {
+  body .comic-page-shell .hero-copy p,
+  body .comic-page-shell .hero-stamp-row,
+  body .comic-page-shell .rules-page {
+    width: calc(100vw - 104px) !important;
+    max-width: calc(100vw - 104px) !important;
+  }
+
+  body .comic-page-shell .hero-stamp-row div,
+  body .comic-page-shell .rules-copy,
+  body .comic-page-shell .approval-requirements,
+  body .comic-page-shell .rules-notes section {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  body .comic-page-shell .hero-copy p {
+    display: block !important;
+    inline-size: 26ch !important;
+    max-inline-size: 26ch !important;
+  }
+}
+
+/* Rules alignment and matching red panels */
+body .comic-page-shell .content-panel {
+  --rules-page-x: clamp(28px, 4vw, 48px);
+  --rules-page-top: clamp(18px, 2vw, 28px);
+}
+
+body .comic-page-shell .header-brand {
+  padding: var(--rules-page-top) var(--rules-page-x) 0 !important;
+}
+
+body .comic-page-shell .rules-page {
+  padding: 0 var(--rules-page-x) 56px !important;
+  gap: 18px !important;
+}
+
+body .comic-page-shell .rules-copy,
+body .comic-page-shell .approval-requirements {
+  min-height: 392px !important;
+  border: 2px solid var(--sc-stamp) !important;
+  padding: 24px 26px !important;
+}
+
+body .comic-page-shell .rules-notes {
+  margin-top: 0 !important;
+}
+
+@media (max-width: 980px) {
+  body .comic-page-shell .content-panel {
+    --rules-page-x: 18px;
+    --rules-page-top: 18px;
+  }
+
+  body .comic-page-shell .rules-copy,
+  body .comic-page-shell .approval-requirements {
+    min-height: 0 !important;
+  }
+}
+
+/* TRUE LAST matching rule-panel borders */
+body .comic-page-shell .content-panel .rules-page > .rules-copy,
+body .comic-page-shell .content-panel .rules-page > .approval-requirements {
+  border: 2px solid var(--sc-stamp) !important;
+  min-height: 330px !important;
+  padding: 22px 26px !important;
+  background: rgba(255, 255, 255, 0.22) !important;
+}
+
+@media (max-width: 980px) {
+  body .comic-page-shell .content-panel .rules-page > .rules-copy,
+  body .comic-page-shell .content-panel .rules-page > .approval-requirements {
+    min-height: 0 !important;
+  }
+}
+
+/* TRUE LAST hero-to-section-edge alignment */
+body .comic-page-shell .content-panel {
+  --rules-panel-pad-x: 26px;
+}
+
+body .comic-page-shell .content-panel .header-brand {
+  padding-left: max(0px, calc(var(--rules-page-x) - var(--rules-panel-pad-x))) !important;
+}
+
+body .comic-page-shell .content-panel .hero-copy,
+body .comic-page-shell .content-panel .hero-copy > span,
+body .comic-page-shell .content-panel .hero-copy h1,
+body .comic-page-shell .content-panel .hero-copy p,
+body .comic-page-shell .content-panel .hero-stamp-row {
+  margin-left: 0 !important;
+  justify-self: start !important;
+}
+
+@media (max-width: 980px) {
+  body .comic-page-shell .content-panel .header-brand {
+    padding-left: 18px !important;
+  }
+}
+
+/* TRUE LAST hero exact section-border alignment */
+body .comic-page-shell .content-panel {
+  --rules-hero-edge-correction: 6px;
+}
+
+body .comic-page-shell .content-panel .header-brand {
+  padding-left: max(0px, calc(var(--rules-page-x) - var(--rules-hero-edge-correction))) !important;
+}
+
+@media (max-width: 980px) {
+  body .comic-page-shell .content-panel .header-brand {
+    padding-left: 18px !important;
+  }
+}
+
+/* TRUE LAST top alignment and plain secondary headers */
+body .comic-page-shell .content-panel > .hero-banner,
+body .comic-page-shell .content-panel > .page {
+  padding-top: 18px !important;
+}
+
+body .comic-page-shell .content-panel .header-brand {
+  padding-top: 0 !important;
+}
+
+body .comic-page-shell .content-panel > .pending-page,
+body .comic-page-shell .content-panel > .approved-page,
+body .comic-page-shell .content-panel > .portfolio-page {
+  padding-top: 18px !important;
+}
+
+body .comic-page-shell .pending-page > .section-head,
+body .comic-page-shell .approved-page > .section-head,
+body .comic-page-shell .portfolio-page > .section-head {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin-top: 0 !important;
+}
+
+body .comic-page-shell .pending-page > .section-head::before,
+body .comic-page-shell .pending-page > .section-head::after,
+body .comic-page-shell .approved-page > .section-head::before,
+body .comic-page-shell .approved-page > .section-head::after,
+body .comic-page-shell .portfolio-page > .section-head::before,
+body .comic-page-shell .portfolio-page > .section-head::after {
+  display: none !important;
+  content: none !important;
+}
+
+body .comic-page-shell .pending-page > .section-head p,
+body .comic-page-shell .approved-page > .section-head p,
+body .comic-page-shell .portfolio-page > .section-head p {
+  display: none !important;
+}
+
+/* TRUE LAST align right pages with sidebar top */
+body .comic-page-shell .content-panel > .hero-banner,
+body .comic-page-shell .content-panel > .page {
+  margin-top: -32px !important;
+}
+
+@media (max-width: 980px) {
+  body .comic-page-shell .content-panel > .hero-banner,
+  body .comic-page-shell .content-panel > .page {
+    margin-top: 0 !important;
+  }
+}
+
+/* TRUE LAST align sidebar down to main page */
+body .comic-page-shell .content-panel > .hero-banner,
+body .comic-page-shell .content-panel > .page {
+  margin-top: 0 !important;
+}
+
+body .comic-page-shell .site-topbar {
+  padding-top: 66px !important;
+}
+
+@media (max-width: 980px) {
+  body .comic-page-shell .site-topbar {
+    padding-top: 16px !important;
+  }
+}
+
+/* Let the document grow and scroll instead of clipping pages to the viewport. */
+html {
+  height: auto !important;
+  overflow-x: clip !important;
+  overflow-y: auto !important;
+}
+
+body,
+body #root,
+body .app-shell,
+body .comic-page-shell,
+body .comic-page-shell .content-panel {
+  height: auto !important;
+  max-height: none !important;
+  min-height: 100vh !important;
+  overflow: visible !important;
 }

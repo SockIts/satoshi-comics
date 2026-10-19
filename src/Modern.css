@@ -1,0 +1,426 @@
+/* Modern collection theme. Scoped to preserve the editor and wallet behavior. */
+body .app-shell.modern-app {
+  --modern-paper: #f7f8f3;
+  --modern-ink: #20251e;
+  --modern-muted: #787e70;
+  --modern-lime: #d9f780;
+  font-family: 'Inter', Arial, sans-serif !important;
+  color: var(--modern-ink) !important;
+  background: var(--modern-paper) !important;
+  padding: 0 !important;
+}
+body .modern-app *, body .modern-app *::before, body .modern-app *::after { box-sizing: border-box; }
+body .modern-app .comic-page-shell {
+  display: grid !important; grid-template-columns: 220px minmax(0, 1fr) !important;
+  width: 100% !important; max-width: none !important; margin: 0 !important; padding: 0 !important;
+  border: 0 !important; border-radius: 0 !important; background: var(--modern-paper) !important;
+  box-shadow: none !important; align-items: start !important;
+}
+body .modern-app button, body .modern-app input, body .modern-app select, body .modern-app textarea {
+  font-family: 'Inter', Arial, sans-serif !important; text-transform: none !important; letter-spacing: normal !important;
+  box-shadow: none !important; text-shadow: none !important; border-radius: 7px !important;
+}
+body .app-shell.modern-app .comic-page-shell * { font-family: 'Inter', Arial, sans-serif !important; }
+body .app-shell.modern-app .comic-page-shell .portfolio-button::before,
+body .app-shell.modern-app .comic-page-shell .portfolio-button::after { display: none !important; }
+body .app-shell.modern-app .comic-page-shell .tabbar button { border-radius: 8px !important; }
+body .app-shell.modern-app .comic-page-shell .submit-artwork { background: #d9f780 !important; border: 0 !important; color: #20251e !important; font-weight: 650 !important; }
+body .app-shell.modern-app .comic-page-shell .submit-artwork:hover { background: #c9ed65 !important; }
+body .app-shell.modern-app .comic-page-shell .spotlight-tag { color: #d9f780 !important; }
+body .app-shell.modern-app .comic-page-shell .spotlight p { color: #c2cbb9 !important; }
+body .app-shell.modern-app .comic-page-shell .spotlight button { background: transparent !important; color: white !important; border: 0 !important; font-size: 11px !important; font-weight: 500 !important; }
+body .app-shell.modern-app .comic-page-shell .collection-filters button { background: transparent !important; border: 0 !important; color: #73796b !important; font-weight: 400 !important; font-size: 11px !important; }
+body .app-shell.modern-app .comic-page-shell .collection-filters button.selected { background: #e8ecdf !important; color: #20251e !important; font-weight: 650 !important; }
+body .app-shell.modern-app .comic-page-shell .modern-cover { background: #e9ece2 !important; border: 0 !important; }
+body .app-shell.modern-app .comic-page-shell .modern-cover:hover { background: #dde4cf !important; }
+body .app-shell.modern-app .comic-page-shell .collection-intro p { color: #787e70 !important; }
+body .app-shell.modern-app .comic-page-shell .collection-intro .eyebrow { color: #787e70 !important; font-size: 9px !important; letter-spacing: 2px !important; }
+body .app-shell.modern-app .comic-page-shell .spotlight button span { color: #fff !important; }
+body .app-shell.modern-app .comic-page-shell .site-topbar .tabbar button,
+body .app-shell.modern-app .comic-page-shell .site-topbar .wallet-actions .portfolio-button { display: flex !important; opacity: 1 !important; color: #73796b !important; background: transparent !important; }
+body .app-shell.modern-app .comic-page-shell .site-topbar .tabbar button.active,
+body .app-shell.modern-app .comic-page-shell .site-topbar .wallet-actions .portfolio-button.active { background: #20251e !important; color: #fff !important; }
+body .modern-app button { transition: background .18s, transform .18s !important; }
+body .modern-app button:focus-visible { outline: 3px solid #91b843 !important; outline-offset: 3px; }
+body .modern-app .comic-page-shell .site-topbar {
+  display: flex !important; flex-direction: column !important; align-items: stretch !important; gap: 0 !important;
+  grid-column: 1 !important; grid-row: 1 !important; position: sticky !important; top: 0 !important;
+  height: 100dvh !important; min-height: 640px !important; width: 220px !important;
+  padding: 38px 18px 28px !important; margin: 0 !important; border: 0 !important; border-right: 1px solid #e1e4d9 !important;
+  background: #f0f2e9 !important; overflow: auto !important;
+}
+body .modern-app .site-topbar::before, body .modern-app .site-topbar::after,
+body .modern-app .content-panel::before, body .modern-app .content-panel::after,
+body .modern-app .page::before, body .modern-app .page::after,
+body .modern-app .topbar-brand::before, body .modern-app .topbar-brand::after,
+body .modern-app .tabbar button::before, body .modern-app .tabbar button::after,
+body .modern-app .portfolio-button::before, body .modern-app .portfolio-button::after { display: none !important; }
+body .modern-app .site-topbar .topbar-brand {
+  display: flex !important; align-items: center !important; justify-content: flex-start !important; gap: 10px !important;
+  width: 100% !important; min-height: 45px !important; padding: 0 !important; margin: 0 0 58px !important;
+  border: 0 !important; background: transparent !important; transform: none !important;
+}
+body .modern-app .modern-monogram { display: grid; place-items: center; width: 39px; height: 44px; border-radius: 11px; color: var(--modern-lime); background: #20251e; font-size: 21px; font-weight: 850; letter-spacing: -3px; padding-right: 3px; }
+body .modern-app .modern-wordmark { font-size: 23px; line-height: 1.02; font-weight: 850; letter-spacing: -1.2px; text-align: left; color: var(--modern-ink); }
+body .modern-app .modern-wordmark > span { color: #8c947e; }
+body .modern-app .tabbar, body .modern-app .wallet-actions { display: flex !important; flex-direction: column !important; gap: 9px !important; width: 100% !important; padding: 0 !important; margin: 0 !important; border: 0 !important; background: transparent !important; }
+body .modern-app .tabbar button, body .modern-app .wallet-actions .portfolio-button {
+  display: flex !important; align-items: center !important; justify-content: flex-start !important; gap: 14px !important;
+  width: 100% !important; min-height: 51px !important; height: auto !important; padding: 12px 15px !important;
+  border: 0 !important; background: transparent !important; color: #73796b !important; font-size: 14px !important;
+  font-weight: 650 !important; line-height: 1.4 !important; transform: none !important; text-align: left !important;
+}
+body .modern-app .wallet-actions { margin-top: 9px !important; }
+body .modern-app .tabbar button.active, body .modern-app .wallet-actions .portfolio-button.active { color: #fff !important; background: #20251e !important; }
+body .modern-app .tabbar button:hover:not(.active), body .modern-app .portfolio-button:hover:not(.active) { background: #e5e9dc !important; }
+body .modern-app .nav-icon { width: 16px; text-align: center; font-size: 19px; font-weight: 500; }
+body .modern-app .sidebar-note { margin-top: auto; padding-top: 24px; color: #787e70; font-size: 12px; line-height: 1.8; }
+body .modern-app .sidebar-note p:first-child { border-top: 1px solid #dfe3d5; padding-top: 20px; }
+body .modern-app .sidebar-note p { margin: 0 0 24px; }
+body .modern-app .sidebar-note a { color: inherit; text-decoration: none; margin-left: 12px; }
+body .modern-app .sidebar-note i { display: inline-block; width: 6px; height: 6px; background: #98ad63; border-radius: 50%; margin-right: 4px; }
+body .modern-app .sidebar-note small { font-size: 10px; }
+body .modern-app .comic-page-shell .content-panel {
+  display: block !important; grid-column: 2 !important; grid-row: 1 !important;
+  width: 100% !important; min-width: 0 !important; height: auto !important; min-height: 100vh !important;
+  padding: 0 48px 28px !important; margin: 0 !important; border: 0 !important;
+  background: var(--modern-paper) !important; overflow: visible !important;
+}
+body .modern-app .modern-topline { display: flex; align-items: center; justify-content: space-between; min-height: 92px; border-bottom: 1px solid #e0e3d9; gap: 16px; font-size: 12px; color: var(--modern-muted); }
+body .modern-app .modern-topline strong { color: var(--modern-ink); font-weight: 500; }
+body .modern-app .modern-topline span { margin: 0 14px; }
+body .modern-app .modern-topline .wallet-button { display: flex !important; align-items: center !important; gap: 10px !important; background: #fff !important; border: 1px solid #e0e3d9 !important; width: auto !important; min-height: 40px !important; padding: 10px 16px !important; color: #20251e !important; font-size: 12px !important; line-height: 1.3 !important; }
+body .modern-app .modern-topline .wallet-button span { margin: 0 !important; }
+body .modern-app .content-panel > .page { display: block !important; padding: 0 !important; margin: 0 !important; width: 100% !important; border: 0 !important; background: transparent !important; box-shadow: none !important; }
+body .modern-app .collection-intro { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding: 44px 0 32px; }
+body .modern-app .collection-intro .eyebrow { font-size: 9px !important; font-weight: 750; letter-spacing: 2px; text-transform: uppercase; margin: 0 0 15px; }
+body .modern-app .collection-intro h1 { font-family: 'Inter', Arial, sans-serif !important; font-size: clamp(28px, 3.3vw, 46px) !important; font-weight: 750 !important; letter-spacing: -2px !important; line-height: 1.1 !important; margin: 0 0 18px !important; color: #20251e !important; text-transform: none !important; }
+body .modern-app .collection-intro p { font-size: 12px; line-height: 1.7; color: #787e70; margin: 0; }
+body .modern-app .submit-artwork { flex-shrink: 0; display: flex; align-items: center; gap: 24px; height: 50px; padding: 14px 18px; border: 0; background: var(--modern-lime); color: #20251e; font-size: 12px; font-weight: 750; }
+body .modern-app .submit-artwork span { font-size: 23px; line-height: 1; }
+body .modern-app .submit-artwork:hover { background: #c9ed65; transform: translateY(-2px); }
+body .modern-app .spotlight { position: relative; display: flex; align-items: center; min-height: 265px; background: #20291d; border-radius: 13px; overflow: hidden; margin-bottom: 32px; }
+body .modern-app .spotlight-copy { padding: 32px; width: 43%; z-index: 1; }
+body .modern-app .spotlight-tag { display: inline-block; padding: 5px 8px; border: 1px solid #728255; border-radius: 4px; color: #d9f780; font-size: 8px; letter-spacing: 1.3px; font-weight: 750; text-transform: uppercase; }
+body .modern-app .spotlight h2 { font-family: 'Inter', Arial, sans-serif !important; font-size: 31px !important; letter-spacing: -1px !important; text-transform: none !important; color: #fff !important; line-height: 1.1 !important; margin: 18px 0 14px !important; }
+body .modern-app .spotlight p { font-size: 12px; color: #c2cbb9; max-width: 250px; line-height: 1.65; margin: 0 0 21px; }
+body .modern-app .spotlight button { background: transparent; border: 0; padding: 0; color: white; font-size: 11px; }
+body .modern-app .spotlight button span { margin-left: 16px; font-size: 16px; }
+body .modern-app .spotlight-covers { position: absolute; right: 20px; top: -22px; bottom: -8px; display: flex; align-items: center; width: 48%; gap: 12px; transform: rotate(12deg); }
+body .modern-app .spotlight-covers img { width: calc((100% - 24px) / 3); height: auto; aspect-ratio: 2/3; object-fit: cover; box-shadow: 0 12px 18px #0006; }
+body .modern-app .spotlight-covers img:first-child { align-self: flex-start; }
+body .modern-app .spotlight-covers img:nth-child(2) { margin-top: 70px; }
+body .modern-app .collection-toolbar { display: flex !important; flex-wrap: wrap; align-items: center !important; justify-content: space-between !important; gap: 16px !important; padding: 0 !important; margin: 0 0 24px !important; border: 0 !important; scroll-margin-top: 20px; }
+body .modern-app .collection-filters { display: flex; gap: 7px; flex-wrap: wrap; }
+body .modern-app .collection-filters button { min-height: 36px; border: 0; padding: 10px 12px; color: #73796b; background: transparent; font-size: 11px; }
+body .modern-app .collection-filters button.selected { background: #e8ecdf; color: #20251e; font-weight: 650; }
+body .modern-app .submission-actions { display: flex !important; align-items: center !important; gap: 9px !important; flex-wrap: wrap !important; width: auto !important; }
+body .modern-app .submission-actions label { display: block !important; margin: 0 !important; width: auto !important; }
+body .modern-app .submission-actions label > span { display: none !important; }
+body .modern-app .submission-actions input, body .modern-app .submission-actions select, body .modern-app .submission-actions button { min-height: 36px !important; height: 36px !important; font-size: 10px !important; border: 1px solid #dfe3d8 !important; padding: 9px 11px !important; background: #fff !important; color: #20251e !important; min-width: 0 !important; width: auto !important; }
+body .modern-app .submission-actions input { width: 190px !important; }
+body .modern-app .collection-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
+body .modern-app .collection-heading h2 { font-family: 'Inter', Arial, sans-serif !important; font-size: 12px !important; text-transform: none !important; letter-spacing: 0 !important; margin: 0 !important; color: #20251e !important; }
+body .modern-app .collection-heading h2 span { color: #929986; margin-left: 8px; font-weight: 400; }
+body .modern-app .collection-heading p { font-size: 10px; color: #787e70; margin: 0; }
+body .modern-app .modern-comic-grid { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 30px 20px; }
+body .modern-app .modern-comic-card { min-width: 0; }
+body .modern-app .modern-cover { display: block; position: relative; width: 100%; padding: 9px; border: 0; background: #e9ece2; border-radius: 9px !important; cursor: pointer; }
+body .modern-app .modern-cover:hover { transform: translateY(-4px); background: #dde4cf; }
+body .modern-app .modern-cover img { display: block; width: 100%; aspect-ratio: 0.66; height: auto; object-fit: cover; box-shadow: 0 3px 7px #20251e30; }
+body .modern-app .issue-badge { position: absolute; left: 14px; top: 17px; font-size: 8px; color: #20251e; background: #fffffff0; padding: 3px 5px; border-radius: 2px; text-transform: uppercase; }
+body .modern-app .modern-card-title { display: flex; justify-content: space-between; align-items: center; gap: 5px; margin-top: 10px; }
+body .modern-app .modern-card-title strong { font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700; color: #20251e; }
+body .modern-app .modern-card-title .like-button { display: inline-flex !important; flex-shrink: 0; gap: 3px !important; width: auto !important; min-width: 0 !important; min-height: 24px !important; padding: 0 !important; border: 0 !important; color: #7e8677 !important; background: transparent !important; font-size: 10px !important; }
+body .modern-app .modern-card-title .like-icon, body .modern-app .modern-card-title .like-count { font-size: 11px !important; color: inherit !important; }
+body .modern-app .modern-card-title .like-button.active { color: #b94b58 !important; }
+body .modern-app .modern-creator { display: flex; align-items: center; gap: 6px; font-size: 9px; color: #7b8272; margin: 6px 0 0; }
+body .modern-app .modern-creator span { font-size: 8px; border-radius: 50%; background: #e5eadb; width: 14px; height: 14px; display: grid; place-items: center; }
+body .modern-app .submission-pagination { display: flex !important; justify-content: center !important; align-items: center; gap: 18px; padding: 32px 0 !important; font-size: 11px; }
+body .modern-app .submission-pagination button { border: 1px solid #dfe3d8 !important; background: #eef1e6 !important; padding: 9px 15px !important; font-size: 11px !important; color: #20251e !important; }
+body .modern-app .content-panel .app-footer { border-top: 1px solid #e0e3d9 !important; margin-top: 32px !important; padding-top: 20px !important; font-size: 10px !important; color: #787e70 !important; }
+body .modern-app .content-panel .app-footer * { font-family: 'Inter', Arial, sans-serif !important; font-size: 10px !important; color: #787e70 !important; text-transform: none !important; }
+body .modern-app .content-panel > .submit-page { display: grid !important; grid-template-columns: minmax(260px, .85fr) minmax(0,1.15fr) !important; gap: 28px !important; padding-top: 32px !important; }
+body .modern-app .submit-page .mint-form, body .modern-app .submit-page .submit-workspace { background: #f0f2e9 !important; border: 1px solid #e0e3d9 !important; border-radius: 12px !important; padding: 24px !important; color: #20251e !important; }
+body .modern-app .submit-page h2, body .modern-app .portfolio-page h2 { font-family: 'Inter', Arial, sans-serif !important; text-transform: none !important; font-size: 25px !important; color: #20251e !important; }
+body .modern-app .submit-page input, body .modern-app .submit-page textarea, body .modern-app .submit-page select { background: #fff !important; color: #20251e !important; border: 1px solid #d9dfce !important; }
+body .modern-app .submit-page .mint-actions button, body .modern-app .submit-page .upload-drop button { background: #d9f780 !important; color: #20251e !important; border: 1px solid #c9dc9f !important; }
+body .app-shell.modern-app .comic-page-shell .submit-page .mint-form label,
+body .app-shell.modern-app .comic-page-shell .submit-page .editor-controls label { font-size: 12px !important; font-weight: 550 !important; text-transform: none !important; letter-spacing: 0 !important; color: #59634f !important; }
+body .app-shell.modern-app .comic-page-shell .submit-page input,
+body .app-shell.modern-app .comic-page-shell .submit-page textarea,
+body .app-shell.modern-app .comic-page-shell .submit-page select { font-size: 13px !important; font-weight: 450 !important; }
+body .app-shell.modern-app .comic-page-shell .pending-page > .status-text { background: transparent !important; border: 0 !important; padding: 0 !important; color: #87907c !important; font-size: 10px !important; }
+@media (min-width: 1600px) { body .modern-app .content-panel { padding-left: 64px !important; padding-right: 64px !important; } body .modern-app .spotlight { min-height: 310px; } }
+@media (max-width: 1150px) {
+  body .modern-app .comic-page-shell { grid-template-columns: 190px minmax(0,1fr) !important; }
+  body .modern-app .comic-page-shell .site-topbar { width: 190px !important; padding-left: 14px !important; padding-right: 14px !important; }
+  body .modern-app .comic-page-shell .content-panel { padding-left: 30px !important; padding-right: 30px !important; }
+  body .modern-app .modern-wordmark { font-size: 20px; }
+  body .modern-app .modern-comic-grid { gap: 26px 14px; grid-template-columns: repeat(4,minmax(0,1fr)); }
+  body .modern-app .collection-intro { align-items: flex-start; }
+  body .modern-app .collection-intro h1 { letter-spacing: -1.3px !important; }
+  body .modern-app .submit-artwork { gap: 12px; font-size: 10px; }
+}
+@media (max-width: 800px) {
+  body .modern-app .comic-page-shell { display: block !important; }
+  body .modern-app .comic-page-shell .site-topbar { position: relative !important; width: 100% !important; height: auto !important; min-height: 0 !important; padding: 18px 22px !important; flex-direction: row !important; align-items: center !important; flex-wrap: wrap !important; gap: 16px !important; border-right: 0 !important; border-bottom: 1px solid #e0e3d9 !important; }
+  body .modern-app .site-topbar .topbar-brand { width: auto !important; margin: 0 auto 0 0 !important; }
+  body .modern-app .site-topbar .tabbar { width: auto !important; flex-direction: row !important; gap: 5px !important; }
+  body .modern-app .tabbar button { width: auto !important; min-height: 39px !important; padding: 10px !important; font-size: 11px !important; gap: 6px !important; }
+  body .modern-app .site-topbar .wallet-actions { width: auto !important; margin: 0 !important; }
+  body .modern-app .wallet-actions .portfolio-button { width: auto !important; font-size: 11px !important; min-height: 39px !important; padding: 10px !important; gap: 6px !important; }
+  body .modern-app .sidebar-note { display: none; }
+  body .modern-app .comic-page-shell .content-panel { padding: 0 24px 24px !important; }
+  body .modern-app .modern-topline { min-height: 70px; }
+  body .modern-app .collection-intro { padding-top: 30px; }
+  body .modern-app .collection-intro h1 { font-size: 33px !important; }
+  body .modern-app .collection-intro { flex-wrap: wrap; gap: 20px; }
+  body .modern-app .spotlight-copy { width: 50%; padding: 25px; }
+  body .modern-app .spotlight h2 { font-size: 27px !important; }
+  body .modern-app .modern-comic-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+}
+@media (max-width: 520px) {
+  body .modern-app .comic-page-shell .site-topbar { gap: 12px !important; padding: 18px !important; }
+  body .modern-app .site-topbar .topbar-brand { width: 100% !important; }
+  body .modern-app .modern-wordmark { font-size: 19px; }
+  body .modern-app .modern-monogram { width: 34px; height: 38px; font-size: 18px; }
+  body .modern-app .comic-page-shell .content-panel { padding-left: 18px !important; padding-right: 18px !important; }
+  body .modern-app .collection-intro h1 { font-size: 32px !important; max-width: 320px; }
+  body .modern-app .collection-intro p { font-size: 11px; }
+  body .modern-app .submit-artwork { height: 42px; font-size: 11px; }
+  body .modern-app .spotlight { min-height: 260px; }
+  body .modern-app .spotlight-copy { width: 64%; padding: 22px; }
+  body .modern-app .spotlight p { max-width: 160px; font-size: 10px; }
+  body .modern-app .spotlight h2 { font-size: 26px !important; }
+  body .modern-app .spotlight-covers { width: 50%; right: -36px; top: 0; bottom: 0; opacity: .85; gap: 8px; }
+  body .modern-app .spotlight-covers img { width: 70%; flex-shrink: 0; }
+  body .modern-app .spotlight-covers img:first-child { display: none; }
+  body .modern-app .spotlight-covers img:nth-child(2) { margin-top: 0; }
+  body .modern-app .collection-filters { gap: 1px; }
+  body .modern-app .collection-filters button { padding: 10px; }
+  body .modern-app .submission-actions { width: 100% !important; }
+  body .modern-app .submission-actions .submission-search { flex: 1; }
+  body .modern-app .submission-actions input { width: 100% !important; }
+  body .modern-app .collection-toolbar .submission-actions > button { display: none !important; }
+  body .modern-app .modern-comic-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px 14px; }
+  body .modern-app .modern-card-title strong { font-size: 9px; }
+  body .modern-app .collection-heading p { font-size: 9px; }
+  body .modern-app .content-panel > .submit-page { grid-template-columns: 1fr !important; }
+}
+
+/* Clear legacy mobile sidebar offsets and nested grid rules. */
+@media (max-width: 800px) {
+  body .app-shell.modern-app .comic-page-shell .site-topbar { left: auto !important; right: auto !important; bottom: auto !important; transform: none !important; }
+  body .app-shell.modern-app .comic-page-shell .site-topbar .tabbar,
+  body .app-shell.modern-app .comic-page-shell .site-topbar .wallet-actions { display: flex !important; flex: 0 1 auto !important; flex-direction: row !important; }
+  body .app-shell.modern-app .comic-page-shell .site-topbar .topbar-brand { max-width: none !important; }
+  body .app-shell.modern-app .comic-page-shell .site-topbar .tabbar button { opacity: 1 !important; }
+}
+@media (max-width: 520px) {
+  body .app-shell.modern-app .comic-page-shell .site-topbar .topbar-brand { width: 100% !important; flex: 0 0 100% !important; margin-bottom: 4px !important; }
+  body .app-shell.modern-app .comic-page-shell .site-topbar .tabbar { gap: 4px !important; }
+  body .app-shell.modern-app .comic-page-shell .site-topbar .wallet-actions { margin-left: auto !important; }
+  body .app-shell.modern-app .comic-page-shell .site-topbar .tabbar button,
+  body .app-shell.modern-app .comic-page-shell .site-topbar .wallet-actions .portfolio-button { padding: 10px 8px !important; font-size: 10px !important; }
+  body .app-shell.modern-app .comic-page-shell .site-topbar .tabbar { width: auto !important; flex-wrap: nowrap !important; }
+  body .app-shell.modern-app .comic-page-shell .site-topbar .tabbar button { width: auto !important; flex: 0 0 auto !important; min-width: 0 !important; }
+}
+
+/* Illustrated press theme: one shared city image, readable paper overlays. */
+body .app-shell.modern-app.illustrated-app {
+  --modern-paper: #eeeadd;
+  --modern-ink: #201f19;
+  --modern-muted: #575849;
+  --press-line: #49382a;
+  --press-paper: url('./assets/paper-grain.svg'), linear-gradient(110deg, #dfcaa0, #f0e3c6 48%, #d6bc91);
+  --press-edge: 0 0 0 1px #aa8059, inset 0 0 0 2px #d4ad7b, inset 0 0 0 3px #77573d, inset 0 0 13px #82563755, 1px 3px 3px #30291f55;
+  background: #c7bba3 url('../Background.jpeg') left top / 100vw auto repeat-y fixed !important;
+}
+body .app-shell.modern-app.illustrated-app .comic-page-shell {
+  grid-template-columns: clamp(144px, 14vw, 204px) minmax(0, 1fr) !important;
+  background: transparent !important;
+}
+body .app-shell.modern-app.illustrated-app .comic-page-shell .site-topbar {
+  width: 100% !important;
+  padding: 10px 9px 14px !important;
+  border-right: 2px solid #3c3c32 !important;
+  background: linear-gradient(#71918a2b, #d5c4a21a 38%, #242c2926) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+body .app-shell.modern-app.illustrated-app .comic-page-shell .content-panel {
+  background: rgba(247, 246, 238, .87) !important;
+  padding: 0 clamp(22px, 3vw, 44px) 28px !important;
+}
+body .app-shell.modern-app.illustrated-app .site-topbar .topbar-brand {
+  min-height: 84px !important;
+  padding: 14px 10px !important;
+  margin: 0 0 24px !important;
+  gap: 8px !important;
+  border: 2px solid var(--press-line) !important;
+  border-radius: 4px 7px 3px 5px !important;
+  background: var(--press-paper) !important;
+  box-shadow: var(--press-edge) !important;
+}
+body .app-shell.modern-app.illustrated-app .modern-monogram { width: 32px; height: 35px; flex-shrink: 0; font-size: 18px; border: 1px solid #171c13; border-radius: 8px; box-shadow: 1px 2px 2px #35281f55; }
+body .app-shell.modern-app.illustrated-app .modern-wordmark { font-size: clamp(17px, 1.5vw, 22px); letter-spacing: -.9px; }
+body .app-shell.modern-app.illustrated-app .site-topbar .tabbar { gap: 9px !important; }
+body .app-shell.modern-app.illustrated-app .site-topbar .tabbar button,
+body .app-shell.modern-app.illustrated-app .site-topbar .wallet-actions .portfolio-button {
+  min-height: 45px !important;
+  padding: 10px 12px !important;
+  gap: 10px !important;
+  border: 2px solid #4b3527 !important;
+  border-radius: 4px 5px 4px 6px !important;
+  background: var(--press-paper) !important;
+  color: #28271d !important;
+  box-shadow: var(--press-edge) !important;
+  font-size: clamp(11px, .9vw, 13px) !important;
+  font-weight: 550 !important;
+}
+body .app-shell.modern-app.illustrated-app .site-topbar .tabbar button.active,
+body .app-shell.modern-app.illustrated-app .site-topbar .wallet-actions .portfolio-button.active {
+  background: url('./assets/paper-grain.svg'), linear-gradient(110deg, #c6a56e, #e2cca1 48%, #c6a16e) !important;
+  box-shadow: var(--press-edge), inset 4px 0 #927343 !important;
+  color: #211e17 !important;
+}
+body .app-shell.modern-app.illustrated-app .site-topbar .tabbar button:hover,
+body .app-shell.modern-app.illustrated-app .site-topbar .portfolio-button:hover { filter: brightness(1.06); }
+body .app-shell.modern-app.illustrated-app .sidebar-note {
+  padding: 18px 10px 12px;
+  color: #242921;
+  background: url('./assets/paper-grain.svg'), linear-gradient(135deg, #ded8c9f2, #b9b7a4eb);
+  border: 2px solid #3f3a30;
+  border-radius: 4px 9px 3px 5px;
+  box-shadow: 0 0 0 3px #89816b, inset 0 0 0 2px #b5a88c, inset 0 0 16px #51453645;
+  font-size: 10px;
+}
+body .app-shell.modern-app.illustrated-app .sidebar-note p:first-child { border: 0; padding: 0; }
+body .app-shell.modern-app.illustrated-app .sidebar-note p { margin-bottom: 20px; }
+body .app-shell.modern-app.illustrated-app .sidebar-note a { margin-left: 0; }
+body .app-shell.modern-app.illustrated-app .sidebar-note small { font-size: 8px; }
+body .app-shell.modern-app.illustrated-app .modern-topline { min-height: 58px; border-bottom: 1px solid #55462c3b; color: #282b24; font-size: 11px; }
+body .app-shell.modern-app.illustrated-app .modern-topline .wallet-button {
+  min-height: 40px !important; padding: 10px 18px !important; border: 2px solid #4b3527 !important;
+  border-radius: 5px !important; background: var(--press-paper) !important; box-shadow: var(--press-edge) !important;
+  color: #211e17 !important; font-size: 11px !important;
+}
+body .app-shell.modern-app.illustrated-app .collection-intro { padding: 22px 0 18px; gap: 20px; }
+body .app-shell.modern-app.illustrated-app .collection-intro h1 { font-size: clamp(28px, 2.9vw, 41px) !important; letter-spacing: -1.6px !important; margin-bottom: 12px !important; }
+body .app-shell.modern-app.illustrated-app .collection-intro p { color: #35392f !important; font-size: 11px; }
+body .app-shell.modern-app.illustrated-app .collection-intro .eyebrow { margin-bottom: 12px; color: #25291f !important; font-size: 9px !important; letter-spacing: 1.2px !important; }
+body .app-shell.modern-app.illustrated-app .submit-artwork { min-height: 42px; height: 42px; padding: 10px 16px; border: 1px solid #47542c !important; background: linear-gradient(#dff38c, #bfd36f) !important; box-shadow: inset 0 0 0 1px #effac0, 1px 2px 2px #34392040 !important; color: #192014 !important; font-size: 11px; }
+body .app-shell.modern-app.illustrated-app .spotlight {
+  min-height: clamp(185px, 18vw, 252px); margin-bottom: 12px; border: 2px solid #28251d; border-radius: 9px;
+  background: url('./assets/ink-splatter.svg') right center / 85% 100% no-repeat, linear-gradient(105deg, #201c12, #36362a 58%, #141810);
+  box-shadow: inset 0 0 36px #000a;
+}
+body .app-shell.modern-app.illustrated-app .spotlight::after { content: ''; position: absolute; inset: 0; background: url('./assets/paper-grain.svg'); mix-blend-mode: screen; opacity: .6; pointer-events: none; }
+body .app-shell.modern-app.illustrated-app .spotlight-copy { padding: 20px; width: 43%; }
+body .app-shell.modern-app.illustrated-app .spotlight-tag { padding: 4px 7px; border: 1px solid #958166; background: #201b12; color: #d7c49e !important; font-size: 7px; letter-spacing: .6px; border-radius: 0; }
+body .app-shell.modern-app.illustrated-app .spotlight h2 { color: #dbc196 !important; font-size: clamp(22px, 2.1vw, 30px) !important; margin: 12px 0 10px !important; font-weight: 700; }
+body .app-shell.modern-app.illustrated-app .spotlight p { color: #f0eadc !important; font-size: 10px; line-height: 1.5; max-width: 240px; margin-bottom: 12px; }
+body .app-shell.modern-app.illustrated-app .spotlight button { font-size: 10px !important; text-decoration: underline; text-underline-offset: 3px; }
+body .app-shell.modern-app.illustrated-app .spotlight-covers { right: 14px; top: -46px; bottom: -45px; width: 49%; gap: 8px; transform: rotate(12deg); }
+body .app-shell.modern-app.illustrated-app .spotlight-covers img { width: calc((100% - 16px) / 3); border: 1px solid #332820; box-shadow: 0 7px 12px #000a; filter: saturate(.87) contrast(1.06); }
+body .app-shell.modern-app.illustrated-app .collection-toolbar { flex-wrap: nowrap; gap: 12px !important; min-height: 52px; margin-bottom: 9px !important; }
+body .app-shell.modern-app.illustrated-app .collection-filters { flex-shrink: 0; flex-wrap: nowrap; gap: 0; padding: 2px; border: 2px solid #49372a; border-radius: 5px; background: var(--press-paper); box-shadow: 1px 2px 2px #30291f44; }
+body .app-shell.modern-app.illustrated-app .collection-filters button { min-height: 25px; height: auto; padding: 6px 9px; font-size: 9px !important; color: #27251d !important; border-radius: 2px !important; }
+body .app-shell.modern-app.illustrated-app .collection-filters button.selected { background: #b08b594d !important; color: #211e17 !important; box-shadow: inset 0 0 3px #714a2788 !important; }
+body .app-shell.modern-app.illustrated-app .collection-toolbar .submission-actions { flex-shrink: 0; flex-wrap: nowrap !important; gap: 8px !important; }
+body .app-shell.modern-app.illustrated-app .collection-toolbar .submission-actions input,
+body .app-shell.modern-app.illustrated-app .collection-toolbar .submission-actions select,
+body .app-shell.modern-app.illustrated-app .collection-toolbar .submission-actions button {
+  height: 30px !important; min-height: 30px !important; padding: 6px 10px !important; font-size: 9px !important;
+  border: 1px solid #57422f !important; border-radius: 4px !important; background: var(--press-paper) !important;
+  box-shadow: inset 0 0 0 1px #c3a477, inset 0 0 6px #9062396b, 1px 2px 2px #28221944 !important;
+}
+body .app-shell.modern-app.illustrated-app .collection-toolbar .submission-actions input { width: clamp(128px, 12vw, 180px) !important; }
+body .app-shell.modern-app.illustrated-app .collection-heading { margin-bottom: 14px; }
+body .app-shell.modern-app.illustrated-app .collection-heading h2 { font-size: 11px !important; font-weight: 550; }
+body .app-shell.modern-app.illustrated-app .collection-heading h2 span { display: inline-block; padding: 4px 7px; color: #33362e; background: #f7f5e9c9; border: 1px solid #d3cbbb; border-radius: 3px; }
+body .app-shell.modern-app.illustrated-app .collection-heading p { color: #35392f; font-size: 9px; }
+body .app-shell.modern-app.illustrated-app .modern-comic-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 26px 18px; }
+body .app-shell.modern-app.illustrated-app .modern-cover {
+  padding: 5px; border: 2px solid #3e3027 !important; border-radius: 6px 4px 5px 3px !important;
+  background: url('./assets/paper-grain.svg'), linear-gradient(135deg, #b39b79, #d4bf9d 45%, #83725b) !important;
+  box-shadow: inset 0 0 0 1px #d8c4a5, inset 0 0 0 2px #564a38, 1px 2px 2px #342b204d !important;
+}
+body .app-shell.modern-app.illustrated-app .modern-cover img { border: 1px solid #524738; filter: saturate(.9) contrast(1.04); box-shadow: none; }
+body .app-shell.modern-app.illustrated-app .modern-cover:hover { background: #d5bd92 !important; transform: translateY(-3px); }
+body .app-shell.modern-app.illustrated-app .issue-badge { left: 10px; top: 12px; background: #ece6d5e8; border: 1px solid #7e7059; font-size: 7px; }
+body .app-shell.modern-app.illustrated-app .modern-card-title { margin-top: 7px; }
+body .app-shell.modern-app.illustrated-app .modern-card-title strong { font-size: 9px; }
+body .app-shell.modern-app.illustrated-app .modern-card-title .like-button { color: #454b3d !important; min-height: 18px !important; }
+body .app-shell.modern-app.illustrated-app .modern-creator { color: #444a3b; font-size: 8px; margin-top: 3px; }
+body .app-shell.modern-app.illustrated-app .modern-creator span { background: #c9caba70; }
+body .app-shell.modern-app.illustrated-app .content-panel .app-footer { border-color: #52483655 !important; }
+body .app-shell.modern-app.illustrated-app .submission-pagination button { background: var(--press-paper) !important; border: 1px solid #57422f !important; box-shadow: inset 0 0 4px #90623966 !important; }
+body .app-shell.modern-app.illustrated-app .submit-page .mint-form,
+body .app-shell.modern-app.illustrated-app .submit-page .submit-workspace { background: url('./assets/paper-grain.svg'), #ede5d2eb !important; border: 1px solid #7e6b4f !important; box-shadow: inset 0 0 0 3px #e1d1b4 !important; }
+body .app-shell.modern-app.illustrated-app .submit-workspace .editor-panel { background: #e7dfcce6 !important; border-color: #b5a58a !important; }
+.collection-instruments { display: flex; align-items: center; justify-content: space-around; gap: clamp(10px, 2vw, 30px); flex: 1; min-width: 210px; height: 52px; pointer-events: none; }
+.collection-compass { width: 98px; height: 98px; flex-shrink: 0; transform: rotate(-8deg); filter: drop-shadow(1px 3px 2px #33271f55); }
+.collection-count-plate { display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; gap: 10px; min-width: 84px; padding: 6px 5px; border: 2px solid #4e4b40; background: url('./assets/paper-grain.svg'), linear-gradient(135deg, #b4b4a7, #e1dfcc 45%, #8c8f82); box-shadow: inset 0 0 0 2px #c7c5b5, 2px 2px 2px #33271f44; clip-path: polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px), 0 6px); }
+.collection-count-plate output { color: #28271f; font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
+.collection-count-plate > i { width: 5px; height: 5px; border: 1px solid #464639; border-radius: 50%; background: #b7b8a8; box-shadow: inset 1px 1px #e5e0cd; }
+.collection-lever { position: relative; width: 69px; height: 49px; flex-shrink: 0; background: url('./assets/paper-grain.svg'), linear-gradient(120deg, #c5c4b4, #a9ac9e, #b9b9a7); border: 2px solid #48473b; border-radius: 4px; box-shadow: inset 0 0 0 3px #c9c7b5, 1px 2px 3px #33271f55; }
+.collection-lever::before, .collection-lever::after { content: ''; position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #514e3e; top: 4px; }
+.collection-lever::before { left: 4px; }.collection-lever::after { right: 4px; }
+.collection-lever > span { position: absolute; width: 9px; height: 33px; right: 14px; top: 6px; background: #373a31; border: 2px solid #7b7f6e; border-radius: 5px; }
+.collection-lever > i { position: absolute; width: 34px; height: 8px; left: 15px; top: 18px; background: linear-gradient(#c2aa85, #5c4e37); border: 1px solid #3f3529; transform: rotate(9deg); }
+.collection-lever > i::before { content: ''; position: absolute; width: 19px; height: 19px; left: -10px; top: -7px; background: radial-gradient(circle at 35% 30%, #d2ac7f, #97734e 55%, #57432f); border: 2px solid #493728; border-radius: 50%; }
+@media (max-width: 1200px) and (min-width: 801px) {
+  body .app-shell.modern-app.illustrated-app .collection-toolbar { gap: 8px !important; }
+  .collection-instruments { min-width: 220px; gap: 8px; }.collection-compass { width: 80px; height: 80px; }.collection-lever { width: 54px; height: 43px; }
+  .collection-count-plate { min-width: 72px; gap: 6px; }.collection-count-plate output { font-size: 22px; }
+  body .app-shell.modern-app.illustrated-app .collection-filters button { padding: 5px 7px; font-size: 8px !important; }
+  body .app-shell.modern-app.illustrated-app .site-topbar .tabbar button { padding-left: 8px !important; padding-right: 8px !important; gap: 7px !important; font-size: 10px !important; white-space: nowrap; }
+}
+@media (max-width: 1000px) and (min-width: 801px) {
+  body .app-shell.modern-app.illustrated-app .collection-toolbar { flex-wrap: wrap; }
+  .collection-instruments { justify-content: flex-end; min-width: 150px; gap: 20px; }.collection-compass { width: 74px; height: 74px; }
+  .collection-lever { display: none; }
+  body .app-shell.modern-app.illustrated-app .collection-toolbar .submission-actions { margin-left: auto; }
+}
+@media (max-width: 800px) {
+  body .app-shell.modern-app.illustrated-app { background-size: auto 1000px !important; background-position: center top !important; }
+  body .app-shell.modern-app.illustrated-app .comic-page-shell { display: block !important; }
+  body .app-shell.modern-app.illustrated-app .comic-page-shell .site-topbar { padding: 12px 16px !important; background: #b9c3ae77 !important; gap: 12px !important; border: 0 !important; border-bottom: 2px solid #49382a !important; }
+  body .app-shell.modern-app.illustrated-app .site-topbar .topbar-brand { min-height: 56px !important; margin: 0 auto 0 0 !important; width: auto !important; padding: 8px 12px !important; }
+  body .app-shell.modern-app.illustrated-app .site-topbar .tabbar button,
+  body .app-shell.modern-app.illustrated-app .site-topbar .wallet-actions .portfolio-button { min-height: 38px !important; padding: 8px 10px !important; font-size: 10px !important; gap: 7px !important; }
+  body .app-shell.modern-app.illustrated-app .comic-page-shell .content-panel { padding: 0 22px 24px !important; }
+  body .app-shell.modern-app.illustrated-app .collection-intro { padding-top: 26px; }
+  body .app-shell.modern-app.illustrated-app .spotlight-copy { width: 52%; }
+  body .app-shell.modern-app.illustrated-app .spotlight-covers { width: 47%; top: -20px; bottom: -20px; }
+  body .app-shell.modern-app.illustrated-app .modern-comic-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 14px; }
+  body .app-shell.modern-app.illustrated-app .collection-toolbar { flex-wrap: wrap; gap: 14px !important; padding: 10px 0 !important; }
+  .collection-instruments { flex: 1; min-width: 150px; justify-content: flex-end; gap: 16px; height: 46px; }.collection-compass { width: 70px; height: 70px; }.collection-lever { display: none; }
+  body .app-shell.modern-app.illustrated-app .collection-toolbar .submission-actions { width: 100% !important; }
+  body .app-shell.modern-app.illustrated-app .collection-toolbar .submission-actions .submission-search { flex: 1; }
+  body .app-shell.modern-app.illustrated-app .collection-toolbar .submission-actions input { width: 100% !important; }
+}
+@media (max-width: 520px) {
+  body .app-shell.modern-app.illustrated-app .site-topbar .topbar-brand { width: 100% !important; flex-basis: 100% !important; max-width: 180px !important; margin-bottom: 4px !important; }
+  body .app-shell.modern-app.illustrated-app .site-topbar .tabbar { gap: 7px !important; }
+  body .app-shell.modern-app.illustrated-app .site-topbar .wallet-actions { margin-left: 0 !important; }
+  body .app-shell.modern-app.illustrated-app .site-topbar .tabbar button,
+  body .app-shell.modern-app.illustrated-app .site-topbar .wallet-actions .portfolio-button { font-size: 9px !important; padding: 8px !important; }
+  body .app-shell.modern-app.illustrated-app .comic-page-shell .content-panel { padding-left: 16px !important; padding-right: 16px !important; }
+  body .app-shell.modern-app.illustrated-app .collection-intro h1 { font-size: 30px !important; }
+  body .app-shell.modern-app.illustrated-app .collection-intro p { font-size: 10px; }
+  body .app-shell.modern-app.illustrated-app .spotlight { min-height: 240px; }
+  body .app-shell.modern-app.illustrated-app .spotlight-copy { width: 65%; padding: 20px; }
+  body .app-shell.modern-app.illustrated-app .spotlight h2 { font-size: 24px !important; }
+  body .app-shell.modern-app.illustrated-app .spotlight-covers { width: 47%; right: -38px; top: 5px; bottom: 0; }
+  body .app-shell.modern-app.illustrated-app .spotlight-covers img { width: 78%; flex-shrink: 0; }
+  body .app-shell.modern-app.illustrated-app .collection-toolbar { gap: 12px !important; }
+  body .app-shell.modern-app.illustrated-app .collection-filters { order: 1; }
+  body .app-shell.modern-app.illustrated-app .collection-filters button { padding: 6px 9px; font-size: 8px !important; }
+  .collection-instruments { order: 0; flex-basis: 100%; justify-content: space-between; height: 46px; margin-bottom: 12px; padding: 0 15px; }.collection-compass { width: 76px; height: 76px; }.collection-lever { display: block; width: 64px; height: 45px; }
+  body .app-shell.modern-app.illustrated-app .collection-toolbar .submission-actions { order: 2; }
+  body .app-shell.modern-app.illustrated-app .collection-toolbar .submission-actions > button { display: block !important; }
+  body .app-shell.modern-app.illustrated-app .modern-comic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 12px; }
+}

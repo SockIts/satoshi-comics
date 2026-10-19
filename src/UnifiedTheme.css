@@ -1,0 +1,53 @@
+/* One shared canvas, sampled from the perspective reel. Keep artwork and
+   functional accents (buttons, sliders, modal scrims) distinct from surfaces. */
+:root {
+  --app-surface: #e7e7e0;
+  --background: var(--app-surface);
+  --card: var(--app-surface);
+  --popover: var(--app-surface);
+  --secondary: var(--app-surface);
+  --muted: var(--app-surface);
+  --accent: var(--app-surface);
+}
+html, body, #root { background: var(--app-surface) !important; }
+body .app-shell.modern-app.timeline-app {
+  --modern-paper: var(--app-surface);
+  background: var(--app-surface) !important;
+  min-height: 100svh;
+}
+body .app-shell.modern-app.timeline-app .comic-page-shell,
+body .app-shell.modern-app.timeline-app .comic-page-shell .site-topbar,
+body .app-shell.modern-app.timeline-app .comic-page-shell .content-panel,
+body .app-shell.modern-app.timeline-app .diagonal-viewport,
+body .app-shell.modern-app.timeline-app .gallery-diagonal-divider,
+body .app-shell.modern-app.timeline-app .reel-viewport,
+body .app-shell.modern-app.timeline-app .gallery-transport,
+body .app-shell.modern-app.timeline-app .collection-layout-toggle,
+body .app-shell.modern-app.timeline-app .submit-page .submit-preview-stage,
+body .app-shell.modern-app.timeline-app .submit-workspace .editor-panel,
+body .app-shell.modern-app.timeline-app .portfolio-table,
+body .app-shell.modern-app.timeline-app .portfolio-table tbody,
+body .app-shell.modern-app.timeline-app .portfolio-table tr,
+body .app-shell.modern-app.timeline-app .portfolio-table td,
+body .app-shell.modern-app.timeline-app .portfolio-table th,
+body .app-shell.modern-app.timeline-app .portfolio-table .status-pill,
+body .artwork-dialog,
+body .artwork-dialog [data-slot=dialog-close] {
+  background: var(--app-surface) !important;
+  background-image: none !important;
+}
+body .app-shell.modern-app.timeline-app .submit-page input,
+body .app-shell.modern-app.timeline-app .submit-page select,
+body .app-shell.modern-app.timeline-app .submit-page textarea {
+  background: var(--app-surface) !important;
+  border-color: #bcbcb1 !important;
+}
+body .app-shell.modern-app.timeline-app .editor-panel [data-slot=slider-thumb] {
+  background: var(--app-surface);
+}
+body .app-shell.modern-app.timeline-app .mint-form [data-slot=checkbox][data-state=unchecked] {
+  background: var(--app-surface) !important;
+}
+body .app-shell.modern-app.timeline-app .gallery-scrubber [data-slot=slider-thumb] {
+  box-shadow: 0 0 0 4px var(--app-surface);
+}
