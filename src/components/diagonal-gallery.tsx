@@ -44,7 +44,7 @@ export function DiagonalGallery({ assets, loading, coverFor, creatorFor, onOpen,
   const totalDistance = Math.max(0, Math.max(0, assets.length - 1) * step + anchorX - endAnchorX)
   const travel = totalDistance * position / 1000
   const anchorY = diagonalStart + anchorX * slope
-  const dividerWidth = size.width < 600 ? 16 : 22
+  const rowGap = size.width < 600 ? 16 : 22
   const boardStyle = {
     // Paint at native resolution rather than resampling a translated GPU texture.
     left: `${Math.round(anchorX - travel)}px`,
@@ -88,7 +88,7 @@ export function DiagonalGallery({ assets, loading, coverFor, creatorFor, onOpen,
             <div className={`diagonal-scene diagonal-scene-${section.side}`} style={boardStyle}>
           {assets.map((asset, index) => index % 2 === section.parity && (
             <article className={`timeline-entry ${section.side} ${currentIndex === index ? 'is-current' : ''}`} key={asset.asset}
-              style={{ left: `${Math.round(index * step)}px`, top: `${Math.round(index * step * slope)}px`, '--slice-overlap': `${-Math.round(coverWidth * slope / 2 + dividerWidth / 2 + 6)}px` } as CSSProperties}>
+              style={{ left: `${Math.round(index * step)}px`, top: `${Math.round(index * step * slope)}px`, '--slice-overlap': `${-Math.round(coverWidth * slope / 2 + rowGap / 2 + 6)}px` } as CSSProperties}>
               <div className="timeline-artwork">
                 <button className="timeline-cover" type="button" onClick={() => onOpen(asset)} onFocus={(event) => { if (event.currentTarget.matches(':focus-visible')) moveTo(index) }} aria-label={`View ${asset.displayName}`}>
                   <ComicBook src={coverFor(asset)} alt={asset.displayName} loading={Math.abs(index - currentIndex) < 4 ? 'eager' : 'lazy'} draggable={false} onError={(event) => { if (event.currentTarget.dataset.fallback !== 'true') { event.currentTarget.dataset.fallback = 'true'; event.currentTarget.src = asset.thumbnailUrl } }} />
@@ -100,13 +100,6 @@ export function DiagonalGallery({ assets, loading, coverFor, creatorFor, onOpen,
             </div>
           </div>
         ))}
-        <div className="gallery-diagonal-divider" aria-hidden="true" style={{
-          width: `${Math.hypot(size.width, size.width * slope) * 3}px`,
-          height: `${dividerWidth}px`,
-          left: `${-size.width + Math.sin(Math.atan(slope)) * dividerWidth / 2}px`,
-          top: `${diagonalStart - size.width * slope - Math.cos(Math.atan(slope)) * dividerWidth / 2}px`,
-          transform: `rotate(${Math.atan(slope) * 180 / Math.PI}deg)`,
-        }} />
         <div className="gallery-diagonal-caption" aria-hidden="true">A DIFFERENT POINT OF VIEW — SATOSHI COMICS</div>
       </div>
       <div className="gallery-transport">

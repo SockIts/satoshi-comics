@@ -39,7 +39,6 @@ body .app-shell.modern-app.timeline-app .content-panel .app-footer { margin-top:
 .diagonal-viewport:focus-visible { outline: 1px solid #dc4c49; outline-offset: -1px; }
 .diagonal-scene { position: absolute; left: 0; top: 0; width: 0; height: 0; }
 .gallery-half { position: absolute; inset: 0; overflow: hidden; z-index: 1; }
-.gallery-diagonal-divider { position: absolute; background: #fff; transform-origin: left center; border: 0; box-shadow: none; z-index: 3; cursor: grab; }
 .timeline-entry { position: absolute; width: 0; height: 0; z-index: 2; }
 .timeline-artwork { position: absolute; display: flex; flex-direction: column; width: var(--gallery-cover-width); left: calc(var(--gallery-cover-width) * -.5); }
 .timeline-entry.above .timeline-artwork { bottom: calc(-1 * var(--slice-overlap)); }.timeline-entry.below .timeline-artwork { top: calc(-1 * var(--slice-overlap)); }
